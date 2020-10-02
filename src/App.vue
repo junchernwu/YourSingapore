@@ -1,28 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <app-header v-bind:msg="title"></app-header>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+//Registering component Locally
+
+import Header from './components/Header.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  //Registering component Locally
+  components:{
+    'app-header':Header,
+  },
+  data(){
+    return{
+      title:"YOUR SINGAPORE"
+    }
   }
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
 </style>
