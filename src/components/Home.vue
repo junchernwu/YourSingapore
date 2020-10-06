@@ -4,8 +4,10 @@
   </div>
 </template>
 
-<script>
-</script>
+<script></script>
 
-<style scoped>
+<style>
+body {
+  background-color: #0a223d;
+}
 </style>
