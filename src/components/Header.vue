@@ -28,7 +28,10 @@ export default {
 <style scoped>
 header {
   background: #0A223D;
-  color: white;
+  padding: 20px;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: #E7E7F266; //NOTE: 66 represent 0.4 opacity
 }
 h1 {
   display: inline;
