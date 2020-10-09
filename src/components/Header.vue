@@ -6,6 +6,8 @@
         <router-link to="/merchants" exact style="color: white; text-decoration: none">FOR MERCHANTS</router-link>
         <p></p>
         <router-link to="/about" exact style="color: white; text-decoration: none">ABOUT US</router-link>
+        <p></p><router-link to="/activityList" exact style="color: blue; text-decoration: none">Activity List</router-link>
+    
       </nav>
     </header>
   </div>
@@ -29,6 +31,7 @@ export default {
 header {
   background: #0A223D;
   color: white;
+  height:100px;
 }
 h1 {
   display: inline;

@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <app-header v-bind:msg="title"></app-header>
-    <router-view></router-view>
+ <app-header v-bind:msg="title"></app-header>
+  <router-view></router-view>
+  
   </div>
 </template>
 
@@ -9,11 +10,13 @@
 //Registering component Locally
 
 import Header from './components/Header.vue'
+//import Home from './components/Home.vue'
 
 export default {
   //Registering component Locally
   components:{
-    'app-header':Header,
+   'app-header':Header,
+    
   },
   data(){
     return{
