@@ -4,8 +4,8 @@
         <nav>
         <h1><router-link to="/" exact id="index">{{ msg }}</router-link></h1>
         
-        <router-link to="/aboutus" exact id="about">ABOUT US </router-link>
-        <router-link to="/merchants" exact id="merch">FOR MERCHANTS</router-link>
+        <router-link to="/aboutus" exact class="small" id="about">ABOUT US </router-link>
+        <router-link to="/merchants" exact class="small">FOR MERCHANTS</router-link>
         
 
         </nav>
@@ -35,26 +35,30 @@ div{
 }
 
 h1 a{
+    position: relative;
+    float: left;
+    top:30px;
     text-align: center;
     color: white;
     font-weight:lighter;
-    padding-left:40%;
-    float: left;
+    margin-left:45%;
     font-size:20px;
+    text-decoration: none;  
 }
  
-#about{
-    padding-right:20px;;
-}
-a{
+.small{
     position: relative;
+    float:left;
     top:30px;
-    left:100px;
+    left:20%;
     font-size:15px; 
     font-weight: lighter;
     color : white;
     text-decoration: none;
     
+}
+#about{
+    padding-right:20px;
 }
 
 </style>

@@ -40,24 +40,23 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1{
-    position:absolute;
-    top:25%;
-    left:10%;
+    position:relative;
+    margin-left: 10%;
+    margin-top:10%;
     text-align: left;
     font-size:60px;
     color: white;
     font-weight: lighter;
 }
   select{
-    position: absolute;
+    position: relative;
+    right:31%;
     border:none;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.295);
     color:white;
     width:250px;
     height:40px;
-    top:53%;
-    left:10%;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     padding-left:10px;
