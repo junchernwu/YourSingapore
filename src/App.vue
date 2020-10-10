@@ -38,9 +38,16 @@ body.merchants {
   background-color: black;
 }
 body.date {
-  background-color: black;
+  background-image: url(./assets/DateBG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 body.location{
+  background-image: url(./assets/LocationBG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body.activities{
   background-color: black;
 }
 #app {
