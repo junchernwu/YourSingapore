@@ -4,7 +4,7 @@ import About from './components/About.vue'
 import MerchantForm from './components/MerchantForm'
 import VisitDate from './components/VisitDate.vue'
 import VisitLocation from './components/VisitLocation.vue'
-import Activities from './components/Activities.vue'
+import ActivityList from './components/ActivityList.vue'
 import Reminder from './components/Reminder.vue'
 
 
@@ -16,7 +16,7 @@ export default[
     {path:'/merchants',component:Merchants},
     {path:'/date',component:VisitDate},
     {path:'/location',component:VisitLocation},
-    {path:'/activities',component:Activities},
+    {path:'/activityList',component:ActivityList},
     {path:'/reminder',component:Reminder}
     
 ]
