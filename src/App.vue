@@ -30,7 +30,9 @@ body.index {
 }
 
 body.about {
-  background-color: black;
+  background-image: url(./assets/AboutBG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 body.merchants {
   background-color: black;
