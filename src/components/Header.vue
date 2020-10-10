@@ -4,7 +4,7 @@
         <nav>
         <h1><router-link to="/" exact id="index">{{ msg }}</router-link></h1>
         
-        <router-link to="/aboutus" exact class="small" id="about">ABOUT US </router-link>
+        <router-link to="/about" exact class="small" id="about">ABOUT US </router-link>
         <router-link to="/merchants" exact class="small">FOR MERCHANTS</router-link>
         
 

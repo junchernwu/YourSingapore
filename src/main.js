@@ -10,7 +10,6 @@ const myRouter =new VueRouter({
   routes:myRoutes,
   mode:'history'
 })
-
 new Vue({
   render: h => h(App),
   router:myRouter

@@ -23,7 +23,7 @@ html {
   width: 100%;
   min-height: 100vh;
 }
-body.index {
+body.home {
   background-image: url(./assets/IndexBG.png);
   background-repeat: no-repeat;
   background-size: cover;

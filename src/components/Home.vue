@@ -11,7 +11,7 @@
 
 export default {
      beforeCreate: function() {
-        document.body.className = 'index';
+        document.body.className = 'home';
     }
 }
 
