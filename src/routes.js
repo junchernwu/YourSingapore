@@ -1,13 +1,22 @@
 import Home from './components/Home.vue';
 import Merchants from './components/Merchants.vue';
-import About from './components/About.vue';
-import MerchantForm from './components/MerchantForm';
-import ActivityList from './components/ActivityList'
+import About from './components/About.vue'
+import MerchantForm from './components/MerchantForm'
+import VisitDate from './components/VisitDate.vue'
+import VisitLocation from './components/VisitLocation.vue'
+import ActivityList from './components/ActivityList.vue'
+import Reminder from './components/Reminder.vue'
+
 
 export default[
     {path:'/',component:Home},
-    {path:'/merchants',component:Merchants},
     {path:'/about',component:About},
     {path:'/merchant/form',component:MerchantForm},
-    {path:'/activityList',component:ActivityList}
+    {path:'/',component:Home},
+    {path:'/merchants',component:Merchants},
+    {path:'/date',component:VisitDate},
+    {path:'/location',component:VisitLocation},
+    {path:'/activityList',component:ActivityList},
+    {path:'/reminder',component:Reminder}
+    
 ]
