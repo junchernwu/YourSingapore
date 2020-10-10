@@ -43,7 +43,5 @@ h1{
     color: white;
     font-weight: lighter;
 }
-.contactbody{
-    
-}
+
 </style>
