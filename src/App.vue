@@ -50,6 +50,11 @@ body.location{
 body.activities{
   background-color: black;
 }
+body.reminder{
+  background-image: url(./assets/ReminderBG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

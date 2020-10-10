@@ -8,8 +8,7 @@
         <option value="West">West</option>
         <option value="Central">Central</option>
       </select>
-      <button v-on:click= "persist();$router.push('/activities')">></button>
-      
+      <button v-on:click= "persist();$router.push('/reminder')">></button>
   </div>
 </template>
 
