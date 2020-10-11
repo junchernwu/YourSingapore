@@ -49,8 +49,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 header {
-  background: #0a223d;
-  color: white;
+  background: #0A223D;
+  padding: 20px;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: #E7E7F266;
+  margin-bottom: 20px;
 }
 h1 {
   display: inline;

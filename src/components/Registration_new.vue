@@ -7,7 +7,7 @@
             Fill In Your Details
           </div>
         </h2>
-        <form class="ui large form" @submit.prevent="submit">
+        <form class="ui large form">
           <div class="ui stacked secondary  segment">
             <div class="field">
               <div class="ui left icon input">
@@ -31,8 +31,8 @@
                 />
               </div>
             </div>
-            <button class="ui fluid large red submit button" type="submit">
-              Sign Up
+            <button class="ui fluid large red submit button" v-on:click.prevent= "submit">
+              Next
             </button>
           </div>
         </form>
@@ -42,30 +42,42 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import firebase from "firebase"
+
 export default {
   name: "signUp",
   data() {
     return {
       email: "",
       password: "",
+      success: false
     };
   },
   methods: {
     submit: function() {
+      var success= this.success;
+      var router= this.$router;
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(
           function(user) {
             console.log("SUCCESS");
+            success=true;
             alert(user + "Your account has been created!");
           },
           function(err) {
             alert("oops" + err.message);
           }
-        );
-    },
+        ).then(
+          function(){
+            if(success){
+              console.log("successfully routed");
+              router.push('/merchant/form');
+            }
+          } 
+        )
+    }
   },
 };
 </script>

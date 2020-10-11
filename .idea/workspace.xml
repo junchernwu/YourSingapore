@@ -21,12 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4568f15a-a55f-427b-9b9e-5331926c56c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/047155bb92bf7d71940e2bba5e5a3ce8.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/047155bb92bf7d71940e2bba5e5a3ce8.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/00ec3c0f27681bcb8a3b1bea3f61908c.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/00ec3c0f27681bcb8a3b1bea3f61908c.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/5e8407c6b27a963cda189f75a1eb3633.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/5e8407c6b27a963cda189f75a1eb3633.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/a51264c483bd77eaac3caa0deff25a70.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/a51264c483bd77eaac3caa0deff25a70.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/c02ce7f1335d3e23f6211bd2a6fdf1c6.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/c02ce7f1335d3e23f6211bd2a6fdf1c6.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/ffbd2c025204a5fe4b18a8601f454095.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/ffbd2c025204a5fe4b18a8601f454095.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PricingOptionField.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PricingOptionField.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +31,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Single File Component" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -54,13 +49,18 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -69,6 +69,9 @@
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="4568f15a-a55f-427b-9b9e-5331926c56c8" name="Default Changelist" comment="" />
@@ -76,7 +79,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601649211245</updated>
-      <workItem from="1601649212996" duration="4473000" />
+      <workItem from="1601649212996" duration="33147000" />
+      <workItem from="1602072288432" duration="13282000" />
+      <workItem from="1602138571600" duration="21000" />
+      <workItem from="1602143161104" duration="18942000" />
+      <workItem from="1602398165675" duration="4658000" />
     </task>
     <servers />
   </component>
@@ -93,19 +100,52 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="-1927" y="324" key="#ESLint" timestamp="1602151770642">
+      <screen x="-2560" y="-276" width="2560" height="1440" />
+    </state>
+    <state x="-1927" y="324" key="#ESLint/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1602151770642" />
     <state x="-2149" y="-117" key="SettingsEditor" timestamp="1601649235139">
       <screen x="-2560" y="-253" width="2560" height="1417" />
     </state>
     <state x="-2149" y="-117" key="SettingsEditor/0.23.1680.947/-2560.-253.2560.1417@-2560.-253.2560.1417" timestamp="1601649235139" />
-    <state x="-2460" y="-176" width="2360" height="1240" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1601652357967">
+    <state x="-2460" y="-176" width="2360" height="1240" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602084979423">
       <screen x="-2560" y="-276" width="2560" height="1440" />
     </state>
-    <state x="-2460" y="-176" width="2360" height="1240" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1601652357967" />
-    <state x="-1699" y="204" key="run.anything.popup" timestamp="1601651389506">
+    <state x="-2460" y="-176" width="2360" height="1240" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1602084979423" />
+    <state x="463" y="319" key="com.intellij.ide.util.TipDialog" timestamp="1601961155649">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="463" y="319" key="com.intellij.ide.util.TipDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1601961155649" />
+    <state x="-1699" y="204" key="run.anything.popup" timestamp="1601710521635">
       <screen x="-2560" y="-276" width="2560" height="1440" />
     </state>
-    <state x="-1699" y="204" key="run.anything.popup/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1601651389506" />
+    <state x="-1699" y="204" key="run.anything.popup/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1601710521635" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
+          <line>727</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
+          <line>32</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
+          <line>582</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
