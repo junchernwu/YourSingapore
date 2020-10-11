@@ -20,17 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4568f15a-a55f-427b-9b9e-5331926c56c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Verification.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/2be7d0f9334411b7ba3965770ec1e741.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/2be7d0f9334411b7ba3965770ec1e741.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/1aefd6c577369be41d2a99fe9b0338d2.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/1aefd6c577369be41d2a99fe9b0338d2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/2b799e8743d790c3f833201ae499340f.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/2b799e8743d790c3f833201ae499340f.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/4c27e4d5de986fd01961ba9bceddb616.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/4c27e4d5de986fd01961ba9bceddb616.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/a9e6535b734fd125a468f49d25bf1b62.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/a9e6535b734fd125a468f49d25bf1b62.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/e8e13616663eca2ba58ee060e9e1bfb1.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/e8e13616663eca2ba58ee060e9e1bfb1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MerchantForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MerchantForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PricingOptionField.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PricingOptionField.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +83,7 @@
       <workItem from="1602072288432" duration="13282000" />
       <workItem from="1602138571600" duration="21000" />
       <workItem from="1602143161104" duration="18942000" />
-      <workItem from="1602398165675" duration="4043000" />
+      <workItem from="1602398165675" duration="4658000" />
     </task>
     <servers />
   </component>

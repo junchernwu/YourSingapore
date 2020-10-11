@@ -71,7 +71,7 @@ export default {
   #field {
     float: left;
     position: relative;
-    width: calc(100% - 25px);
+    width: calc(100% - 35px);
     left: calc(6% - 3px);
     padding-top: 15px;
     padding-bottom: 15px;
