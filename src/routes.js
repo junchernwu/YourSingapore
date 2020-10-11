@@ -6,6 +6,9 @@ import VisitDate from './components/VisitDate.vue'
 import VisitLocation from './components/VisitLocation.vue'
 import ActivityList from './components/ActivityList.vue'
 import Reminder from './components/Reminder.vue'
+import Login from './components/Login'
+import Registration_new from './components/Registration_new'
+import Verification from "@/components/Verification";
 
 
 export default[
@@ -17,6 +20,9 @@ export default[
     {path:'/date',component:VisitDate},
     {path:'/location',component:VisitLocation},
     {path:'/activityList',component:ActivityList},
-    {path:'/reminder',component:Reminder}
-    
+    {path:'/reminder',component:Reminder},
+    {path:'/verification',component:Verification},
+    {path:'/login',component:Login},
+    {path: '/merchant/Registration_new', component: Registration_new }
 ]
+

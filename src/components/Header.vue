@@ -3,9 +3,12 @@
     <header>
         <nav>
         <h1><router-link to="/" exact id="index">{{ msg }}</router-link></h1>
-        
-        <router-link to="/about" exact class="small" id="about">ABOUT US </router-link>
-        <router-link to="/merchants" exact class="small">FOR MERCHANTS</router-link>
+        <a class="active item">
+          <router-link to="/about" exact class="small" id="about">ABOUT US </router-link>
+        </a>
+        <a class="item">
+         <router-link to="/merchants" exact class="small">FOR MERCHANTS</router-link>
+        </a>
         
         </nav>
     </header>
@@ -14,13 +17,22 @@
 </template>
 
 <script>
+import $ from "jquery";
 export default {
-  
   data(){
     return{
         msg: 'YOUR SINGAPORE'
         }
-  }
+  },
+  mounted() {
+    $(document).ready(function() {
+      $(".ui  .item").on("click", function() {
+        console.log("removed");
+        $(".ui .item").removeClass("active");
+        $(this).addClass("active");
+      });
+    });
+  },
 }
 </script>
 
@@ -60,4 +72,11 @@ h1 a{
     padding-right:20px;
 }
 
+.ui.segment {
+  background-color: #0a223d;
+}
+
+.active {
+  border-left-color: green;
+}
 </style>
