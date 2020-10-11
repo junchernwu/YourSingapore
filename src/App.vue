@@ -1,43 +1,78 @@
 <template>
   <div id="app">
-    <app-header v-bind:msg="title"></app-header>
+    <component v-bind:is="currentData"> </component>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-//Registering component Locally
-
 import Header from './components/Header.vue'
+import ActivityListHeader from './components/ActivityListHeader.vue'
+//import Home from './components/Home.vue'
 
 export default {
-  //Registering component Locally
-  components:{
-    'app-header':Header,
+  name: 'App',
+  components: {
+    Header,
+    ActivityListHeader
   },
-  data(){
-    return{
-      title:"YOUR SINGAPORE"
-    }
+  computed:{
+    currentData() {
+        if (this.$route.path==="/activityList") {
+          return ActivityListHeader;
+        } else {
+          return Header;
+        }
+      }
   }
 }
 </script>
 
 <style>
+html,body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+body.home {
+  background-image: url(./assets/IndexBG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body.about {
+  background-image: url(./assets/AboutBG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body.merchants {
+  background-color: black;
+}
+body.date {
+  background-image: url(./assets/DateBG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body.location{
+  background-image: url(./assets/LocationBG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body.activityList{
+  background-color: #0A223D;
+}
+body.reminder{
+  background-image: url(./assets/ReminderBG.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: white;
-  background-color: #0A223D;
-  height: 100vh;
-  padding: 0px;
-  margin: 0px;
-}
-body {
-  margin: 0px;
-  background-color: #0A223D;
+  color: #2c3e50;
+  
 }
 </style>
 

@@ -1,39 +1,29 @@
 <template>
-  <div>
-    <div class="ui inverted segment">
-      <div class="ui secondary inverted pointing menu">
+   <div>
+    <header>
+        <nav>
+        <h1><router-link to="/" exact id="index">{{ msg }}</router-link></h1>
         <a class="active item">
-          <router-link
-            to="/about"
-            exact
-            style="color: white; text-decoration: none"
-            >About Us</router-link
-          >
+          <router-link to="/about" exact class="small" id="about">ABOUT US </router-link>
         </a>
         <a class="item">
-          <router-link
-            to="/merchants"
-            exact
-            style="color: white; text-decoration: none"
-            >Merchants</router-link
-          >
+         <router-link to="/merchants" exact class="small">FOR MERCHANTS</router-link>
         </a>
-
-        <a class="item"> Explore </a>
-        <div class="right menu ui tiny images">
-          <img
-            class="ui medium circular image"
-            src="https://www.vhv.rs/dpng/d/592-5927996_your-singapore-hd-png-download.png"
-          />
-        </div>
-      </div>
+        
+        </nav>
+    </header>
     </div>
-  </div>
+  
 </template>
 
 <script>
 import $ from "jquery";
 export default {
+  data(){
+    return{
+        msg: 'YOUR SINGAPORE'
+        }
+  },
   mounted() {
     $(document).ready(function() {
       $(".ui  .item").on("click", function() {
@@ -43,26 +33,43 @@ export default {
       });
     });
   },
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-header {
-  background: #0A223D;
-  padding: 20px;
-  border-bottom: solid;
-  border-width: 1px;
-  border-color: #E7E7F266;
-  margin-bottom: 20px;
+div{
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    border-bottom-width: 1px;
+    height:80px;
 }
-h1 {
-  display: inline;
-  padding: 20px;
+
+h1 a{
+    position: relative;
+    float: left;
+    top:30px;
+    text-align: center;
+    color: white;
+    font-weight:lighter;
+    margin-left:45%;
+    font-size:20px;
+    text-decoration: none;  
 }
-p {
-  display: inline;
-  padding: 10px;
+ 
+.small{
+    position: relative;
+    float:left;
+    top:30px;
+    left:20%;
+    font-size:15px; 
+    font-weight: lighter;
+    color : white;
+    text-decoration: none;
+    
+}
+#about{
+    padding-right:20px;
 }
 
 .ui.segment {
