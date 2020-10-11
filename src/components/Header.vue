@@ -28,7 +28,11 @@ export default {
 <style scoped>
 header {
   background: #0A223D;
-  color: white;
+  padding: 20px;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: #E7E7F266;
+  margin-bottom: 20px;
 }
 h1 {
   display: inline;
