@@ -38,7 +38,7 @@ p{
 }
 button{
     position: relative;
-    right:35%;
+    margin-left: 10%;
     border-style:none;
     border-radius:5px;
     width:150px;

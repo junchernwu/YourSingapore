@@ -1,20 +1,15 @@
 <template>
   <div>
-   <act-header></act-header>
-
     <section>
       <nav>
-        <div class="space">
-          <div class="ui icon input">
+        <div class="ui icon input">
             <input
               class="prompt"
               type="text"
               v-model="search"
-             
               placeholder="Search Attractions"
             >
             <i class="search icon"></i>
-          </div>
         </div>
 
         <div class="bar">
@@ -99,11 +94,9 @@
 
 <script>
 import database from "../firebase.js";
-import ActivityListHeader from './ActivityListHeader.vue';
+
 export default {
-  components:{
-    'act-header':ActivityListHeader,
-  },
+
   data() {
     return {
       attractions: [],
@@ -189,16 +182,15 @@ export default {
   created() {
     this.fetchItems();
   },
+  beforeCreate: function() {
+        document.body.className = 'activityList';
+  }
   
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-header {
-  padding: 10px;
-
-}
 h1 {
   color: paleturquoise;
 }
@@ -206,14 +198,14 @@ p {
   padding: 2px;
   color:#2c3e50;
   float: left;
-  padding-right: 20px;
+  
 }
 
 nav {
   float: left;
   width:18%;
-  background: #2c3e50;
-  padding-right: 1px;
+  padding-left: 30px;
+  padding-top: 30px;
   height: 800px;
   position:fixed;
 
@@ -229,33 +221,24 @@ nav {
   padding-top:10px;
   color: whitesmoke;
   padding:10px;
-  width:210px;
+  width:250px;
   padding-left:10px;
-  background-color: rgba(87, 80, 80, 0.705);
+  background-color: rgba(87, 80, 80, 0.404);
   fill-opacity: initial;
   border-color:white;
   border-width:1px;
   border-radius: 5px;
   margin-left: 10px;
 }
-.space{
-  float: left;
-  padding:12px;
-
-}
 
 #content{
   float: right;
-  padding: 40px;
+  padding: 0px;
   width:85%;
-  background: #5d7286;
 
 }
 section{
-
 height:800px;
-background: #5d7286;
-
 }
 
 #attractions {
@@ -275,8 +258,9 @@ ul{
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
-    padding: 0;
+    padding-left: 100px;
 }
+
 li{
     flex-grow: 1;
     flex-basis: 300px;
@@ -285,5 +269,12 @@ li{
     margin: 10px;
     
 }
-
+input{
+  padding-left:5px;
+  border-radius: 15px;
+  border:none;
+  width:250px;
+  height:25px;
+  margin-left:7px;
+}
 </style>

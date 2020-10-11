@@ -48,7 +48,7 @@ h1{
 }
   input[type="date"] {
     position: relative;
-    right:31%;
+    margin-left: 10%;
     border:none;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.295);

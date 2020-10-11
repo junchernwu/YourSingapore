@@ -6,7 +6,7 @@
       <p> <img src="../assets/Mask.png" width=40px>  Mask up <p> 
       <p><img src="../assets/Wash.png" width=40px>  Wash your hands </p>
       
-      <button v-on:click= "$router.push('/activities')">></button>
+      <button v-on:click= "$router.push('/activityList')">></button>
   </div>
 </template>
 

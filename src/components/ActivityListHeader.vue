@@ -1,31 +1,30 @@
 <template>
    <div>
      <header>
-       
-        <h2>{{title}}</h2>
-        <h3>{{date}}</h3>
-      
-      </header>
-      
-    
+        <h2>Trip <br> Details</h2>
+        <h3 id="title1">Selected Date</h3>
+        <p>{{date}} </p>
+        <h3 id= "title2">Weather</h3>
+
+      </header> 
     </div>
-  
 </template>
 
 <script>
 
 export default {
-  
+
   data(){
     return{
-      title:"Trip Details",
-      date:"Selected Date",
+      date:''
     
-        
     }
   },
-  
- 
+  mounted() {
+    if (sessionStorage.date) {
+      this.date = sessionStorage.date;
+    }
+  }
   
 }
 </script>
@@ -33,29 +32,38 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 header{
-  overflow: hidden;
-  background: white url('https://snap-photos.s3.amazonaws.com/img-thumbs/960w/8F830E9235.jpg') no-repeat center center;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  opacity: 0.6;
-  line-height: 2.8em;
-  height:150px;
-  position: relative;
+    background-image: url(../assets/Rain.jpg);
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-size: cover;
+    height:180px;
+    
 }
 
 h2{
     color:ivory;
     float:left;
     padding:20px;
+    text-align: justify;
     font-display:Abel;
 
 }
 h3{
     padding:5px;
-    color : white;
+    color : rgb(112, 112, 112);
     float: left;
-    margin-left: 1000px;
+    margin-left: 80%;
+    line-height: 0px;
 }
+p{
+  position: relative;
+  margin-left: 89%;
+  color:white;
+  font-weight:bold;
+}
+#title2{
+  position: relative;
+  margin-top: 0;
+}
+
 </style>

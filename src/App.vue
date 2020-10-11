@@ -1,24 +1,35 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <component v-bind:is="currentData"> </component>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
+import ActivityListHeader from './components/ActivityListHeader.vue'
 //import Home from './components/Home.vue'
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    ActivityListHeader
+  },
+  computed:{
+    currentData() {
+        if (this.$route.path==="/activityList") {
+          return ActivityListHeader;
+        } else {
+          return Header;
+        }
+      }
   }
 }
 </script>
 
 <style>
-html {
+html,body {
   padding: 0;
   margin: 0;
   width: 100%;
@@ -48,8 +59,8 @@ body.location{
   background-repeat: no-repeat;
   background-size: cover;
 }
-body.activities{
-  background-color: black;
+body.activityList{
+  background-color: #0A223D;
 }
 body.reminder{
   background-image: url(./assets/ReminderBG.png);
@@ -60,7 +71,6 @@ body.reminder{
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   
 }

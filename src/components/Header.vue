@@ -7,7 +7,6 @@
         <router-link to="/about" exact class="small" id="about">ABOUT US </router-link>
         <router-link to="/merchants" exact class="small">FOR MERCHANTS</router-link>
         
-
         </nav>
     </header>
     </div>
