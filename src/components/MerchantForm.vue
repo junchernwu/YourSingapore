@@ -7,28 +7,34 @@
             Log-in to your account
           </div>
         </h2>
-        <form
-          action="https://s.codepen.io/voltron2112/debug/PqrEPM?"
-          method="get"
-          class="ui large form"
-        >
+        <form class="ui large form" @submit.prevent="login">
           <div class="ui stacked secondary  segment">
             <div class="field">
               <div class="ui left icon input">
                 <i class="user icon"></i>
-                <input type="text" name="email" placeholder="E-mail address" />
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="E-mail address"
+                  v-model="email"
+                />
               </div>
             </div>
             <div class="field">
               <div class="ui left icon input">
                 <i class="lock icon"></i>
-                <input type="password" name="password" placeholder="Password" />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  v-model="password"
+                />
               </div>
             </div>
-            <div class="ui fluid large red submit button">Login</div>
+            <button class="ui fluid large red submit button" type="submit">
+              Login
+            </button>
           </div>
-
-          <div class="ui error message"></div>
         </form>
 
         <div class="ui message">
@@ -45,7 +51,34 @@
   </div>
 </template>
 
-<script></script>
+<script>
+import firebase from "firebase";
+export default {
+  name: "Login",
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    login: function() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(
+          function(user) {
+            console.log("LOGGED IN SUCCESSFULLY");
+            alert(user + "Successfully  logged in!");
+          },
+          function(err) {
+            alert("oops" + err.message);
+          }
+        );
+    },
+  },
+};
+</script>
 
 <style scoped>
 body > .grid {

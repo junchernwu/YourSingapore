@@ -7,45 +7,68 @@
             Fill In Your Details
           </div>
         </h2>
-        <form
-          action="https://s.codepen.io/voltron2112/debug/PqrEPM?"
-          method="get"
-          class="ui large form"
-        >
+        <form class="ui large form" @submit.prevent="submit">
           <div class="ui stacked secondary  segment">
             <div class="field">
               <div class="ui left icon input">
                 <i class="user icon"></i>
-                <input type="text" name="email" placeholder="E-mail address" />
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="E-mail address"
+                  v-model="email"
+                />
               </div>
             </div>
             <div class="field">
               <div class="ui left icon input">
                 <i class="lock icon"></i>
-                <input type="password" name="password" placeholder="Password" />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  v-model="password"
+                />
               </div>
             </div>
-            <div class="ui fluid large red submit button">Login</div>
+            <button class="ui fluid large red submit button" type="submit">
+              Sign Up
+            </button>
           </div>
-
-          <div class="ui error message"></div>
         </form>
-
-        <div class="ui message">
-          New to us?
-          <router-link
-            to="/merchant/Registration_new"
-            exact
-            style="color: blue; text-decoration: none"
-            >Register</router-link
-          >
-        </div>
       </div>
     </div>
   </div>
 </template>
 
-<script></script>
+<script>
+import firebase from "firebase";
+export default {
+  name: "signUp",
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    submit: function() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(
+          function(user) {
+            console.log("SUCCESS");
+            alert(user + "Your account has been created!");
+          },
+          function(err) {
+            alert("oops" + err.message);
+          }
+        );
+    },
+  },
+};
+</script>
 
 <style scoped>
 body > .grid {
