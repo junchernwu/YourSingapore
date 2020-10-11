@@ -56,14 +56,15 @@ h3{
     line-height: 0px;
 }
 p{
-  position: relative;
-  margin-left: 89%;
+  position: absolute;
+  left:89%;
+  top:5%;
   color:white;
   font-weight:bold;
 }
 #title2{
   position: relative;
-  margin-top: 0;
+  margin-top: 3%;
 }
 
 </style>

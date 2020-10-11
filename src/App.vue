@@ -46,9 +46,6 @@ body.about {
   background-repeat: no-repeat;
   background-size: cover;
 }
-body.merchants {
-  background-color: black;
-}
 body.date {
   background-image: url(./assets/DateBG.png);
   background-repeat: no-repeat;
@@ -67,6 +64,9 @@ body.reminder{
   background-repeat: no-repeat;
   background-size: cover;
 }
+body.merchants{
+  background-color: #0A223D;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -74,5 +74,7 @@ body.reminder{
   color: #2c3e50;
   
 }
+
+
 </style>
 

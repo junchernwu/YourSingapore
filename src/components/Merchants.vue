@@ -1,6 +1,5 @@
 <template>
   <div id="main">
-    <p>For Merchants</p>
     <router-link to="/login" exact style="color: white; text-decoration: none">Login</router-link>
   </div>
 </template>
@@ -16,6 +15,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+div{
+  text-align: center;
+}
 
 
 </style>

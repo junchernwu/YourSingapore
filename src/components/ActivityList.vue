@@ -239,6 +239,7 @@ nav {
 }
 section{
 height:800px;
+
 }
 
 #attractions {
@@ -275,6 +276,7 @@ input{
   border:none;
   width:250px;
   height:25px;
-  margin-left:7px;
+  position:relative;
+  left:4%;
 }
 </style>
