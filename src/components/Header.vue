@@ -31,7 +31,8 @@ header {
   padding: 20px;
   border-bottom: solid;
   border-width: 1px;
-  border-color: #E7E7F266; //NOTE: 66 represent 0.4 opacity
+  border-color: #E7E7F266;
+  margin-bottom: 20px;
 }
 h1 {
   display: inline;

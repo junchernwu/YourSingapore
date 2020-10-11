@@ -15,9 +15,16 @@
           </div>
         </div>
       </div>
+
       <!-- attraction description -->
       <div>
         <textarea name="description" rows="4" placeholder="Attraction Description*" v-model="attraction.description"></textarea>
+      </div>
+
+      <!-- upload image -->
+      <div id="image">
+        <label id="image-label">Upload Attraction Image</label>
+        <input type="file" accept="image/png, image/jpeg" name="file-upload" value="file-upload" v-on:change="imgUpload">
       </div>
 
       <!-- operating hours -->
@@ -572,6 +579,7 @@
           name: '',
           number: null,
           description: '',
+          image: '',
           operations: {
             mon: {
               open: false,
@@ -721,6 +729,7 @@
         return (this.attraction.description != '')
       },
       addItem(){
+        console.log()
         console.log(this.checkOperatingHourFilled())
         if (this.checkNameFilled() == false) {
           alert("Please Fill Up the Attraction's Name")
@@ -735,122 +744,127 @@
           alert('Submitted')
           this.attraction = {
             name: '',
-            number: null,
-            description: '',
-            operations: {
+                number: null,
+                description: '',
+                image: '',
+                operations: {
               mon: {
                 open: false,
-                start: {
+                    start: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
                 end: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
               },
               tue: {
                 open: false,
-                start: {
+                    start: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
                 end: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
               },
               wed: {
                 open: false,
-                start: {
+                    start: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
                 end: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
               },
               thu: {
                 open: false,
-                start: {
+                    start: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
                 end: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
               },
               fri: {
                 open: false,
-                start: {
+                    start: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
                 end: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
               },
               sat: {
                 open: false,
-                start: {
+                    start: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
                 end: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
               },
               sun: {
                 open: false,
-                start: {
+                    start: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
                 end: {
                   hour: '',
-                  min: '0',
-                  am: 'am',
+                      min: '0',
+                      am: 'am',
                 },
               },
             },
             link: '',
-            promotions: '',
-            pricing: {
+                promotions: '',
+                pricing: {
               0: {
                 category: '',
-                price: '',
+                    price: '',
               },
               1: {
                 category: '',
-                price: '',
+                    price: '',
               },
               2: {
                 category: '',
-                price: '',
+                    price: '',
               }
             },
             pricerange: '',
-            location: '',
-            promotiontype: '',
-            attractionType: '',
-          }
+                location: '',
+                promotiontype: '',
+                attractionType: '',
+          };
+          this.weekday = false;
+          this.weekend = false;
+          this.everyday = false;
+          this.$router.push('/verification')
         }
       },
       sameWeekday(){
@@ -1034,6 +1048,11 @@
           };
         }
       },
+      imgUpload(e){
+        var files = e.target.files;
+        console.log(files[0].name)
+        this.attraction.image = files[0].name;
+      }
     }
   }
 </script>
@@ -1072,6 +1091,29 @@
     vertical-align: middle;
     border-width: 1px;
     box-sizing: border-box;
+  }
+
+  /* attraction img */
+  #image {
+    padding: 5px 10px;
+  }
+
+  #image-label {
+    float: left;
+    width: 35%;
+    padding: 8px 5px 5px 0px;
+    //margin: 5px 10px 5px 0px;
+    margin: 0;
+    text-align: left;
+  }
+
+  #image input {
+    margin: 0;
+    padding-right: 0;
+    float: right;
+    width: 60%;
+    text-align: right;
+    direction: rtl;
   }
 
   /* operating hours styling */
