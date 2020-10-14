@@ -1066,8 +1066,7 @@
     position: absolute;
     left: 25%;
   }
-  .form-row {
-  }
+
   .col-name {
     float: left;
     width: 50%;
