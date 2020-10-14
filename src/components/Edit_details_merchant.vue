@@ -15,7 +15,7 @@
     </div>
     <div class="right">
       <div class="two ui buttons ">
-      <button v-on:click = "edit" class="ui red button">Edit</button>
+      <button v-on:click = "update_changes" class="ui green button">Done Editing</button>
       <button class="ui red button">BUMP</button>
       </div>
       
@@ -32,18 +32,18 @@
               <div v-if="editedTodo && time.hour" >
               <select class="dropdown" name="hour" id="hour" v-model = "time.hour" @blur= "editedTodo = false; $emit('update')"
                   @keyup.enter = "editedTodo=false; $emit('update')">>
-                <option v-if = "editedTodo" value="1">1</option>
-                  <option v-if = "editedTodo" value="2">2</option>
-                  <option v-if = "editedTodo" value="3">3</option>
-                  <option v-if = "editedTodo" value="4">4</option>
-                  <option v-if = "editedTodo" value="5">5</option>
-                  <option v-if = "editedTodo" value="6">6</option>
-                  <option v-if = "editedTodo"  value="7">7</option>
-                  <option v-if = "editedTodo"  value="8">8</option>
-                  <option v-if = "editedTodo"  value="9">9</option>
-                  <option v-if = "editedTodo"  value="10">10</option>
-                  <option v-if = "editedTodo" value="11">11</option>
-                  <option v-if = "editedTodo" value="12">12</option>
+                <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option  value="7">7</option>
+                  <option  value="8">8</option>
+                  <option  value="9">9</option>
+                  <option  value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
               </select>
               <select class="dropdown" name="min" id="min" v-model= "time.min" @blur= "editedTodo = false; $emit('update')"
                   @keyup.enter = "editedTodo=false; $emit('update')">>
@@ -51,7 +51,7 @@
                 <option value="10">00</option>
                   <option value="20">15</option>
                   <option value="30">30</option>
-                  <option value="40">45</option>
+                  <option value="45">45</option>
               </select>
               <select class="dropdown" name="am" id="am" v-model= "time.am" @blur= "editedTodo = false; $emit('update')"
                   @keyup.enter = "editedTodo=false; $emit('update')">>
@@ -93,7 +93,7 @@
                 <option value="10">00</option>
                   <option value="20">15</option>
                   <option value="30">30</option>
-                  <option value="40">45</option>
+                  <option value="45">45</option>
               </select>
               <select class="dropdown" name="am" id="am" v-model= "time.am" @blur= "editedTodo_tues = false; $emit('update')"
                   @keyup.enter = "editedTodo_tues=false; $emit('update')">>
@@ -136,7 +136,7 @@
                 <option value="10">00</option>
                   <option value="20">15</option>
                   <option value="30">30</option>
-                  <option value="40">45</option>
+                  <option value="45">45</option>
               </select>
               <select class="dropdown" name="am" id="am" v-model= "time.am" @blur= "editedTodo_wed = false; $emit('update')"
                   @keyup.enter = "editedTodo_wed=false; $emit('update')">>
@@ -176,7 +176,7 @@
                 <option value="10">00</option>
                   <option value="20">15</option>
                   <option value="30">30</option>
-                  <option value="40">45</option>
+                  <option value="45">45</option>
               </select>
               <select class="dropdown" name="am" id="am" v-model= "time.am" @blur= "editedTodo_thurs = false; $emit('update')"
                   @keyup.enter = "editedTodo_thurs=false; $emit('update')">>
@@ -218,7 +218,7 @@
                 <option value="10">00</option>
                   <option value="20">15</option>
                   <option value="30">30</option>
-                  <option value="40">45</option>
+                  <option value="45">45</option>
               </select>
               <select class="dropdown" name="am" id="am" v-model= "time.am" @blur= "editedToDo_fri = false; $emit('update')"
                   @keyup.enter = "editedToDo_fri=false; $emit('update')">>
@@ -258,7 +258,7 @@
                 <option value="10">00</option>
                   <option value="20">15</option>
                   <option value="30">30</option>
-                  <option value="40">45</option>
+                  <option value="45">45</option>
               </select>
               <select class="dropdown" name="am" id="am" v-model= "time.am" @blur= "editedToDo_sat = false; $emit('update')"
                   @keyup.enter = "editedToDo_sat=false; $emit('update')">>
@@ -298,7 +298,7 @@
                 <option value="10">00</option>
                   <option value="20">15</option>
                   <option value="30">30</option>
-                  <option value="40">45</option>
+                  <option value="45">45</option>
               </select>
               <select class="dropdown" name="am" id="am" v-model= "time.am" @blur= "editedToDo_sun = false; $emit('update')"
                   @keyup.enter = "editedToDo_sun=false; $emit('update')">>
@@ -313,15 +313,25 @@
           </li>
           
         </ul>
+    
         </div>
       </div>
        <div class="box price" id="box3">
         <h1 id="righttitle"> Pricing Options </h1>
         <ul>
           <li v-for="field in attractions.pricing" v-bind:key="field.category">
-            <div id="pricefield">
+            <input v-if = "price_edit" v-model = "field.category"
+                  @blur= "price_edit = false; $emit('update')"
+                  @keyup.enter = "price_edit=false; $emit('update')">
+   
+
+            <input v-if = "price_edit" v-model = "field.price"
+                  @blur= "price_edit = false; $emit('update')"
+                  @keyup.enter = "price_edit=false; $emit('update')">
+   
+            <div v-else id="pricefield">
               <p id="value"> {{field.category}} </p>
-              <p id="value"> {{field.price}} </p>
+              <p @click = "price_edit = true" id="value"> {{field.price}} </p>
             </div>
           </li>
         </ul>
@@ -351,6 +361,8 @@ export default {
             editedToDo_sat:null,
             editedToDo_sun:null,
             title_edit:null,
+            price_edit:null,
+            doc_id: null
         }
     },
 
@@ -374,6 +386,8 @@ export default {
             item = doc.data();
             var match = this.$route.params.merchantId
             if (item.auth_id == match) {
+           
+              this.doc_id = doc.id
               this.attractions = item 
               console.log("WORKS")
               console.log(this.attractions)
@@ -389,6 +403,16 @@ export default {
     },
     edit: function(){
       this.editedTodo = true
+    },
+    update_changes: function(){
+      var id = this.doc_id
+      var updated = this.attractions
+     
+      database
+        .collection("attractions")
+        .doc(id)  
+        .set(updated)
+        .then(console.log("SET"))
     }
 
   }
