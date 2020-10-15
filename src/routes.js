@@ -9,8 +9,8 @@ import Reminder from './components/Reminder.vue'
 import Login from './components/Login'
 import Registration_new from './components/Registration_new'
 import Verification from "@/components/Verification";
-
-
+import Eateries from './components/Eateries.vue';
+import ActivityDetails from './components/ActivityDetails.vue'
 export default[
     {path:'/',component:Home},
     {path:'/about',component:About},
@@ -23,6 +23,8 @@ export default[
     {path:'/reminder',component:Reminder},
     {path:'/verification',component:Verification},
     {path:'/login',component:Login},
-    {path: '/merchant/Registration_new', component: Registration_new }
+    {path: '/merchant/Registration_new', component: Registration_new },
+    {path:'/eateries/:name',component:Eateries},
+    {path: '/attraction/:id', component: ActivityDetails}
 ]
 

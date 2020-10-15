@@ -84,7 +84,8 @@
         <ul>
           <li v-for="item in filteredList"  v-bind:key="item.name">
             <img v-bind:src="item.picture"/>
-            <h3>{{item.name}}</h3>
+  
+            <h3><router-link :to="'/attraction/'+ item.id">{{item.name}}</router-link></h3>
           </li>
         </ul>
       </div>
