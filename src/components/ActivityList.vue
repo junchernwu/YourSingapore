@@ -95,6 +95,7 @@
 
 <script>
 import database from "../firebase.js";
+import 'firebase/firestore';
 
 export default {
 

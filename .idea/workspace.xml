@@ -21,7 +21,47 @@
   <component name="ChangeListManager">
     <list default="true" id="4568f15a-a55f-427b-9b9e-5331926c56c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Planner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Planner.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/11a67d04460074529953568d58ff3d11.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/11a67d04460074529953568d58ff3d11.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/39566cf2b1e90e2531cf5a58c1737c22.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/39566cf2b1e90e2531cf5a58c1737c22.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/3a6419ba2c4e21dfa619cd39fbeb8791.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/3a6419ba2c4e21dfa619cd39fbeb8791.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/4cbad393285d0843b633c3e757c45f5e.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/4cbad393285d0843b633c3e757c45f5e.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/51d55c4cb95ff8b1afcbc644af9de411.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/51d55c4cb95ff8b1afcbc644af9de411.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/690e518c5089696cfd4dfa6b9d3c9ece.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/690e518c5089696cfd4dfa6b9d3c9ece.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/9bc7db3cad29cd3780d3888ec8618b16.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/9bc7db3cad29cd3780d3888ec8618b16.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/d02bcf80ce754e58dae44b2140899e72.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/d02bcf80ce754e58dae44b2140899e72.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/f4180c14dca305df93a926c3e94d0e8f.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/f4180c14dca305df93a926c3e94d0e8f.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/0b995cac6852bdfb388a28de9c8433be.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/0b995cac6852bdfb388a28de9c8433be.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/1f2170e14155107299bc5ec8c46c96f4.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/1f2170e14155107299bc5ec8c46c96f4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/2fe11d9349f11890259047d453904d10.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/2fe11d9349f11890259047d453904d10.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/3152192af0bd13804afd84094c8be498.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/3152192af0bd13804afd84094c8be498.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/3dfeb31f86f4f3f4ca0c23b5d0812696.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/3dfeb31f86f4f3f4ca0c23b5d0812696.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/438e73129a9db4e058c81f55caeb52e0.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/438e73129a9db4e058c81f55caeb52e0.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/4fab459d24d06d58be0cc2890269c4cd.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/4fab459d24d06d58be0cc2890269c4cd.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/5b3dd07977bced236134f23c4cccc712.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/5b3dd07977bced236134f23c4cccc712.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/60851f288ee0d76f5a177545b0d54afc.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/60851f288ee0d76f5a177545b0d54afc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/6a57a6f2a32595e984c9be6c61f6ee05.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/6a57a6f2a32595e984c9be6c61f6ee05.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/784fce6e6612276e4e4c9c16bfb31f8c.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/784fce6e6612276e4e4c9c16bfb31f8c.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/7b7ced79e9913736bf54b1dbeaa2c342.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/7b7ced79e9913736bf54b1dbeaa2c342.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/7bcfde3971ac49b96c913d85e9be0795.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/7bcfde3971ac49b96c913d85e9be0795.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/7c5c3fa845b00459c29e3e14c05ef297.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/7c5c3fa845b00459c29e3e14c05ef297.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/811f80e2194bb41a7d5964b287951798.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/811f80e2194bb41a7d5964b287951798.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/81d3136786babd68d546c21335f77e61.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/81d3136786babd68d546c21335f77e61.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/85b82da31900256d2c0138d6f169446e.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/85b82da31900256d2c0138d6f169446e.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/8f2dc2da07a32edbce7a04bb6cbb04d2.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/8f2dc2da07a32edbce7a04bb6cbb04d2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/a26b941a48e65b3bd1e0ef807779bbea.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/a26b941a48e65b3bd1e0ef807779bbea.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/b219eb30fcc67d51c1915406932d69a5.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/b219eb30fcc67d51c1915406932d69a5.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/b50a51c0bfc6c60ac074a35f2aabe097.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/b50a51c0bfc6c60ac074a35f2aabe097.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/c2e1f1eb657d647c207a612418aa6eeb.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/c2e1f1eb657d647c207a612418aa6eeb.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/ca7c9f5c901e0fdfc1fdc1f47413c048.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/ca7c9f5c901e0fdfc1fdc1f47413c048.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/dac3f58dc2b51d639542bd999450e4d8.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/dac3f58dc2b51d639542bd999450e4d8.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/e5df1c21ca7b57b172c8409b21cae0bd.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/e5df1c21ca7b57b172c8409b21cae0bd.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/ef4edf5bd8daf603e7ff8d86635a3142.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/ef4edf5bd8daf603e7ff8d86635a3142.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/f4bfb97d1a73dfa0b9dd42f48e2fff87.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/f4bfb97d1a73dfa0b9dd42f48e2fff87.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/f9795d369be70f3b18de42b8be18f1b6.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/f9795d369be70f3b18de42b8be18f1b6.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/fa56f801e02356642592499b8e352078.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/fa56f801e02356642592499b8e352078.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ActivityList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ActivityList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +92,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -85,9 +125,7 @@
       <workItem from="1602138571600" duration="21000" />
       <workItem from="1602143161104" duration="18942000" />
       <workItem from="1602398165675" duration="4658000" />
-      <workItem from="1602414065962" duration="337000" />
-      <workItem from="1602741679286" duration="13504000" />
-      <workItem from="1602824008947" duration="793000" />
+      <workItem from="1602916592814" duration="620000" />
     </task>
     <servers />
   </component>
@@ -111,30 +149,14 @@
       <screen x="-2560" y="-276" width="2560" height="1440" />
     </state>
     <state x="-1927" y="324" key="#ESLint/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1602151770642" />
-    <state width="1376" height="410" key="GridCell.Tab.0.bottom" timestamp="1602869087460">
-      <screen x="-2560" y="-276" width="2560" height="1440" />
-    </state>
-    <state width="1376" height="410" key="GridCell.Tab.0.bottom/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1602869087460" />
-    <state width="1376" height="410" key="GridCell.Tab.0.center" timestamp="1602869087458">
-      <screen x="-2560" y="-276" width="2560" height="1440" />
-    </state>
-    <state width="1376" height="410" key="GridCell.Tab.0.center/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1602869087458" />
-    <state width="1376" height="410" key="GridCell.Tab.0.left" timestamp="1602869087457">
-      <screen x="-2560" y="-276" width="2560" height="1440" />
-    </state>
-    <state width="1376" height="410" key="GridCell.Tab.0.left/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1602869087457" />
-    <state width="1376" height="410" key="GridCell.Tab.0.right" timestamp="1602869087459">
-      <screen x="-2560" y="-276" width="2560" height="1440" />
-    </state>
-    <state width="1376" height="410" key="GridCell.Tab.0.right/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1602869087459" />
     <state x="-2149" y="-117" key="SettingsEditor" timestamp="1601649235139">
       <screen x="-2560" y="-253" width="2560" height="1417" />
     </state>
     <state x="-2149" y="-117" key="SettingsEditor/0.23.1680.947/-2560.-253.2560.1417@-2560.-253.2560.1417" timestamp="1601649235139" />
-    <state x="-2460" y="-176" width="2360" height="1240" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602913113063">
+    <state x="-2460" y="-176" width="2360" height="1240" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602084979423">
       <screen x="-2560" y="-276" width="2560" height="1440" />
     </state>
-    <state x="-2460" y="-176" width="2360" height="1240" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1602913113063" />
+    <state x="-2460" y="-176" width="2360" height="1240" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1602084979423" />
     <state x="463" y="319" key="com.intellij.ide.util.TipDialog" timestamp="1601961155649">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
@@ -143,10 +165,6 @@
       <screen x="-2560" y="-276" width="2560" height="1440" />
     </state>
     <state x="-1699" y="204" key="run.anything.popup/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1601710521635" />
-    <state x="-2193" y="48" width="838" height="1032" key="search.everywhere.popup" timestamp="1602756633730">
-      <screen x="-2560" y="-276" width="2560" height="1440" />
-    </state>
-    <state x="-2193" y="48" width="838" height="1032" key="search.everywhere.popup/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1602756633730" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -165,46 +183,6 @@
           <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
           <line>582</line>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/ActivityDetails.vue</url>
-          <line>153</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
-          <line>702</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
-          <line>869</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
-          <line>622</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
-          <line>1060</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/Home.vue</url>
-          <line>22</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/Planner.vue</url>
-          <line>40</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/Planner.vue</url>
-          <line>89</line>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
