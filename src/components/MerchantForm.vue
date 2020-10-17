@@ -580,7 +580,7 @@
           name: '',
           number: null,
           description: '',
-          image: '',
+          picture: '',
           operations: {
             mon: {
               open: false,
@@ -747,7 +747,7 @@
             name: '',
                 number: null,
                 description: '',
-                image: '',
+                picture: '',
                 operations: {
               mon: {
                 open: false,
@@ -1067,7 +1067,7 @@
 
         attractionRef.put(image).then(function() {
           attractionRef.getDownloadURL().then(function (result){
-            attraction.image = result;
+            attraction.picture = result;
           });
         });
       }
