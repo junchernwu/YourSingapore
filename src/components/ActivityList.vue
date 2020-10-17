@@ -94,8 +94,7 @@
 </template>
 
 <script>
-import database from "../firebase.js";
-import 'firebase/firestore';
+import { database } from "@/firebase/";
 
 export default {
 

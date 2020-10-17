@@ -120,7 +120,8 @@
 </template>
 
 <script>
-import database from "../firebase.js";
+import { database } from "@/firebase/";
+
 export default {
     data() {
         return {
