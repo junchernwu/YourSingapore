@@ -120,7 +120,8 @@
 </template>
 
 <script>
-import database from "../firebase.js";
+import { database } from "@/firebase/";
+
 export default {
     data() {
         return {
@@ -129,7 +130,7 @@ export default {
             min:0,
             am:'',
             attractions:[],
-            attractionId:this.$route.params.id,
+            attractionId:this.$route.params.id
         }
     },
 
@@ -183,6 +184,7 @@ export default {
       sessionStorage.am= this.am;
       sessionStorage.name = this.attraction.name;
       sessionStorage.picture = this.attraction.picture;
+      
       // route to planner page
       this.$router.push('/planner');
     }

@@ -19,8 +19,7 @@
 import PlannedActivity from "@/components/PlannedActivity";
 import axios from 'axios';
 import html2canvas from 'html2canvas';
-import firebase from "@/firebase";
-import 'firebase/storage';
+import { storage } from "@/firebase/";
 
 export default {
   name: "Planner.vue",
@@ -60,7 +59,7 @@ export default {
         // window.location.href=image;// it will save locally
 
         // STORE PLANNER IN FIREBASE
-        var storageRef = firebase.storage.ref();
+        var storageRef = storage.ref();
         canvas.toBlob(function(blob){
           var image = new Image();
           image.src = blob;
