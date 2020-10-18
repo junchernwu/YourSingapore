@@ -55,6 +55,7 @@ export default {
   },
   methods: {
     submit: function() {
+      var uid = null
       var success= this.success;
       var router= this.$router;
       firebase
@@ -65,6 +66,8 @@ export default {
             console.log("SUCCESS");
             success=true;
             alert(user + "Your account has been created!");
+            console.log("UID FROM REGISTRATION")
+            uid = user.user.uid
           },
           function(err) {
             alert("oops" + err.message);
@@ -73,6 +76,8 @@ export default {
           function(){
             if(success){
               console.log("successfully routed");
+              console.log(uid)
+              sessionStorage.uid = uid
               router.push('/merchant/form');
             }
           } 
