@@ -67,6 +67,9 @@ body.reminder{
 body.merchants{
   background-color: #0A223D;
 }
+body.details{
+  background-color: #0A223D;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -83,8 +83,9 @@
       <div id="content">
         <ul>
           <li v-for="item in filteredList"  v-bind:key="item.name">
-            <img v-bind:src="item.picture"/>
-            <h3>{{item.name}}</h3>
+            <img v-bind:src="item.picture">
+            <h3><router-link :to="'/attraction/'+ item.id">{{item.name}}</router-link></h3>
+            
           </li>
         </ul>
       </div>
@@ -194,6 +195,11 @@ export default {
 h1 {
   color: paleturquoise;
 }
+a{
+  
+  color:white;
+  font-weight:lighter;
+}
 p {
   padding: 2px;
   color:#2c3e50;
@@ -252,6 +258,7 @@ height:800px;
 img{
   width:250px;
   height: 200px;
+  border-radius:5px;
 }
 
 
