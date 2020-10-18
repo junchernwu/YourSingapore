@@ -569,7 +569,8 @@
 
 <script>
   import PricingOptions from "@/components/PricingOptions";
-  import database from "@/firebase";
+  import { database, storage } from "@/firebase/";
+  // import storage from "@/firebase/";
 
   export default {
     components: {PricingOptions},
@@ -581,7 +582,7 @@
           name: '',
           number: null,
           description: '',
-          image: '',
+          picture: '',
           operations: {
             mon: {
               open: false,
@@ -749,7 +750,7 @@
             name: '',
                 number: null,
                 description: '',
-                image: '',
+                picture: '',
                 operations: {
               mon: {
                 open: false,
@@ -1052,9 +1053,26 @@
         }
       },
       imgUpload(e){
+        var attraction = this.attraction;
+
+        var dt = new Date().getTime();
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = (dt + Math.random()*16)%16 | 0;
+          dt = Math.floor(dt/16);
+          return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+        });
+        console.log("DATABASE: " + database);
+        console.log("STORAGE: " + storage);
+        var storageRef = storage.ref();
+        var attractionRef = storageRef.child('images/attractions/' + uuid);
         var files = e.target.files;
-        console.log(files[0].name)
-        this.attraction.image = files[0].name;
+        var image = files[0];
+
+        attractionRef.put(image).then(function() {
+          attractionRef.getDownloadURL().then(function (result){
+            attraction.picture = result;
+          });
+        });
       }
     },
     mounted() {

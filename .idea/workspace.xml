@@ -21,7 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4568f15a-a55f-427b-9b9e-5331926c56c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PricingOptionField.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PricingOptionField.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/690e518c5089696cfd4dfa6b9d3c9ece.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/690e518c5089696cfd4dfa6b9d3c9ece.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/d27e81db292158d638be6a52cc192b71.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/d27e81db292158d638be6a52cc192b71.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/e8148344c4e41abb18f4b0ac3e3e597f.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/e8148344c4e41abb18f4b0ac3e3e597f.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MerchantForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MerchantForm.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,21 +132,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
-          <line>727</line>
-          <properties lambdaOrdinal="-1" />
+          <line>728</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
           <line>32</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
-          <line>582</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
