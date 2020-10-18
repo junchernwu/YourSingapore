@@ -9,7 +9,8 @@ import Reminder from './components/Reminder.vue'
 import Login from './components/Login'
 import Registration_new from './components/Registration_new'
 import ActivityDetails from './components/ActivityDetails.vue'
-import Verification from "@/components/Verification";
+import Verification from "@/components/Verification"
+import Edit_details_merchant from  "./components/Edit_details_merchant"
 
 
 export default[
@@ -25,6 +26,8 @@ export default[
     {path:'/verification',component:Verification},
     {path:'/login',component:Login},
     {path: '/merchant/Registration_new', component: Registration_new },
-    {path: '/attraction/:id', component: ActivityDetails}
+    {path: '/attraction/:id', component: ActivityDetails},
+    {path: '/:merchantId', component: Edit_details_merchant},
+
 ]
 

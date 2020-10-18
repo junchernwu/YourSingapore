@@ -575,7 +575,9 @@
     components: {PricingOptions},
     data() {
       return {
+        
         attraction: {
+          auth_id: null,
           name: '',
           number: null,
           description: '',
@@ -743,6 +745,7 @@
           database.collection('attractions').add(this.attraction)
           alert('Submitted')
           this.attraction = {
+            auth_id:"",
             name: '',
                 number: null,
                 description: '',
@@ -1053,7 +1056,15 @@
         console.log(files[0].name)
         this.attraction.image = files[0].name;
       }
-    }
+    },
+    mounted() {
+      if (sessionStorage.uid) {
+        this.attraction.auth_id = sessionStorage.uid;
+        console.log("UID")
+        console.log(this.auth_id)
+      }
+    },
+
   }
 </script>
 
@@ -1066,8 +1077,7 @@
     position: absolute;
     left: 25%;
   }
-  .form-row {
-  }
+
   .col-name {
     float: left;
     width: 50%;
