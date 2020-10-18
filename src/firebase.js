@@ -1,9 +1,5 @@
 import firebase from 'firebase'
-<<<<<<< HEAD
 import 'firebase/firestore';
-=======
-// import '@firebase/storage';
->>>>>>> master
 
 const firebaseConfig = {
     apiKey: "AIzaSyBCe2AqXx3qP_mO7D9Ev3AyF17mcOoJRlQ",
@@ -22,13 +18,7 @@ var database = firebase.firestore();
 var storage = firebase.storage();
 
 export {
-<<<<<<< HEAD
     database,
     storage
 }
 
-=======
-    storage,
-    database,
-};
->>>>>>> master

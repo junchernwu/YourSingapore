@@ -28,7 +28,7 @@ export default[
     {path:'/login',component:Login},
     {path: '/merchant/Registration_new', component: Registration_new },
     {path: '/attraction/:id', component: ActivityDetails},
-    {path: '/planner', component: Planner}
+    {path: '/planner', component: Planner},
     {path: '/:merchantId', component: Edit_details_merchant},
 
 ]
