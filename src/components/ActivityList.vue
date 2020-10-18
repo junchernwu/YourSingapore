@@ -94,7 +94,7 @@
 </template>
 
 <script>
-import database from "../firebase.js";
+import { database } from "@/firebase/";
 
 export default {
 
@@ -195,6 +195,11 @@ export default {
 h1 {
   color: paleturquoise;
 }
+a{
+  
+  color:white;
+  font-weight:lighter;
+}
 p {
   padding: 2px;
   color:#2c3e50;
@@ -253,6 +258,7 @@ height:800px;
 img{
   width:250px;
   height: 200px;
+  border-radius:5px;
 }
 
 

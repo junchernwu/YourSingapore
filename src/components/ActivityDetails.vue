@@ -33,10 +33,10 @@
           </select>
           <select class="dropdown" name="min" id="min" v-model="min">
             <option value="Minute">Minute</option>
-            <option value="1">00</option>
-              <option value="2">15</option>
-              <option value="3">30</option>
-              <option value="4">45</option>
+            <option value="00">00</option>
+              <option value="15">15</option>
+              <option value="30">30</option>
+              <option value="45">45</option>
           </select>
           <select class="dropdown" name="am" id="am" v-model="am">
               <option value="am">am</option>
@@ -121,7 +121,8 @@
 </template>
 
 <script>
-import database from "../firebase.js";
+import { database } from "@/firebase/";
+
 export default {
     data() {
         return {
@@ -181,9 +182,15 @@ export default {
       sessionStorage.hour= this.hour;
       sessionStorage.min= this.min;
       sessionStorage.am= this.am;
+      sessionStorage.name = this.attraction.name;
+      sessionStorage.picture = this.attraction.picture;
+      
+      // route to planner page
+      this.$router.push('/planner');
     }
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -244,9 +251,17 @@ a,button{
   margin-bottom:2%;
   
 }
+<<<<<<< HEAD
 #righttitle{
   font-size:20px;
   font-weight: lighter;
+=======
+
+#righttitle{
+  font-size:20px;
+  font-weight: lighter;
+
+>>>>>>> master
 }
 .innerbox{
   background-color: rgba(82, 82, 100, 0.554);
@@ -257,11 +272,19 @@ a,button{
   padding-bottom:1%;
   
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 #datetitle{
   float:left;
   width:50%;
   color:gray;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 #date{
   color:gray;
   
@@ -269,6 +292,10 @@ a,button{
 #time{
   margin-top:-10px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 #timetitle{
   float:left;
   width:50%;
@@ -288,6 +315,10 @@ a,button{
     text-align: left;
     margin-left:-45px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 .price li{
     flex-grow: 1;
     flex-basis: 20px;
@@ -320,6 +351,10 @@ a,button{
 .leftt{
   float:left;
   width:50%;
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 }
 .rightt{
   float:left;
@@ -328,4 +363,10 @@ a,button{
 #box2{
   height:230px;
 }
+<<<<<<< HEAD
 </style>  
+=======
+
+
+</style>  
+>>>>>>> master
