@@ -10,6 +10,8 @@ import Login from './components/Login'
 import Registration_new from './components/Registration_new'
 import ActivityDetails from './components/ActivityDetails.vue'
 import Verification from "@/components/Verification";
+import Eateries from './components/Eateries.vue';
+import ActivityDetails from './components/ActivityDetails.vue'
 import Planner from "@/components/Planner";
 import Edit_details_merchant from  "./components/Edit_details_merchant"
 
@@ -27,6 +29,7 @@ export default[
     {path:'/verification',component:Verification},
     {path:'/login',component:Login},
     {path: '/merchant/Registration_new', component: Registration_new },
+    {path:'/eateries/:name',component:Eateries},
     {path: '/attraction/:id', component: ActivityDetails},
     {path: '/planner', component: Planner},
     {path: '/:merchantId', component: Edit_details_merchant},

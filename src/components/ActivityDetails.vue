@@ -5,7 +5,8 @@
       <h1 id="title"> {{attraction.name}}</h1> 
       <p id="desc"> {{attraction.description}} </p>
       <a v-bind:href="attraction.link"> BOOK NOW </a> <!-- Link in database should have https:// in front -->
-      <button> EXPLORE FOOD OPTIONS </button>
+       <button><router-link :to="'/eateries/'+ attraction.name">EXPLORE FOOD OPTIONS</router-link></button>
+      
     </div>
     <div class="right">
       <div class= "box" id="box1">
@@ -130,10 +131,9 @@ export default {
             min:0,
             am:'',
             attractions:[],
-            attractionId:this.$route.params.id
+            attractionId:this.$route.params.id,
         }
     },
-
     beforeCreate: function() {
         document.body.className = 'details';
     },
@@ -159,7 +159,6 @@ export default {
             return this.getAttraction(this.attractions);
         }
     },
-
   methods: {
     fetchItems: function () {
       database
@@ -171,6 +170,7 @@ export default {
             item = doc.data();
             item.id = doc.id;
             this.attractions.push(item);
+           
           });
         });
     },
@@ -251,11 +251,17 @@ a,button{
   margin-bottom:2%;
   
 }
+<<<<<<< HEAD
+#righttitle{
+  font-size:20px;
+  font-weight: lighter;
+=======
 
 #righttitle{
   font-size:20px;
   font-weight: lighter;
 
+>>>>>>> master
 }
 .innerbox{
   background-color: rgba(82, 82, 100, 0.554);
@@ -266,13 +272,19 @@ a,button{
   padding-bottom:1%;
   
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 #datetitle{
   float:left;
   width:50%;
   color:gray;
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 #date{
   color:gray;
   
@@ -280,7 +292,10 @@ a,button{
 #time{
   margin-top:-10px;
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 #timetitle{
   float:left;
   width:50%;
@@ -300,7 +315,10 @@ a,button{
     text-align: left;
     margin-left:-45px;
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 .price li{
     flex-grow: 1;
     flex-basis: 20px;
@@ -333,7 +351,10 @@ a,button{
 .leftt{
   float:left;
   width:50%;
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 }
 .rightt{
   float:left;
@@ -342,6 +363,10 @@ a,button{
 #box2{
   height:230px;
 }
+<<<<<<< HEAD
+</style>  
+=======
 
 
 </style>  
+>>>>>>> master
