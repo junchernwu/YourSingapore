@@ -576,7 +576,9 @@
     components: {PricingOptions},
     data() {
       return {
+        
         attraction: {
+          auth_id: null,
           name: '',
           number: null,
           description: '',
@@ -744,6 +746,7 @@
           database.collection('attractions').add(this.attraction)
           alert('Submitted')
           this.attraction = {
+            auth_id:"",
             name: '',
                 number: null,
                 description: '',
@@ -1071,7 +1074,15 @@
           });
         });
       }
-    }
+    },
+    mounted() {
+      if (sessionStorage.uid) {
+        this.attraction.auth_id = sessionStorage.uid;
+        console.log("UID")
+        console.log(this.auth_id)
+      }
+    },
+
   }
 </script>
 
@@ -1084,8 +1095,7 @@
     position: absolute;
     left: 25%;
   }
-  .form-row {
-  }
+
   .col-name {
     float: left;
     width: 50%;
@@ -1120,7 +1130,6 @@
     float: left;
     width: 35%;
     padding: 8px 5px 5px 0px;
-    //margin: 5px 10px 5px 0px;
     margin: 0;
     text-align: left;
   }
