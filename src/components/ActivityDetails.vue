@@ -251,18 +251,11 @@ a,button{
   margin-bottom:2%;
   
 }
-<<<<<<< HEAD
 #righttitle{
   font-size:20px;
   font-weight: lighter;
-=======
-
-#righttitle{
-  font-size:20px;
-  font-weight: lighter;
-
->>>>>>> master
 }
+
 .innerbox{
   background-color: rgba(82, 82, 100, 0.554);
   width:90%;
@@ -272,36 +265,7 @@ a,button{
   padding-bottom:1%;
   
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> master
-#datetitle{
-  float:left;
-  width:50%;
-  color:gray;
-}
-<<<<<<< HEAD
-=======
-
->>>>>>> master
-#date{
-  color:gray;
-  
-}
-#time{
-  margin-top:-10px;
-}
-<<<<<<< HEAD
-=======
-
->>>>>>> master
-#timetitle{
-  float:left;
-  width:50%;
-  margin-top:-10px;
-  
-}
 #planneradd{
   position:relative;
   top:10px;
@@ -315,10 +279,7 @@ a,button{
     text-align: left;
     margin-left:-45px;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 .price li{
     flex-grow: 1;
     flex-basis: 20px;
@@ -351,10 +312,6 @@ a,button{
 .leftt{
   float:left;
   width:50%;
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 }
 .rightt{
   float:left;
@@ -363,10 +320,3 @@ a,button{
 #box2{
   height:230px;
 }
-<<<<<<< HEAD
-</style>  
-=======
-
-
-</style>  
->>>>>>> master

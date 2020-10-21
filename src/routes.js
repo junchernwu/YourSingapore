@@ -11,7 +11,6 @@ import Registration_new from './components/Registration_new'
 import ActivityDetails from './components/ActivityDetails.vue'
 import Verification from "@/components/Verification";
 import Eateries from './components/Eateries.vue';
-import ActivityDetails from './components/ActivityDetails.vue'
 import Planner from "@/components/Planner";
 import Edit_details_merchant from  "./components/Edit_details_merchant"
 
