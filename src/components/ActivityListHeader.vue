@@ -1,9 +1,10 @@
 
 <template>
    <div>
-     <div v-if="rain()" v-bind:style="{'background-image':'url('+require('../assets/Rain.jpg')+')'}" >
+    
      
-     <header >
+     <header :style="{ backgroundImage: 'url('+require('../assets/Cloud.jpg')+')'}">
+
         <h2>Trip <br> Details</h2>
         <h3 id="title1">Selected Date</h3>
         <p>{{date}} </p>
@@ -15,7 +16,7 @@
       </header> 
       
       
-      </div>
+     
     </div>
     
 </template>
@@ -24,26 +25,34 @@
 <script>
 import axios from 'axios'
 
-export default {
 
+export default {
   data(){
     return{
       date:'',
       weather_results: [],
       Selected_weather:'',
       icon:'',
-      picture:'',
-       
-    
-      
+      picture:''
       
       
 
+      
+   
       
 
     
     }
   },
+  //computed:{
+   // cssProps() {
+   //  let pic=this.picture;
+   //   return require(`../assets/${ pic }`);
+   // }
+
+
+
+  //},
 
 
   methods:{
@@ -65,17 +74,17 @@ export default {
     }).catch(error => console.log(error))
     
     },
-    rain:function(){
+    picture_display:function(){
       var x=this.Selected_weather;
       
       if(x.includes('rain')){
         console.log(x);
         this.picture= '../assets/Rain.jpg';
-        return true;
+        //return true;
        
       }else{
-        //this.picture='../assets/Cloud.jpg';
-        return false;
+       this.picture='../assets/Cloud.jpg';
+        //return false;
       }
 
 
@@ -86,11 +95,11 @@ export default {
       if(x.includes('cloud')){
         console.log(x);
         this.picture='../assets/Cloud.jpg';
-        return true;
+        //return true;
        
       }else{
         //
-        return false;
+        //return false;
       }
 
 
@@ -105,7 +114,7 @@ export default {
       this.date = sessionStorage.date;
       this.fetchData();
       this.picture_display();
-      console.log(this.picture);
+      //console.log(this.picture);
       
     }
   }
@@ -116,8 +125,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 header{
-    height:180px;
-    
+  height: 180px;
+  position:fixed;
+  width: 1500px;
+ 
 }
 
 h2{
@@ -140,7 +151,9 @@ h3{
  
 }
 p{
-  position: absolute;
+   position: absolute;
+   padding-top: 25px;
+ 
   left:83.5%;
   top:4%;
   color:white;

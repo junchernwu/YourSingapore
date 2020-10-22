@@ -2,7 +2,7 @@
 <template>
 <div id="page" class="main">
 
-  <div class="col-md-12" v-bind:class="{ 'not-visible' : active }"  >
+  <div class="col-md-12"  >
           <iframe frameborder="0" style="width: 100%; height: 350px; border:0" v-bind:src="'https://www.google.com/maps/embed/v1/place?key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI&q='+search+',Singapore'" allowfullscreen></iframe></div>
 
     <section>
@@ -30,7 +30,7 @@
           <p id="datetitle"> DATE</p>
           <p id="datetitle">  TIME </p>
           
-          <p id="timetitle">{{date}}</p>
+          <p id="date">{{date}}</p>
           
           <select class="dropdown" name="hour" id="time" v-model="hour">
             <option value="Hour">Hour</option>
@@ -66,10 +66,11 @@
         <div id="content">
         <ul>
           <li v-for="item in filtersearch"  v-bind:key="item.name">
+        
             <img v-bind:src="get_pic(item.photos[0].photo_reference)"/>
             <aside>
             <h3>{{item.name.trim()}}</h3>
-            <p>{{item.formatted_address}}</p>
+            <br><h5>{{item.formatted_address.trim()}}</h5>
 
            <div id="btn"> <button id="button">Add to planner</button></div>
          
@@ -131,7 +132,9 @@ export default {
         for(let key in this.results){
           console.log(this.results[key].business_status)
           if(this.results[key].business_status=="OPERATIONAL"){
-              this.final_results.push(response.data.results[key]);
+            console.log("photos" in this.results[key])
+              if(("photos" in this.results[key])){
+              this.final_results.push(response.data.results[key]);}
 
           }
         }
@@ -142,6 +145,7 @@ export default {
     
     },
      get_pic: function(x){
+            console.log(x)
          var link="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+x+"&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
          return link
 
@@ -205,13 +209,13 @@ h3 {
   color: rgb(148, 155, 155);
   float:left;
   font-size: 25px;
-  margin-bottom:10px;
+  margin-bottom: 1px;
   text-align: center;
 
  
 }
 button{
-  padding-top:5px;
+ padding-top:5px;
   padding-bottom:5px;
   margin-right: 100px;
   background-color: tomato;
@@ -235,29 +239,25 @@ button{
   color:gray;
   
 }
-#date{
-  color:gray;
-  
-  
-}
+
 #time{
   
   margin-bottom:10px;
 
 }
-#timetitle{
+#date{
   float:left;
   width:50%;
   margin-top:-10px;
+  color:rgb(245, 245, 245);
   
 }
-p {
- 
+h5 {
+  
   color:white;
-  float: right;
-  padding-right:50px;
+ 
   font-size:15px;
-  text-align: center;
+  text-align: left;
   
 }
 aside {
@@ -289,7 +289,7 @@ nav {
   padding-right:200px;
 }
 #btn{
-  padding-top:150px;
+  padding-top:100px;
 }
 #content{
   float: right;

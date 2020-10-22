@@ -20,6 +20,7 @@ export default {
     currentData() {
         if (this.$route.path==="/activityList") {
           return ActivityListHeader;}
+        
         else {
           return Header;
         }

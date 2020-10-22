@@ -33,10 +33,10 @@
           </select>
           <select class="dropdown" name="min" id="min" v-model="min">
             <option value="Minute">Minute</option>
-            <option value="1">00</option>
-              <option value="2">15</option>
-              <option value="3">30</option>
-              <option value="4">45</option>
+            <option value="00">00</option>
+              <option value="15">15</option>
+              <option value="30">30</option>
+              <option value="45">45</option>
           </select>
           <select class="dropdown" name="am" id="am" v-model="am">
               <option value="am">am</option>
@@ -121,7 +121,7 @@
 </template>
 
 <script>
-import database from "../firebase.js";
+import { database } from "@/firebase/";
 export default {
     data() {
         return {
@@ -181,6 +181,11 @@ export default {
       sessionStorage.hour= this.hour;
       sessionStorage.min= this.min;
       sessionStorage.am= this.am;
+      sessionStorage.name = this.attraction.name;
+      sessionStorage.picture = this.attraction.picture;
+      
+      // route to planner page
+      this.$router.push('/planner');
     }
   }
 }
@@ -257,24 +262,6 @@ a,button{
   padding-bottom:1%;
   
 }
-#datetitle{
-  float:left;
-  width:50%;
-  color:gray;
-}
-#date{
-  color:gray;
-  
-}
-#time{
-  margin-top:-10px;
-}
-#timetitle{
-  float:left;
-  width:50%;
-  margin-top:-10px;
-  
-}
 #planneradd{
   position:relative;
   top:10px;
@@ -328,4 +315,3 @@ a,button{
 #box2{
   height:230px;
 }
-</style>  
