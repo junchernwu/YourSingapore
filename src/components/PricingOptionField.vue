@@ -72,9 +72,10 @@ export default {
     float: left;
     position: relative;
     width: calc(100% - 35px);
-    left: calc(6% - 3px);
+    left: 5%;
     padding-top: 15px;
     padding-bottom: 15px;
+    text-align: center;
   }
   #button {
     float: right;

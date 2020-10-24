@@ -731,6 +731,9 @@
       checkDescriptionFilled(){
         return (this.attraction.description != '')
       },
+      checkImageUploaded(){
+        return (this.attraction.picture != '')
+      },
       addItem(){
         console.log()
         console.log(this.checkOperatingHourFilled())
@@ -740,6 +743,8 @@
           alert("Please Fill Up the Attraction's Contact Number")
         } else if (this.checkDescriptionFilled() == false) {
           alert("Please Fill Up the Attraction's Description")
+        } else if (this.checkImageUploaded() == false) {
+          alert("Please Upload the Attraction's Image")
         } else if (this.checkOperatingHourFilled() == false) {
           alert("Please Fill Up the Attraction's Operating Hours")
         } else {
