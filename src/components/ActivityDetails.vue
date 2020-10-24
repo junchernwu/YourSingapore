@@ -5,7 +5,8 @@
       <h1 id="title"> {{attraction.name}}</h1> 
       <p id="desc"> {{attraction.description}} </p>
       <a v-bind:href="attraction.link"> BOOK NOW </a> <!-- Link in database should have https:// in front -->
-      <button> EXPLORE FOOD OPTIONS </button>
+       <button><router-link :to="'/eateries/'+ attraction.name">EXPLORE FOOD OPTIONS</router-link></button>
+      
     </div>
     <div class="right">
       <div class= "box" id="box1">
@@ -133,7 +134,6 @@ export default {
             attractionId:this.$route.params.id,
         }
     },
-
     beforeCreate: function() {
         document.body.className = 'details';
     },
@@ -159,7 +159,6 @@ export default {
             return this.getAttraction(this.attractions);
         }
     },
-
   methods: {
     fetchItems: function () {
       database
@@ -171,6 +170,7 @@ export default {
             item = doc.data();
             item.id = doc.id;
             this.attractions.push(item);
+           
           });
         });
     },
@@ -184,6 +184,7 @@ export default {
       sessionStorage.am= this.am;
       sessionStorage.name = this.attraction.name;
       sessionStorage.picture = this.attraction.picture;
+      
       // route to planner page
       this.$router.push('/planner');
     }
@@ -250,12 +251,11 @@ a,button{
   margin-bottom:2%;
   
 }
-
 #righttitle{
   font-size:20px;
   font-weight: lighter;
-
 }
+
 .innerbox{
   background-color: rgba(82, 82, 100, 0.554);
   width:90%;
@@ -266,26 +266,6 @@ a,button{
   
 }
 
-#datetitle{
-  float:left;
-  width:50%;
-  color:gray;
-}
-
-#date{
-  color:gray;
-  
-}
-#time{
-  margin-top:-10px;
-}
-
-#timetitle{
-  float:left;
-  width:50%;
-  margin-top:-10px;
-  
-}
 #planneradd{
   position:relative;
   top:10px;
@@ -332,7 +312,6 @@ a,button{
 .leftt{
   float:left;
   width:50%;
-
 }
 .rightt{
   float:left;
@@ -341,6 +320,3 @@ a,button{
 #box2{
   height:230px;
 }
-
-
-</style>  
