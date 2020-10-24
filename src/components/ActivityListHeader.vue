@@ -1,4 +1,3 @@
-
 <template>
    <div>
      <div v-if="rain()" v-bind:style="{'background-image':'url('+require('../assets/Rain.jpg')+')'}" >
