@@ -31,7 +31,7 @@ export default[
     {path:'/eateries/:name',component:Eateries},
     {path: '/attraction/:id', component: ActivityDetails},
     {path: '/planner', component: Planner},
-    {path: '/:merchantId', component: Edit_details_merchant},
+    {path: '/merchant/:merchantId', component: Edit_details_merchant},
 
 ]
 
