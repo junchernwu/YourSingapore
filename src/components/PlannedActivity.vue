@@ -46,6 +46,8 @@ export default {
     font-weight: bold;
     line-height: 1;
     float: left;
+    position: relative;
+    top: 40px;
   }
 
   img {
@@ -69,6 +71,7 @@ export default {
     text-align: left;
     position: relative;
     left: 5%;
+    top: 15px;
   }
 
   #name {
@@ -83,6 +86,7 @@ export default {
     float: right;
     width: 90%;
     top: 2px;
+    left: -4%;
   }
 
   location-icon {
