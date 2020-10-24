@@ -80,8 +80,6 @@ export default {
 
   mounted() {
     if (sessionStorage.plannedActivities) {
-      // for (var j = 0; j < JSON.parse(sessionStorage.plannedActivities).length; j++) {
-      // }
       this.plannedActivities = JSON.parse(sessionStorage.plannedActivities)
     }
     var plannedActivity = {

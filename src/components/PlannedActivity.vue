@@ -11,6 +11,9 @@
       <location-icon></location-icon>
       <p id="address">{{activity.address}}</p>
     </div>
+    <div id="button">
+      <button v-on:click="deleteActivity(activity.name)" type="button">x</button>
+    </div>
   </div>
 </template>
 
@@ -26,6 +29,28 @@ export default {
   },
   components: {
     LocationIcon,
+  },
+  methods: {
+    deleteActivity: function(name) {
+      console.log("DELETE")
+      var plannedActivities = JSON.parse(sessionStorage.plannedActivities)
+      for (var i = 0; i < plannedActivities.length; i++) {
+        // remove attraction based on name
+        if (plannedActivities[i].name.valueOf() == name.valueOf()) {
+          console.log("CHECK INDEX: " + i);
+          console.log("BEFORE DELETE: " + plannedActivities.length);
+          plannedActivities.pop(i);
+          console.log("AFTER DELETE: " + plannedActivities.length);
+          sessionStorage.plannedActivities = JSON.stringify(plannedActivities);
+          sessionStorage.removeItem('hour');
+          sessionStorage.removeItem('min');
+          sessionStorage.removeItem('am');
+          sessionStorage.removeItem('name');
+          sessionStorage.removeItem('picture');
+          document.location.reload();
+        }
+      }
+    }
   }
 }
 </script>
@@ -72,6 +97,7 @@ export default {
     position: relative;
     left: 5%;
     top: 15px;
+    width: 50%;
   }
 
   #name {
@@ -93,6 +119,23 @@ export default {
     position: relative;
     float: left;
     width: 5%;
+  }
+
+  #button {
+    float: right;
+    position: relative;
+    padding: 5px;
+    margin: 0;
+    top: -70px;
+    right: -15px;
+    background: transparent;
+  }
+
+  button {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
   }
 
 </style>
