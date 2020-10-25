@@ -79,6 +79,9 @@ export default {
   },
 
   mounted() {
+    if (sessionStorage.plannedActivities) {
+      this.plannedActivities = JSON.parse(sessionStorage.plannedActivities)
+    }
     var plannedActivity = {
       name: '',
       address: '',
@@ -88,7 +91,8 @@ export default {
       am: '',
     };
     if (sessionStorage.date) {
-      this.date = sessionStorage.date;
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      this.date = new Date(sessionStorage.date).toLocaleDateString("en-US", options);
     }
     if(sessionStorage.hour){
       plannedActivity.hour = sessionStorage.hour //Session storage: Once added to the planner, need to store the value in a separate variable bc once they add another attraction, the previous value will disappear
@@ -104,13 +108,39 @@ export default {
     }
     plannedActivity.address = this.address
     if(sessionStorage.name){
-      console.log('NAME')
       plannedActivity.name = sessionStorage.name
       this.fetchData(plannedActivity.name).then(value => {
         plannedActivity.address = value;
       })
+
       // add plannedActivity to plannedActivities array
-      this.plannedActivities.push(plannedActivity)
+      var added = false;
+      for (var i = 0; i < this.plannedActivities.length; i++) {
+        // If add same attraction, different time, it REPLACES the old time
+        if (this.plannedActivities[i].name.valueOf() == plannedActivity.name.valueOf()) {
+          this.plannedActivities[i] = plannedActivity;
+          added = true;
+          break;
+        }
+      }
+      if (!added) {
+        this.plannedActivities.push(plannedActivity);
+      }
+      //SORT ACCORDING TO TIME
+      this.plannedActivities.sort(function(a, b){
+        if (a.am == "am" & b.am == "pm") {
+          return -1;
+        } else if (b.am == "am" & a.am == "pm") {
+          return 1;
+        } else {
+          if (a.hour == b.hour) {
+            return a.min - b.min;
+          } else {
+            return a.hour - b.hour;
+          }
+        }
+      });
+      sessionStorage.plannedActivities = JSON.stringify(this.plannedActivities);
     }
   },
 }
