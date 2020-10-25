@@ -677,20 +677,7 @@
           },
           link: '',
           promotions: '',
-          pricing: {
-            0: {
-              category: '',
-              price: '',
-            },
-            1: {
-              category: '',
-              price: '',
-            },
-            2: {
-              category: '',
-              price: '',
-            }
-          },
+          pricing: {},
           pricerange: '',
           location: '',
           promotiontype: '',
@@ -850,20 +837,7 @@
             },
             link: '',
             promotions: '',
-            pricing: {
-              0: {
-                category: '',
-                price: '',
-              },
-              1: {
-                category: '',
-                price: '',
-              },
-              2: {
-                category: '',
-                price: '',
-              }
-            },
+            pricing: {},
             pricerange: '',
             location: '',
             promotiontype: '',
