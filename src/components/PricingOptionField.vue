@@ -15,6 +15,7 @@
 
 
 <script>
+
 export default {
   name: "PricingOptionField",
   props:{
@@ -28,6 +29,9 @@ export default {
       type: Array,
     },
     attractionId:{
+      type: Object,
+    },
+    attraction: {
       type: Object,
     }
   },
@@ -46,6 +50,8 @@ export default {
     deleteOption: function() {
       console.log(this.id);
       this.list.pop(this.id);
+      delete this.attraction.pricing[this.id];
+      console.log("DELETE: " + Object.keys(this.attraction.pricing).length);
     },
   },
 }
@@ -72,9 +78,10 @@ export default {
     float: left;
     position: relative;
     width: calc(100% - 35px);
-    left: calc(6% - 3px);
+    left: 5%;
     padding-top: 15px;
     padding-bottom: 15px;
+    text-align: center;
   }
   #button {
     float: right;

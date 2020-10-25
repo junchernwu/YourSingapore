@@ -576,7 +576,6 @@
     components: {PricingOptions},
     data() {
       return {
-        
         attraction: {
           auth_id: null,
           name: '',
@@ -587,12 +586,12 @@
             mon: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -600,12 +599,12 @@
             tue: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -613,12 +612,12 @@
             wed: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -626,12 +625,12 @@
             thu: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -639,12 +638,12 @@
             fri: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -652,12 +651,12 @@
             sat: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -665,12 +664,12 @@
             sun: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -678,20 +677,7 @@
           },
           link: '',
           promotions: '',
-          pricing: {
-            0: {
-              category: '',
-              price: '',
-            },
-            1: {
-              category: '',
-              price: '',
-            },
-            2: {
-              category: '',
-              price: '',
-            }
-          },
+          pricing: {},
           pricerange: '',
           location: '',
           promotiontype: '',
@@ -731,6 +717,9 @@
       checkDescriptionFilled(){
         return (this.attraction.description != '')
       },
+      checkImageUploaded(){
+        return (this.attraction.picture != '')
+      },
       addItem(){
         console.log()
         console.log(this.checkOperatingHourFilled())
@@ -740,131 +729,120 @@
           alert("Please Fill Up the Attraction's Contact Number")
         } else if (this.checkDescriptionFilled() == false) {
           alert("Please Fill Up the Attraction's Description")
+        } else if (this.checkImageUploaded() == false) {
+          alert("Please Upload the Attraction's Image")
         } else if (this.checkOperatingHourFilled() == false) {
           alert("Please Fill Up the Attraction's Operating Hours")
         } else {
           database.collection('attractions').add(this.attraction)
           alert('Submitted')
           this.attraction = {
-            auth_id:"",
+            auth_id: null,
             name: '',
-                number: null,
-                description: '',
-                picture: '',
-                operations: {
+            number: null,
+            description: '',
+            picture: '',
+            operations: {
               mon: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               tue: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               wed: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               thu: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               fri: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               sat: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               sun: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
             },
             link: '',
-                promotions: '',
-                pricing: {
-              0: {
-                category: '',
-                    price: '',
-              },
-              1: {
-                category: '',
-                    price: '',
-              },
-              2: {
-                category: '',
-                    price: '',
-              }
-            },
+            promotions: '',
+            pricing: {},
             pricerange: '',
-                location: '',
-                promotiontype: '',
-                attractionType: '',
-          };
+            location: '',
+            promotiontype: '',
+            attractionType: '',
+          },
           this.weekday = false;
           this.weekend = false;
           this.everyday = false;
@@ -885,12 +863,12 @@
           this.attraction.operations.tue = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -898,12 +876,12 @@
           this.attraction.operations.wed = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -911,12 +889,12 @@
           this.attraction.operations.thu = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -924,12 +902,12 @@
           this.attraction.operations.fri = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -947,12 +925,12 @@
           this.attraction.operations.sun = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -975,12 +953,12 @@
           this.attraction.operations.tue = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -988,12 +966,12 @@
           this.attraction.operations.wed = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1001,12 +979,12 @@
           this.attraction.operations.thu = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1014,12 +992,12 @@
           this.attraction.operations.fri = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1027,12 +1005,12 @@
           this.attraction.operations.sat = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1040,12 +1018,12 @@
           this.attraction.operations.sun = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
