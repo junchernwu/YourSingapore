@@ -106,7 +106,7 @@ export default {
 header{
   height: 180px;
   position:fixed;
-  width: 1400px;
+  width: 100%;
   
   
  

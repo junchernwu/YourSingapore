@@ -2,16 +2,17 @@
 <div id="page" class="main">
 
   <div class="col-md-12"  >
-          <iframe frameborder="0" style="width: 100%; height: 350px; border:0" v-bind:src="'https://www.google.com/maps/embed/v1/place?key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI&q='+search+',Singapore'" allowfullscreen></iframe></div>
-
+          <iframe frameborder="0" style="width: 100%; height: 350px; border:0" v-bind:src="'https://www.google.com/maps/embed/v1/directions?key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI&mode=walking&origin='+this.origin+'&destination='+this.search+'&avoid=tolls|highways'" allowfullscreen></iframe></div>
+          
     <section>
      <nav>
         <div class="ui icon input">
             <input
               class="prompt"
               type="text"
-              v-model="search"
+              v-model="origin"
               placeholder="Search Attractions"
+              v-on:change="fetchData()"
             >
             <i class="search icon"></i>
         </div>
@@ -64,17 +65,20 @@
         </nav>
         <div id="content">
         <ul>
+          
           <li v-for="item in filtersearch"  v-bind:key="item.name">
-        
             <img v-bind:src="get_pic(item.photos[0].photo_reference)"/>
             <aside>
             <h3>{{item.name.trim()}}</h3>
             <br><h5>{{item.formatted_address.trim()}}</h5>
 
-           <div id="btn"> <button id="button">Add to planner</button></div>
-         
+           <button v-on:click="getEatery(item.name)">Get Directions</button>
+           <div id="btn"> <button id="button" v-on:click="persist(item)">Add to planner</button></div>
+           
+           
         
             </aside>
+            
           </li>
         </ul>
       </div>
@@ -97,6 +101,7 @@ export default {
   data(){
     return{
         search:this.$route.params.name,
+        origin:this.$route.params.name,
         location:"",
         results:[],
         restaurant:"",
@@ -105,17 +110,10 @@ export default {
         hour:0,
         min:0,
         am:'',
-        
-
-      
-
-      
-
     
     }
   },
   computed: {
-
 
     filtersearch(){
       return this.final_results.filter(obj => {return obj.name.toLowerCase().includes(this.restaurant.toLowerCase())})
@@ -124,7 +122,9 @@ export default {
 
   methods:{
       fetchData : function(){
-        const URL="https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+"+this.search+"&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
+        this.final_results=[]
+        console.log(this.origin)
+        const URL="https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+"+this.origin+"&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
         axios.get(URL).then(response=>{
           
         this.results=response.data.results ;
@@ -139,7 +139,7 @@ export default {
             var v=[{'photo_reference':this.results[key].icon}];
             this.results[key]['photos']=v;
             
-          
+
             this.final_results.push(this.results[key]);
 
           }
@@ -167,13 +167,24 @@ export default {
         }
 
     },
-   
-   
-     
+    getEatery:function(x){
+      this.search=x
+      this.item=x
+      console.log(this.search)
+      
+      
+    },
+    persist:function(item){
+      sessionStorage.hour= this.hour;
+      sessionStorage.min= this.min;
+      sessionStorage.am= this.am;
+      sessionStorage.name= item.name;
+      sessionStorage.picture=this.get_pic(item.photos[0].photo_reference);
+      sessionStorage.address=item.formatted_address.trim();
+      console.log(item.formatted_address.trim());
 
-    
-  
-    
+      this.$router.push('/planner');
+    }
     },
 
 beforeCreate: function() {
@@ -198,11 +209,6 @@ beforeCreate: function() {
       if(sessionStorage.am){
         this.am = sessionStorage.am
       }
-    },
-    persist:function(){
-      sessionStorage.hour= this.hour;
-      sessionStorage.min= this.min;
-      sessionStorage.am= this.am;
     }
   
 }
@@ -294,7 +300,7 @@ nav {
   padding-right:200px;
 }
 #btn{
-  padding-top:100px;
+  
 }
 #content{
   float: right;
@@ -306,14 +312,10 @@ nav {
 }
 section{
 height:6200px;
-background-color:#2c3e50;
+
 
 }
 
-#page{
-background-color:#4b5763;
-
-}
 img{
   width:250px;
   height: 200px;
@@ -354,4 +356,5 @@ input{
   position:relative;
   left:4%;
 }
+
 </style>
