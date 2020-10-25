@@ -225,7 +225,7 @@ nav {
 }
 #filters{
   position:static;
-  fill-opacity: initial;
+
   float:center;
   padding-top:10px;
   color: whitesmoke;

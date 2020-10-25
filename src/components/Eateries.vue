@@ -130,22 +130,29 @@ export default {
           
         this.results=response.data.results ;
         for(let key in this.results){
-          console.log(this.results[key].business_status)
+         
           if(this.results[key].business_status=="OPERATIONAL"){
             console.log("photos" in this.results[key])
               if(("photos" in this.results[key])){
               this.final_results.push(response.data.results[key]);}
 
+          }else{
+            var v=[{'photo_reference':this.results[key].icon}];
+            this.results[key]['photos']=v;
+            
+          
+            this.final_results.push(this.results[key]);
+
           }
         }
-        console.log(this.results)
+       
 
             
     }).catch(error => console.log(error))
     
     },
      get_pic: function(x){
-            console.log(x)
+            
          var link="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+x+"&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
          return link
 
