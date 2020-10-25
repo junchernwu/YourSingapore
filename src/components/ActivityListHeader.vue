@@ -46,15 +46,7 @@ export default {
     
     }
   },
-  //computed:{
-   // cssProps() {
-   //  let pic=this.picture;
-   //   return require(`../assets/${ pic }`);
-   // }
 
-
-
-  //},
 
 
   methods:{
