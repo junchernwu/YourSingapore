@@ -5,7 +5,7 @@
       <p>&#8853;</p>
     </button>
     <div v-for="field in fieldsList" v-bind:key="field.id">
-      <PricingOptionField v-bind:count="count" v-bind:id="field.id" v-bind:list="fieldsList" v-bind:attractionId="attraction.pricing[field.id]"></PricingOptionField>
+      <PricingOptionField v-bind:count="count" v-bind:id="field.id" v-bind:list="fieldsList" v-bind:attractionId="attraction.pricing[field.id]" v-bind:attraction="attraction"></PricingOptionField>
     </div>
   </div>
 </template>
@@ -38,6 +38,8 @@
         if (this.fieldsList.length == 3) {
           alert("Maximum of 3 Price Categories allowed!");
         } else {
+          console.log("TEST PRICING: " + this.fieldsList.length)
+          this.attraction.pricing[this.fieldsList.length] = {category: '', price: ''};
           this.fieldsList.push({
             id: this.fieldsList.length,
           });

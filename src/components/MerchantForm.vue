@@ -569,27 +569,29 @@
 
 <script>
   import PricingOptions from "@/components/PricingOptions";
-  import database from "@/firebase";
+  import { database, storage } from "@/firebase/";
+  // import storage from "@/firebase/";
 
   export default {
     components: {PricingOptions},
     data() {
       return {
         attraction: {
+          auth_id: null,
           name: '',
           number: null,
           description: '',
-          image: '',
+          picture: '',
           operations: {
             mon: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -597,12 +599,12 @@
             tue: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -610,12 +612,12 @@
             wed: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -623,12 +625,12 @@
             thu: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -636,12 +638,12 @@
             fri: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -649,12 +651,12 @@
             sat: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -662,12 +664,12 @@
             sun: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -675,20 +677,7 @@
           },
           link: '',
           promotions: '',
-          pricing: {
-            0: {
-              category: '',
-              price: '',
-            },
-            1: {
-              category: '',
-              price: '',
-            },
-            2: {
-              category: '',
-              price: '',
-            }
-          },
+          pricing: {},
           pricerange: '',
           location: '',
           promotiontype: '',
@@ -728,6 +717,9 @@
       checkDescriptionFilled(){
         return (this.attraction.description != '')
       },
+      checkImageUploaded(){
+        return (this.attraction.picture != '')
+      },
       addItem(){
         console.log()
         console.log(this.checkOperatingHourFilled())
@@ -737,130 +729,120 @@
           alert("Please Fill Up the Attraction's Contact Number")
         } else if (this.checkDescriptionFilled() == false) {
           alert("Please Fill Up the Attraction's Description")
+        } else if (this.checkImageUploaded() == false) {
+          alert("Please Upload the Attraction's Image")
         } else if (this.checkOperatingHourFilled() == false) {
           alert("Please Fill Up the Attraction's Operating Hours")
         } else {
           database.collection('attractions').add(this.attraction)
           alert('Submitted')
           this.attraction = {
+            auth_id: null,
             name: '',
-                number: null,
-                description: '',
-                image: '',
-                operations: {
+            number: null,
+            description: '',
+            picture: '',
+            operations: {
               mon: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               tue: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               wed: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               thu: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               fri: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               sat: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               sun: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
             },
             link: '',
-                promotions: '',
-                pricing: {
-              0: {
-                category: '',
-                    price: '',
-              },
-              1: {
-                category: '',
-                    price: '',
-              },
-              2: {
-                category: '',
-                    price: '',
-              }
-            },
+            promotions: '',
+            pricing: {},
             pricerange: '',
-                location: '',
-                promotiontype: '',
-                attractionType: '',
-          };
+            location: '',
+            promotiontype: '',
+            attractionType: '',
+          },
           this.weekday = false;
           this.weekend = false;
           this.everyday = false;
@@ -881,12 +863,12 @@
           this.attraction.operations.tue = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -894,12 +876,12 @@
           this.attraction.operations.wed = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -907,12 +889,12 @@
           this.attraction.operations.thu = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -920,12 +902,12 @@
           this.attraction.operations.fri = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -943,12 +925,12 @@
           this.attraction.operations.sun = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -971,12 +953,12 @@
           this.attraction.operations.tue = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -984,12 +966,12 @@
           this.attraction.operations.wed = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -997,12 +979,12 @@
           this.attraction.operations.thu = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1010,12 +992,12 @@
           this.attraction.operations.fri = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1023,12 +1005,12 @@
           this.attraction.operations.sat = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1036,12 +1018,12 @@
           this.attraction.operations.sun = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1049,11 +1031,36 @@
         }
       },
       imgUpload(e){
+        var attraction = this.attraction;
+
+        var dt = new Date().getTime();
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = (dt + Math.random()*16)%16 | 0;
+          dt = Math.floor(dt/16);
+          return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+        });
+        console.log("DATABASE: " + database);
+        console.log("STORAGE: " + storage);
+        var storageRef = storage.ref();
+        var attractionRef = storageRef.child('images/attractions/' + uuid);
         var files = e.target.files;
-        console.log(files[0].name)
-        this.attraction.image = files[0].name;
+        var image = files[0];
+
+        attractionRef.put(image).then(function() {
+          attractionRef.getDownloadURL().then(function (result){
+            attraction.picture = result;
+          });
+        });
       }
-    }
+    },
+    mounted() {
+      if (sessionStorage.uid) {
+        this.attraction.auth_id = sessionStorage.uid;
+        console.log("UID")
+        console.log(this.auth_id)
+      }
+    },
+
   }
 </script>
 
@@ -1066,8 +1073,7 @@
     position: absolute;
     left: 25%;
   }
-  .form-row {
-  }
+
   .col-name {
     float: left;
     width: 50%;

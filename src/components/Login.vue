@@ -63,21 +63,30 @@ export default {
   },
   methods: {
     login: function() {
+      var router= this.$router;
+      var uid = null
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(
-          function(user) {
-            console.log("LOGGED IN SUCCESSFULLY");
-            alert(user + "Successfully  logged in!");
+          function() {
+            console.log("LOGGED IN SUCCESSFULLY")
+            var loggedin = firebase.auth().currentUser;
+            uid = loggedin.uid
+            router.push('/merchant/'+uid);
+            console.log(uid)
+
           },
           function(err) {
             alert("oops" + err.message);
           }
         );
     },
-  },
-};
+    persist: function(){
+        sessionStorage.date= this.date;
+    }
+  }
+}
 </script>
 
 <style scoped>

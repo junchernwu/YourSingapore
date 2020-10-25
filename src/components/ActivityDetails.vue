@@ -32,10 +32,10 @@
           </select>
           <select class="dropdown" name="min" id="min" v-model="min">
             <option value="Minute">Minute</option>
-            <option value="1">00</option>
-              <option value="2">15</option>
-              <option value="3">30</option>
-              <option value="4">45</option>
+            <option value="00">00</option>
+              <option value="15">15</option>
+              <option value="30">30</option>
+              <option value="45">45</option>
           </select>
           <select class="dropdown" name="am" id="am" v-model="am">
               <option value="am">am</option>
@@ -120,7 +120,8 @@
 </template>
 
 <script>
-import database from "../firebase.js";
+import { database } from "@/firebase/";
+
 export default {
     data() {
         return {
@@ -180,9 +181,15 @@ export default {
       sessionStorage.hour= this.hour;
       sessionStorage.min= this.min;
       sessionStorage.am= this.am;
+      sessionStorage.name = this.attraction.name;
+      sessionStorage.picture = this.attraction.picture;
+      
+      // route to planner page
+      this.$router.push('/planner');
     }
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -196,7 +203,7 @@ export default {
   padding-top:4%;
   width:50%;
   overflow: hidden;
-  
+
 }
 .right{
   float: left;
@@ -218,10 +225,10 @@ img{
   border-width: 1px;
   padding-bottom: 5px;
   font-size:40px;
-  
+
 }
 #desc{
-  color:rgba(244, 245, 245, 0.705); 
+  color:rgba(244, 245, 245, 0.705);
 }
 a,button{
   background-color:rgb(255, 46, 81);
@@ -241,7 +248,7 @@ a,button{
   padding-bottom:5%;
   border-radius: 10px;
   margin-bottom:2%;
-  
+
 }
 #righttitle{
   font-size:20px;
@@ -254,7 +261,7 @@ a,button{
   padding-left:8%;
   padding-top:1%;
   padding-bottom:1%;
-  
+
 }
 #datetitle{
   float:left;
@@ -263,7 +270,7 @@ a,button{
 }
 #date{
   color:gray;
-  
+
 }
 #time{
   margin-top:-10px;
@@ -272,7 +279,7 @@ a,button{
   float:left;
   width:50%;
   margin-top:-10px;
-  
+
 }
 #planneradd{
   position:relative;
@@ -280,24 +287,24 @@ a,button{
   left:410px;
 }
 .price ul{
-    display: flex;
-    flex-wrap: wrap;
-    list-style-type: none;
-    padding-right: 5%;
-    text-align: left;
-    margin-left:-45px;
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding-right: 5%;
+  text-align: left;
+  margin-left:-45px;
 }
 .price li{
-    flex-grow: 1;
-    flex-basis: 20px;
-    height:150px;
-    border-radius: 10px;
-    text-align: center;
-    padding: 5%;
-    padding-top: 8%;
-    margin: 10px;
-    background-color: rgba(82, 82, 100, 0.554); 
-    
+  flex-grow: 1;
+  flex-basis: 20px;
+  height:150px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 5%;
+  padding-top: 8%;
+  margin: 10px;
+  background-color: rgba(82, 82, 100, 0.554);
+
 }
 #value{
   font-weight:bold;
@@ -307,14 +314,14 @@ a,button{
 }
 .time ul{
   list-style-type: none;
-  display:flex;  
+  display:flex;
   position:relative;
-  margin-right:330px; 
-  
+  margin-right:330px;
+
 }
 .time li{
   padding-left:5px;
-  
+
 }
 .leftt{
   float:left;
