@@ -1,5 +1,9 @@
 <template>
   <div id="main">
+       
+
+
+
     <h1>Register Your Attraction!</h1>
     <form>
       <!-- name and number -->
@@ -542,7 +546,8 @@
       </div>
       <!-- Attraction Type -->
       <div class="select-options">
-        <select name="attraction-type" v-model="attraction.attractionType"> // SHOULD CHANGE TO MULTI-SELECT!!!
+        <select name="attraction-type" v-model="attraction.attractionType" multiple="" class="ui fluid dropdown">
+         // SHOULD CHANGE TO MULTI-SELECT!!!
           <option value="" disabled selected>Attraction Type</option>
           <optgroup label="Activity">
             <option value="Exhibitions">Exhibitions</option>
@@ -559,7 +564,7 @@
           </optgroup>
         </select>
       </div>
-
+      
       <div class="submit">
         <button class="ui button" v-on:click.prevent="addItem">Submit</button>
       </div>
@@ -567,10 +572,12 @@
   </div>
 </template>
 
+
 <script>
   import PricingOptions from "@/components/PricingOptions";
   import { database, storage } from "@/firebase/";
   // import storage from "@/firebase/";
+  import $ from "jquery";
 
   export default {
     components: {PricingOptions},
@@ -695,7 +702,7 @@
           pricerange: '',
           location: '',
           promotiontype: '',
-          attractionType: '',
+          attractionType: [],
         },
         weekday: false,
         weekend: false,
@@ -863,7 +870,7 @@
             pricerange: '',
                 location: '',
                 promotiontype: '',
-                attractionType: '',
+                attractionType: [],
           };
           this.weekday = false;
           this.weekend = false;
@@ -1076,14 +1083,22 @@
       }
     },
     mounted() {
+      
       if (sessionStorage.uid) {
         this.attraction.auth_id = sessionStorage.uid;
         console.log("UID")
         console.log(this.auth_id)
+        $(document).ready(function($){
+          $('dropdown')
+          .dropdown()
+          });
       }
-    },
-
+    }
   }
+    
+
+
+  
 </script>
 
 <style scoped>
@@ -1212,4 +1227,35 @@
   .ui.button {
     float: right;
   }
+  body {
+  padding: 40px;
+}
+
+.ui.dropdown {
+  max-width: 800px;
+}
+
+@media only screen and (max-width: 767px) {
+    .ui.selection.dropdown .menu {
+/*      max-height: 8.01428571rem; /* + 1.335714285 to 9.349999995rem */
+/*      max-height: 9.349999995rem; /* Adds a half */
+        max-height: 16.02857142rem; /* Double size */
+    }
+}
+@media only screen and (min-width: 768px) {
+    .ui.selection.dropdown .menu {
+/*         max-height: 10.68571429rem; /* + 1.3357142863 to 12.0214285763rem */
+      max-height: 12.0214285763rem;
+    }
+}
+@media only screen and (min-width: 992px) {
+    .ui.selection.dropdown .menu {
+      max-height: 16.02857143rem; /* + 1.3357142858 to 17.3642857158rem */
+    }
+}
+@media only screen and (min-width: 1920px) {
+    .ui.selection.dropdown .menu {
+        max-height: 21.37142857rem; /* + 1.3357142856 to 22.7071428556rem */
+    }
+}
 </style>
