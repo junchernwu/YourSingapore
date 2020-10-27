@@ -13,7 +13,7 @@ import Verification from "@/components/Verification";
 import Eateries from './components/Eateries.vue';
 import Planner from "@/components/Planner";
 import Edit_details_merchant from  "./components/Edit_details_merchant"
-import dropdown from "./components/dropdown"
+
 
 
 export default[
@@ -33,7 +33,7 @@ export default[
     {path: '/attraction/:id', component: ActivityDetails},
     {path: '/planner', component: Planner},
     {path: '/merchant/:merchantId', component: Edit_details_merchant},
-    {path: "/dropdown", component:dropdown}
+
 
 ]
 

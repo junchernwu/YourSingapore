@@ -565,13 +565,15 @@ img{
 #pricefield_input{
   background-color:transparent;
   width:90%;
-  padding-left:3%;
-  padding-top:2%;
-  padding-bottom:5%;
-  border-radius: 10px;
   margin-bottom:2%;
-  font-size:20px;
-  font-weight: lighter;
+  font-weight:bold;
+  text-transform: uppercase;
+  font-size:30px;
+  padding-right: 3%;
+  text-align: left;
+ 
+
+
 }
 
 #title{
@@ -663,7 +665,7 @@ a,button{
     border-radius: 10px;
     text-align: center;
     padding: 5%;
-    padding-top: 8%;
+    padding-top: 6%;
     margin: 10px;
     background-color: rgba(82, 82, 100, 0.554); 
     

@@ -525,6 +525,7 @@
         </select>
       </div>
       <!-- Promotion Type -->
+      
       <div class="select-options">
         <select name="promotion-type" v-model="attraction.promotiontype"> // SHOULD CHANGE TO MULTI-SELECT!!!
           <option value="" disabled selected>Promotion Type</option>
@@ -546,6 +547,12 @@
       </div>
       <!-- Attraction Type -->
       <div class="select-options">
+      
+      <multiselect id="attractionType" v-model="attraction.attractionType" tag-placeholder="Add this as new tag" placeholder="Add Attraction Type" label="name" track-by="code" :options="attraction.options" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
+      
+      </div>
+      
+      <!-- <div class="select-options">
         <select name="attraction-type" v-model="attraction.attractionType" multiple="" class="ui fluid dropdown">
          // SHOULD CHANGE TO MULTI-SELECT!!!
           <option value="" disabled selected>Attraction Type</option>
@@ -563,7 +570,7 @@
             <option value="Wheelchair-Friendly">Wheelchair-Friendly</option>
           </optgroup>
         </select>
-      </div>
+      </div> -->
       
       <div class="submit">
         <button class="ui button" v-on:click.prevent="addItem">Submit</button>
@@ -575,15 +582,23 @@
 
 <script>
   import PricingOptions from "@/components/PricingOptions";
+  import Multiselect from 'vue-multiselect'
   import { database, storage } from "@/firebase/";
   // import storage from "@/firebase/";
   import $ from "jquery";
 
   export default {
-    components: {PricingOptions},
+    components: {PricingOptions,Multiselect},
     data() {
-      return {
-        
+      return {value: [
+        { name: 'Javascript', code: 'js' }
+      ],
+      options: [
+        { name: 'Vue.js', code: 'vu' },
+        { name: 'Javascript', code: 'js' },
+        { name: 'Open Source', code: 'os' }
+      ],
+
         attraction: {
           auth_id: null,
           name: '',
@@ -702,14 +717,38 @@
           pricerange: '',
           location: '',
           promotiontype: '',
-          attractionType: [],
+          attractionType: [
+            { name: 'Exhibitions', code: 'ex' }
+        
+      ],
+      options: [
+        { name: 'Exhibitions', code: 'ex' },
+        { name: 'Museum', code: 'mu' },
+        { name: 'Nature', code: 'na' },
+        { name: 'Sightseeing', code: 'si' },
+        { name: 'Sports', code: 'sp' },
+        { name: 'Elderly', code: 'eld' },
+        { name: 'Kids', code: 'kid' },
+        { name: 'Wheelchair-Friendly', code: 'whe' },
+      ],
         },
         weekday: false,
         weekend: false,
         everyday: false,
+        
+    
+    
       }
     },
     methods: {
+      addTag (newTag) {
+      const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+      }
+      this.attraction.attractionType.push(tag)
+
+    },
       checkOperatingHourFilled(){
         if (this.attraction.operations.mon.open == true && (this.attraction.operations.mon.start.hour == '' || this.attraction.operations.mon.end.hour == '')) {
           return false;
@@ -1157,6 +1196,11 @@
     text-align: right;
     direction: rtl;
   }
+  #attractionType{
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+  }
 
   /* operating hours styling */
   .col-day {
@@ -1259,3 +1303,4 @@
     }
 }
 </style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
