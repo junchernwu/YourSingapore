@@ -18,7 +18,7 @@
         <button v-on:click = "update_changes" class="ui green button">Done Editing</button>
         <button class="ui red button" v-on:click="bump" :style="bumpStyle">BUMP</button>
       </div>
-      <button class="ui button" v-on:click="$router.push({name: 'dashboard', params:{docId: doc_id}})">Dashboard</button>
+      <button class="ui button" v-on:click="$router.push({name: 'dashboard', query:{docId: doc_id}})">Dashboard</button>
       <div class="box time" id="box2">
         <h1 id="righttitle"> Operating hours </h1>
         <div class="leftt">

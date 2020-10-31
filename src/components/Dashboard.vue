@@ -10,11 +10,11 @@ export default {
   name: "Dashboard",
   components: {BumpStats},
   mounted() {
-    console.log("TESTING: " + this.$route.params.docId)
+    console.log("TESTING: " + this.$route.query.docId)
   },
   data() {
     return {
-      docId: this.$route.params.docId
+      docId: this.$route.query.docId
     }
   }
 }
