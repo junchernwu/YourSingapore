@@ -530,6 +530,7 @@
       <div class="select-options">
         <multiselect id="attractionType" v-model="attraction.attractionType" placeholder="Attraction Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="typeOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
       </div>
+
       <!-- Demographic Type -->
       <div class="select-options">
         <multiselect id="demographicType" v-model="attraction.demographicType" placeholder="Demographic Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="demographicOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
@@ -562,7 +563,7 @@
         options: [
             { name: 'Vue.js', code: 'vu' },
             { name: 'Javascript', code: 'js' },
-            { name: 'Open Source', code: 'os' }
+            { name: 'Open Source', code: 'os' },
         ],
         // Multi-select
 
@@ -1216,6 +1217,10 @@
     background-color: transparent;
     border: none;
     color: white;
+  }
+
+  multiselect {
+
   }
 
   /* submit button styling */
