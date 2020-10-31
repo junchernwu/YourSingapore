@@ -35,8 +35,8 @@ export default {
     divStyle() {
       return {
         'background-color': 'rgba(255,248,248,0.2)',
-        'border-radius': '20px',
-        'margin': '5px 5px',
+        'border-radius': '50px',
+        'margin': '50px 50px',
         'float': 'left',
         'width': 'calc(' + (100 / this.count) + '%' + ' - 10px',
       }

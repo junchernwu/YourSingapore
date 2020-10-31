@@ -315,21 +315,37 @@
     
         </div>
       </div>
-       <div class="box price" id="box3">
-        <h1 id="righttitle"> Pricing Options </h1>
-        <ul>
-          <li v-for="field in attractions.pricing" v-bind:key="field.category">
-            <input id="pricefield_input" v-if = "price_edit" v-model = "field.category"
-            @keyup.enter = "price_edit=false; $emit('update')">
-   
 
-            <input v-if = "price_edit" id="pricefield_input" v-model = "field.price"
-            @keyup.enter = "price_edit=false; $emit('update')">
+      
+       <div class="box price" id="box3">
+         
+         <button  id="addbutton" v-on:click="newPrice()" type="button">
+           <h3>Pricing Options</h3>
+            <p id="plus" >&#8853;</p>
+          </button>
+        <ul>
+          <li v-for="(field,index) in attractions.pricing" v-bind:key="index">
+            <div id="total">
+              <div id="button">
+                  <button v-on:click="deleteOption(index)" type="button">x</button>
+                </div>
+              <div :style="divStyle">
+                <input id="pricefield_input" v-if = "price_edit" v-model = "field.category" @keyup.enter = "price_edit=false; $emit('update')">
    
-            <div @click = "price_edit = true" v-else id="pricefield">
-              <p id="value"> {{field.category}} </p>
-              <p id="value"> {{field.price}} </p>
+                <br> 
+                <input id="pricefield_input" v-if = "price_edit" type="text" class="price" v-model="field.price"
+                @keyup.enter = "price_edit=false; $emit('update')">
+        
+                <div @click = "price_edit=true" v-else >
+                      <p id="value"> {{field.category}} </p>
+                      <p id="value"> {{field.price}} </p>
+                </div>
+          
+              </div>
             </div>
+           
+           
+
           </li>
         </ul>
       </div>
@@ -343,16 +359,19 @@
           </div>
        
       </div>
+      </div>
+      
+      
       
     </div>
-
-  </div>
 </template>
 
 <script>
 import { database } from "@/firebase/"
 import firebase from "firebase";
+
 export default {
+
     data() {
         return {
             attractions: null,
@@ -368,19 +387,63 @@ export default {
             title_edit:null,
             price_edit:null,
             doc_id: null,
-            promo_edit:null
+            promo_edit:null,
         }
     },
+    
+  
 
     beforeCreate: function() {
         document.body.className = 'details';
     },
+    computed: {
+    divStyle() {
+      return {
+        'border-radius': '50px',
+        'margin': '5px 5px',
+        'float': 'left',
+        'width': 'calc(' + (100 / this.count) + '%' + ' - 10px',
+      }
+    },
+  },
 
     created(){
         this.fetchItems();
     },
 
   methods: {
+    workingclick: function(){
+      console.log("CLICKING WORKS")
+    },
+    deleteOption: function(index) {
+      console.log("DELETING");
+      console.log(this.attractions.pricing)
+      console.log(index)
+      delete this.attractions.pricing[index];
+      this.$forceUpdate()
+     
+    },
+    newPrice: function(){
+      var prev = Object.keys(this.attractions.pricing)
+      if (prev.length <3){
+        var key = Math.random();
+        while (key in prev) {
+          key = Math.random();
+        }
+
+ 
+        this.attractions.pricing[key] = {category: "CATEGORY",
+          price: "$$$"}
+        this.num_of_adds +=1 
+          
+        this.$forceUpdate()
+
+      } else{
+        alert("Please limit prices to 3 categories")
+      }
+      
+      
+      },
     fetchItems: function () {
       console.log("INITIATE FIREBASE")
       if(firebase.auth().currentUser){
@@ -524,6 +587,7 @@ export default {
   }
 }
 
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -557,18 +621,18 @@ img{
   font-weight: lighter;
   border-bottom:solid;
   border-color:white;
-  border-width: 1px;
-  padding-bottom: 5px;
   font-size:40px;
-  width:1000px
+  float:left;
+  clear: both;
+
 }
 #pricefield_input{
   background-color:transparent;
-  width:90%;
+  width:120%;
   margin-bottom:2%;
   font-weight:bold;
   text-transform: uppercase;
-  font-size:30px;
+  font-size:15px;
   padding-right: 3%;
   text-align: left;
  
@@ -600,7 +664,9 @@ a,button{
   margin-right:10px;
   font-size: 10px;
   border:none;
+
 }
+
 .box{
   background-color: rgba(0, 0, 0, 0.342);
   width:90%;
@@ -636,6 +702,20 @@ a,button{
   color:gray;
   
 }
+#total {
+  display: flex;
+  justify-content: center;
+  margin-top:-20px;
+  flex-grow: 1;
+  flex-basis: 50px;
+  border-radius: 5px; 
+  text-align: center;
+  
+
+
+
+  }
+
 #time{
   margin-top:-10px;
 }
@@ -675,6 +755,7 @@ a,button{
   text-transform: uppercase;
   font-size:30px;
   line-height: 10px;
+  top: 0px;
 }
 .time ul{
   list-style-type: none;
@@ -698,5 +779,63 @@ a,button{
 #box2{
   height:230px;
 }
+
+
+input {
+    background-color: transparent;
+    color: white;
+    border: 1px solid lightblue;
+    padding: 5px 10px;
+    margin: 5px 10px;
+    width: calc(100% - 40px);
+    text-align: center;
+  }
+  ::placeholder {
+    color: white;
+    text-align: center;
+  }
+  #field {
+    float: left;
+    position: relative;
+    width: calc(100% - 35px);
+    left: calc(6% - 3px);
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  #button {
+    float: left;
+    top:10;
+    right:30;
+    margin-top:-10px;
+
+
+  }
+  button {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+  }
+  .category {
+    font-weight: bold;
+    font-size: 18px;
+    width: 7em;
+  }
+#addbutton {
+  font-size: 26px;
+  width:100%;
+  float: right;
+
+
+    
+  }
+
+#plus{
+  float:right
+}
+button h3 {
+    float: left;
+  }
+
 
 </style>  
