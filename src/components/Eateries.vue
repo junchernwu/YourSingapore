@@ -2,7 +2,7 @@
 <div id="page" class="main">
 
   <div class="col-md-12"  >
-          <iframe frameborder="0" style="width: 100%; height: 350px; border:0" v-bind:src="'https://www.google.com/maps/embed/v1/directions?key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI&mode=walking&origin='+this.origin+'&destination='+this.search+'&avoid=tolls|highways'" allowfullscreen></iframe></div>
+          <iframe frameborder="0" style="width: 100%; height: 350px; border:0" v-bind:src="'https://www.google.com/maps/embed/v1/directions?key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI&mode=walking&origin='+this.origin+'&destination='+this.search+'Singapore'+'&avoid=tolls|highways'" allowfullscreen></iframe></div>
           
     <section>
      <nav>
