@@ -184,6 +184,7 @@ export default {
       sessionStorage.am= this.am;
       sessionStorage.name = this.attraction.name;
       sessionStorage.picture = this.attraction.picture;
+      sessionStorage.address = this.attraction.address;
       
       // route to planner page
       this.$router.push('/planner');
