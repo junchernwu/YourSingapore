@@ -687,6 +687,8 @@
         weekday: false,
         weekend: false,
         everyday: false,
+        bumpViews: 0,
+        notBumpViews: 0,
       }
     },
     methods: {
@@ -844,6 +846,8 @@
             promotiontype: '',
             attractionType: '',
             bump: null,
+            bumpViews: 0,
+            notBumpViews: 0,
           },
           this.weekday = false;
           this.weekend = false;

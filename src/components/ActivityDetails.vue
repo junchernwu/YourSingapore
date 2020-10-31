@@ -122,6 +122,7 @@
 
 <script>
 import { database } from "@/firebase/";
+import firebase from "../../Firebase";
 
 export default {
     data() {
@@ -191,7 +192,28 @@ export default {
     },
 
     updateViews: function(){
-      console.log("TESTING VIEWS: " + this.attractions)
+      database
+          .collection("attraction2")
+          .doc(this.attractionId).get().then((documentSnapshot) => {
+        if (documentSnapshot.exists) {
+          var bumpStatus = documentSnapshot.data().bump;
+          if (bumpStatus == null) {
+            database
+                .collection("attraction2")
+                .doc(this.attractionId)
+                .update({
+                  notBumpViews: firebase.firestore.FieldValue.increment(1),
+                })
+          } else {
+            database
+                .collection("attraction2")
+                .doc(this.attractionId)
+                .update({
+                  bumpViews: firebase.firestore.FieldValue.increment(1),
+                })
+          }
+        }
+      });
     }
   }
 }
