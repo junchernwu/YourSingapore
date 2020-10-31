@@ -122,7 +122,7 @@
 
 <script>
 import { database } from "@/firebase/";
-import firebase from "../../Firebase";
+import firebase from "firebase";
 
 export default {
     data() {

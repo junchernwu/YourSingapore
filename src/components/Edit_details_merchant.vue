@@ -15,10 +15,10 @@
     </div>
     <div class="right">
       <div class="two ui buttons ">
-      <button v-on:click = "update_changes" class="ui green button">Done Editing</button>
-      <button class="ui red button" v-on:click="bump" :style="bumpStyle">BUMP</button>
+        <button v-on:click = "update_changes" class="ui green button">Done Editing</button>
+        <button class="ui red button" v-on:click="bump" :style="bumpStyle">BUMP</button>
       </div>
-      
+      <button class="ui button" v-on:click="$router.push({name: 'dashboard', params:{docId: doc_id}})">Dashboard</button>
       <div class="box time" id="box2">
         <h1 id="righttitle"> Operating hours </h1>
         <div class="leftt">
@@ -316,7 +316,7 @@
     
         </div>
       </div>
-       <div class="box price" id="box3">
+      <div class="box price" id="box3">
         <h1 id="righttitle"> Pricing Options </h1>
         <ul>
           <li v-for="field in attractions.pricing" v-bind:key="field.category">
@@ -521,7 +521,7 @@ a,button{
   border:none;
 }
 .box{
-  background-color: rgba(0, 0, 0, 0.342);
+  background-color: rgba(0, 0, 0, 0.34);
   width:90%;
   padding-left:3%;
   padding-top:2%;
