@@ -443,21 +443,17 @@ export default {
         database
             .collection("attraction2")
             .doc(id)
-            .set(
-                {
-                  bump: {
-                    date: new Date(),
-                  },
-                },
-                {
-                  merge: true
-                }
-            )
+            .update({
+              bump: {
+                date: new Date(),
+              },
+              bumpTimes: firebase.firestore.FieldValue.increment(1),
+            })
         // NOTE: TESTED FOR 11 MINUTES
-        // 7 Days: 86400000
+        // 7 Days: 86400000 TO CHANGE!!!
         setTimeout(this.removeBump, 60000)
       } else {
-        alert("Attracted can only be bumped once in 7 days")
+        alert("Attraction can only be bumped once every 7 days")
       }
     },
     removeBump: function() {

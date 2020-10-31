@@ -126,12 +126,12 @@ import { database } from "@/firebase/";
 export default {
     data() {
         return {
-            date:'',
-            hour:0,
-            min:0,
-            am:'',
-            attractions:[],
-            attractionId:this.$route.params.id,
+          date:'',
+          hour:0,
+          min:0,
+          am:'',
+          attractions:[],
+          attractionId:this.$route.params.id,
         }
     },
     beforeCreate: function() {
@@ -150,6 +150,7 @@ export default {
       if(sessionStorage.am){
         this.am = sessionStorage.am
       }
+      this.updateViews();
     },
     created(){
         this.fetchItems();
@@ -162,7 +163,7 @@ export default {
   methods: {
     fetchItems: function () {
       database
-        .collection("attractions")
+        .collection("attraction2")
         .get()
         .then((querySnapShot) => {
           let item = {};
@@ -187,6 +188,10 @@ export default {
       
       // route to planner page
       this.$router.push('/planner');
+    },
+
+    updateViews: function(){
+      console.log("TESTING VIEWS: " + this.attractions)
     }
   }
 }
