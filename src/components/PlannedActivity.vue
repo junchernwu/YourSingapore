@@ -39,7 +39,7 @@ export default {
         if (plannedActivities[i].name.valueOf() == name.valueOf()) {
           console.log("CHECK INDEX: " + i);
           console.log("BEFORE DELETE: " + plannedActivities.length);
-          plannedActivities.pop(i);
+          plannedActivities.splice(i, 1);
           console.log("AFTER DELETE: " + plannedActivities.length);
           sessionStorage.plannedActivities = JSON.stringify(plannedActivities);
           sessionStorage.removeItem('hour');
