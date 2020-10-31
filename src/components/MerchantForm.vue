@@ -16,6 +16,11 @@
         </div>
       </div>
 
+      <!-- attraction address -->
+      <div class="input-focus">
+        <input type="text" name = "address" placeholder="Attraction Address*" v-model="attraction.address">
+      </div>
+
       <!-- attraction description -->
       <div>
         <textarea name="description" rows="4" placeholder="Attraction Description*" v-model="attraction.description"></textarea>
@@ -570,6 +575,7 @@
         attraction: {
           auth_id: null,
           name: '',
+          address: '',
           number: null,
           description: '',
           picture: '',
@@ -740,6 +746,9 @@
       checkNumberFilled(){
         return (this.attraction.number != null)
       },
+      checkAddressFilled(){
+        return (this.attraction.address != '')
+      },
       checkDescriptionFilled(){
         return (this.attraction.description != '')
       },
@@ -753,6 +762,8 @@
           alert("Please Fill Up the Attraction's Name")
         } else if (this.checkNumberFilled() == false) {
           alert("Please Fill Up the Attraction's Contact Number")
+        } else if (this.checkAddressFilled() == false) {
+          alert("Please Fill Up the Attraction's Address")
         } else if (this.checkDescriptionFilled() == false) {
           alert("Please Fill Up the Attraction's Description")
         } else if (this.checkImageUploaded() == false) {
@@ -772,6 +783,7 @@
           this.attraction = {
             auth_id: null,
             name: '',
+            address: '',
             number: null,
             description: '',
             picture: '',
