@@ -16,7 +16,7 @@
     <div class="right">
       <div class="two ui buttons ">
       <button v-on:click = "update_changes" class="ui green button">Done Editing</button>
-      <button class="ui red button">BUMP</button>
+      <button class="ui red button" v-on:click="bump" :style="bumpStyle">BUMP</button>
       </div>
       
       <div class="box time" id="box2">
@@ -369,7 +369,8 @@ export default {
             title_edit:null,
             price_edit:null,
             doc_id: null,
-            promo_edit:null
+            promo_edit:null,
+            bumped: false,
         }
     },
 
@@ -380,13 +381,25 @@ export default {
     created(){
         this.fetchItems();
     },
-
+  computed: {
+    bumpStyle() {
+      if (this.bumped == true) {
+        return {
+          'background-color': 'grey',
+        }
+      } else {
+        return {
+          'background-color': 'red',
+        }
+      }
+    },
+  },
   methods: {
     fetchItems: function () {
       console.log("INITIATE FIREBASE")
       if(firebase.auth().currentUser){
       database
-        .collection("attractions")
+        .collection("attraction2")
         .get()
         .then((querySnapShot) => {
           let item = {};
@@ -417,12 +430,47 @@ export default {
       var updated = this.attractions
      
       database
-        .collection("attractions")
+        .collection("attraction2")
         .doc(id)  
         .set(updated)
         .then(console.log("SET"))
-    }
-
+    },
+    bump: function(){
+      if (this.bumped == false) {
+        console.log("BUMP")
+        this.bumped = true;
+        var id = this.doc_id
+        database
+            .collection("attraction2")
+            .doc(id)
+            .set(
+                {
+                  bump: {
+                    date: new Date(),
+                  },
+                },
+                {
+                  merge: true
+                }
+            )
+        // NOTE: TESTED FOR 11 MINUTES
+        // 7 Days: 86400000
+        setTimeout(this.removeBump, 60000)
+      } else {
+        alert("Attracted can only be bumped once in 7 days")
+      }
+    },
+    removeBump: function() {
+      this.bumped = false;
+      var id = this.doc_id
+      database
+          .collection("attraction2")
+          .doc(id)
+          .update({
+            bump: null
+          })
+      console.log("REMOVED BUMP")
+    },
   }
 }
 
@@ -492,41 +540,7 @@ a,button{
   font-weight: lighter;
 
 }
-.innerbox{
-  background-color: rgba(82, 82, 100, 0.554);
-  width:90%;
-  border-radius: 30px;
-  padding-left:8%;
-  padding-top:1%;
-  padding-bottom:1%;
-  
-}
 
-#datetitle{
-  float:left;
-  width:50%;
-  color:gray;
-}
-
-#date{
-  color:gray;
-  
-}
-#time{
-  margin-top:-10px;
-}
-
-#timetitle{
-  float:left;
-  width:50%;
-  margin-top:-10px;
-  
-}
-#planneradd{
-  position:relative;
-  top:10px;
-  left:410px;
-}
 .price ul{
     display: flex;
     flex-wrap: wrap;
