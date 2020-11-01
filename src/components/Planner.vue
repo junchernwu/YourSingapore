@@ -8,16 +8,16 @@
       <PlannedActivity v-bind:activity="activity"></PlannedActivity>
     </div>
     <button class="ui button" v-on:click="share">Share</button>
-    <!-- Eateries REPLACE ROUTER LINK!!-->
-    <button class="ui button" v-on:click="$router.push('/eateries')">Explore Food Options</button>
-    <!-- Attractions REPLACE ROUTER LINK!!-->
+
+    <!-- Attractions -->
+
+
     <button class="ui button" v-on:click="$router.push('/activityList')">Explore More Attractions</button>
   </div>
 </template>
 
 <script>
 import PlannedActivity from "@/components/PlannedActivity";
-import axios from 'axios';
 import html2canvas from 'html2canvas';
 import { storage } from "@/firebase/";
 
@@ -32,17 +32,6 @@ export default {
   },
 
   methods: {
-    fetchData : async function(name){
-      const URL="https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query="+name+"&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
-      return await axios.get(URL).then(response=>{
-        this.results=response.data.results;
-        // Only obtain the top result
-        var address = this.results[0].formatted_address
-        console.log("ADDRESS: " + address)
-        return address
-      }).catch(error => console.log(error))
-    },
-
     share: function() {
       html2canvas(document.body, {allowTaint: true, useCORS: true}).then(function(canvas) {
         console.log("SHARREEEE")
@@ -106,13 +95,11 @@ export default {
     if (sessionStorage.picture) {
       plannedActivity.picture = sessionStorage.picture
     }
-    plannedActivity.address = this.address
+    if (sessionStorage.address) {
+      plannedActivity.address = sessionStorage.address
+    }
     if(sessionStorage.name){
       plannedActivity.name = sessionStorage.name
-      this.fetchData(plannedActivity.name).then(value => {
-        plannedActivity.address = value;
-      })
-
       // add plannedActivity to plannedActivities array
       var added = false;
       for (var i = 0; i < this.plannedActivities.length; i++) {

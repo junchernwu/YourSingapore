@@ -176,17 +176,42 @@ export default {
     getAttraction:function(obj){
         return obj.find(obj => obj.id===this.$route.params.id);
     },
-      
+    checkTimingClash:function () {
+      var clash = false;
+      if (sessionStorage.plannedActivities) {
+        var activities = JSON.parse(sessionStorage.plannedActivities);
+        for (var i = 0; i < activities.length; i++) {
+          var activity = activities[Object.keys(activities)[i]];
+          var hourTiming = activity.hour;
+          var minTiming = activity.min;
+          var amTiming = activity.am;
+          // If clashing time, alert user
+          if (hourTiming == this.hour) {
+            if (minTiming == this.min) {
+              if (amTiming == this.am) {
+                clash = true;
+              }
+            }
+          }
+        }
+      }
+      if (clash) {
+        alert('There is a clash in timing with your planned activities')
+      } else {
+        // route to planner page
+        this.$router.push('/planner');
+      }
+    },
     persist:function(){
       sessionStorage.hour= this.hour;
       sessionStorage.min= this.min;
       sessionStorage.am= this.am;
       sessionStorage.name = this.attraction.name;
       sessionStorage.picture = this.attraction.picture;
-      
-      // route to planner page
-      this.$router.push('/planner');
-    }
+      sessionStorage.address = this.attraction.address;
+
+      this.checkTimingClash();
+    },
   }
 }
 
