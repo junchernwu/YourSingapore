@@ -9,7 +9,7 @@
     </div>
     <button class="ui button" v-on:click="share">Share</button>
     <!-- Eateries REPLACE ROUTER LINK!!-->
-    <button class="ui button" v-on:click="$router.push('/eateries')">Explore Food Options</button>
+    <button class="ui button">Explore Food Options</button>
     <!-- Attractions REPLACE ROUTER LINK!!-->
     <button class="ui button" v-on:click="$router.push('/activityList')">Explore More Attractions</button>
   </div>

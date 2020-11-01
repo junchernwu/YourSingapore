@@ -522,7 +522,7 @@
       </div>
       <!-- Promotion Type -->
       <div class="select-options">
-        <select name="promotion-type" v-model="attraction.promotiontype"> // SHOULD CHANGE TO MULTI-SELECT!!!
+        <select name="promotion-type" v-model="attraction.promotiontype" multiple> <!--SHOULD CHANGE TO MULTI-SELECT!!!-->
           <option value="" disabled selected>Promotion Type</option>
           <optgroup label="Percentage">
             <option value="< 10%">&lt; 10%</option>
@@ -542,7 +542,7 @@
       </div>
       <!-- Attraction Type -->
       <div class="select-options">
-        <select name="attraction-type" v-model="attraction.attractionType"> // SHOULD CHANGE TO MULTI-SELECT!!!
+        <select name="attraction-type" v-model="attraction.attractionType" multiple> <!-- SHOULD CHANGE TO MULTI-SELECT!!!-->
           <option value="" disabled selected>Attraction Type</option>
           <optgroup label="Activity">
             <option value="Exhibitions">Exhibitions</option>
