@@ -338,7 +338,13 @@
       </div>
       <div class="box" id="box4">
         <h1 id="righttitle"> Promotions </h1>
-        <p> {{attractions.promotions}}</p>
+          <input v-if = "promo_edit" v-model = "attractions.promotions"
+                  @blur= "promo_edit = false; $emit('update')"
+                  @keyup.enter = "promo_edit=false; $emit('update')">
+          <div v-else>
+          <h1 @click = "promo_edit = true" > {{attractions.promotions}}</h1> 
+          </div>
+       
       </div>
     </div>
 
@@ -346,7 +352,7 @@
 </template>
 
 <script>
-import database from "../firebase.js";
+import { database } from "@/firebase/"
 import firebase from "firebase";
 export default {
     data() {
@@ -362,7 +368,8 @@ export default {
             editedToDo_sun:null,
             title_edit:null,
             price_edit:null,
-            doc_id: null
+            doc_id: null,
+            promo_edit:null
         }
     },
 
@@ -376,6 +383,7 @@ export default {
 
   methods: {
     fetchItems: function () {
+      console.log("INITIATE FIREBASE")
       if(firebase.auth().currentUser){
       database
         .collection("attractions")

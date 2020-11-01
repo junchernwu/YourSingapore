@@ -73,7 +73,7 @@ export default {
             console.log("LOGGED IN SUCCESSFULLY")
             var loggedin = firebase.auth().currentUser;
             uid = loggedin.uid
-            router.push('/'+uid);
+            router.push('/merchant/'+uid);
             console.log(uid)
 
           },

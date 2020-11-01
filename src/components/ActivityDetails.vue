@@ -5,8 +5,7 @@
       <h1 id="title"> {{attraction.name}}</h1> 
       <p id="desc"> {{attraction.description}} </p>
       <a v-bind:href="attraction.link"> BOOK NOW </a> <!-- Link in database should have https:// in front -->
-       <button><router-link :to="'/eateries/'+ attraction.name">EXPLORE FOOD OPTIONS</router-link></button>
-      
+      <button> <router-link :to="'/eateries/'+ attraction.name">EXPLORE FOOD OPTIONS </router-link></button>
     </div>
     <div class="right">
       <div class= "box" id="box1">
@@ -360,4 +359,4 @@ a,button{
 #box2{
   height:230px;
 }
-</style>
+</style>  

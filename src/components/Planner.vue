@@ -8,7 +8,10 @@
       <PlannedActivity v-bind:activity="activity"></PlannedActivity>
     </div>
     <button class="ui button" v-on:click="share">Share</button>
+
     <!-- Attractions -->
+
+
     <button class="ui button" v-on:click="$router.push('/activityList')">Explore More Attractions</button>
   </div>
 </template>

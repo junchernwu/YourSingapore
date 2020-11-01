@@ -176,12 +176,19 @@ export default {
 
     }
     
-
     }
     
   },
   created() {
     this.fetchItems();
+  },
+  mounted() {
+    if (sessionStorage.date) {
+      this.location = sessionStorage.location;
+    
+
+      
+    }
   },
   beforeCreate: function() {
         document.body.className = 'activityList';
@@ -211,7 +218,7 @@ nav {
   float: left;
   width:18%;
   padding-left: 30px;
-  padding-top: 30px;
+  padding-top: 200px;
   height: 800px;
   position:fixed;
 
@@ -222,7 +229,7 @@ nav {
 }
 #filters{
   position:static;
-  fill-opacity: initial;
+
   float:center;
   padding-top:10px;
   color: whitesmoke;
@@ -239,7 +246,7 @@ nav {
 
 #content{
   float: right;
-  padding: 0px;
+  padding-top: 200px;
   width:85%;
 
 }

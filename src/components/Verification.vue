@@ -15,7 +15,8 @@ name: "Verification"
 <style scoped>
   div {
     position: relative;
-    top: 15%;
+    top: 30px;
+    text-align: center;
   }
   .ui.button {
     margin-top: 30px;

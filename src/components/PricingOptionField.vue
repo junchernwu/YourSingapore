@@ -1,9 +1,6 @@
 <template>
   <div id="total">
     <div :style="divStyle">
-      <div id="button">
-        <button v-on:click="deleteOption" type="button">x</button>
-      </div>
       <div id="field">
         <input type="text" class="category" placeholder="Category" v-model="attractionId.category">
         <br>
@@ -15,6 +12,7 @@
 
 
 <script>
+
 export default {
   name: "PricingOptionField",
   props:{
@@ -24,12 +22,9 @@ export default {
     id:{
       type: Number,
     },
-    list:{
-      type: Array,
-    },
     attractionId:{
       type: Object,
-    }
+    },
   },
   computed: {
     divStyle() {
@@ -40,12 +35,6 @@ export default {
         'float': 'left',
         'width': 'calc(' + (100 / this.count) + '%' + ' - 10px',
       }
-    },
-  },
-  methods: {
-    deleteOption: function() {
-      console.log(this.id);
-      this.list.pop(this.id);
     },
   },
 }
@@ -71,17 +60,10 @@ export default {
   #field {
     float: left;
     position: relative;
-    width: calc(100% - 35px);
-    left: calc(6% - 3px);
+    width: 100%;
     padding-top: 15px;
     padding-bottom: 15px;
-  }
-  #button {
-    float: right;
-    position: relative;
-    margin-right: 5px;
-    padding-right: 5px;
-    width: 20px;
+    text-align: center;
   }
   button {
     background: none;
