@@ -5,8 +5,7 @@
       <h1 id="title"> {{attraction.name}}</h1> 
       <p id="desc"> {{attraction.description}} </p>
       <a v-bind:href="attraction.link"> BOOK NOW </a> <!-- Link in database should have https:// in front -->
-       <button><router-link :to="'/eateries/'+ attraction.name">EXPLORE FOOD OPTIONS</router-link></button>
-      
+      <button> <router-link :to="'/eateries/'+ attraction.name">EXPLORE FOOD OPTIONS </router-link></button>
     </div>
     <div class="right">
       <div class= "box" id="box1">
@@ -122,16 +121,17 @@
 
 <script>
 import { database } from "@/firebase/";
+import firebase from "firebase";
 
 export default {
     data() {
         return {
-            date:'',
-            hour:0,
-            min:0,
-            am:'',
-            attractions:[],
-            attractionId:this.$route.params.id,
+          date:'',
+          hour:0,
+          min:0,
+          am:'',
+          attractions:[],
+          attractionId:this.$route.params.id,
         }
     },
     beforeCreate: function() {
@@ -150,6 +150,7 @@ export default {
       if(sessionStorage.am){
         this.am = sessionStorage.am
       }
+      this.updateViews();
     },
     created(){
         this.fetchItems();
@@ -162,7 +163,7 @@ export default {
   methods: {
     fetchItems: function () {
       database
-        .collection("attractions")
+        .collection("attraction2")
         .get()
         .then((querySnapShot) => {
           let item = {};
@@ -177,17 +178,74 @@ export default {
     getAttraction:function(obj){
         return obj.find(obj => obj.id===this.$route.params.id);
     },
-      
+    checkTimingClash:function () {
+      var clash = false;
+      if (sessionStorage.plannedActivities) {
+        var activities = JSON.parse(sessionStorage.plannedActivities);
+        for (var i = 0; i < activities.length; i++) {
+          var activity = activities[Object.keys(activities)[i]];
+          var hourTiming = activity.hour;
+          var minTiming = activity.min;
+          var amTiming = activity.am;
+          // If clashing time, alert user
+          if (hourTiming == this.hour) {
+            if (minTiming == this.min) {
+              if (amTiming == this.am) {
+                clash = true;
+              }
+            }
+          }
+        }
+      }
+      if (clash) {
+        alert('There is a clash in timing with your planned activities')
+      } else {
+        // route to planner page
+        this.$router.push('/planner');
+      }
+    },
     persist:function(){
+      sessionStorage.address = this.attraction.address;
       sessionStorage.hour= this.hour;
       sessionStorage.min= this.min;
       sessionStorage.am= this.am;
       sessionStorage.name = this.attraction.name;
       sessionStorage.picture = this.attraction.picture;
+
       
       // route to planner page
       this.$router.push('/planner');
+    },
+    
+    updateViews: function(){
+      database
+          .collection("attraction2")
+          .doc(this.attractionId).get().then((documentSnapshot) => {
+        if (documentSnapshot.exists) {
+          var bumpStatus = documentSnapshot.data().bump.status;
+          if (bumpStatus == false) {
+            databases
+                .collection("attraction2")
+                .doc(this.attractionId)
+                .update({
+                  notBumpViews: firebase.firestore.FieldValue.increment(1),
+                })
+          } else {
+            database
+                .collection("attraction2")
+                .doc(this.attractionId)
+                .update({
+                  bumpViews: firebase.firestore.FieldValue.increment(1),
+                })
+          }
+        }
+      });
     }
+
+      
+
+      this.checkTimingClash();
+    },
   }
 }
 
@@ -335,4 +393,4 @@ a,button{
 #box2{
   height:230px;
 }
-</style>
+</style>  

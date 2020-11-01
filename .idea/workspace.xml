@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4568f15a-a55f-427b-9b9e-5331926c56c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/11a67d04460074529953568d58ff3d11.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/11a67d04460074529953568d58ff3d11.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/252a102909768f0d163cc932ac450fab.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/252a102909768f0d163cc932ac450fab.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/39566cf2b1e90e2531cf5a58c1737c22.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/39566cf2b1e90e2531cf5a58c1737c22.json" afterDir="false" />
@@ -94,12 +93,10 @@
       <change beforePath="$PROJECT_DIR$/src/components/ActivityList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ActivityList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Planner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Planner.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase.js" afterDir="false" />
-=======
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/babel-loader/690e518c5089696cfd4dfa6b9d3c9ece.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/babel-loader/690e518c5089696cfd4dfa6b9d3c9ece.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/d27e81db292158d638be6a52cc192b71.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/d27e81db292158d638be6a52cc192b71.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/vue-loader/e8148344c4e41abb18f4b0ac3e3e597f.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/vue-loader/e8148344c4e41abb18f4b0ac3e3e597f.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/MerchantForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MerchantForm.vue" afterDir="false" />
->>>>>>> master
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,11 +205,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
-<<<<<<< HEAD
           <line>727</line>
-=======
-          <line>728</line>
->>>>>>> master
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -220,14 +213,11 @@
           <line>32</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
-<<<<<<< HEAD
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
           <line>582</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
-=======
->>>>>>> master
       </breakpoints>
     </breakpoint-manager>
   </component>

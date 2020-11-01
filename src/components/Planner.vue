@@ -8,21 +8,22 @@
       <PlannedActivity v-bind:activity="activity"></PlannedActivity>
     </div>
     <button class="ui button" v-on:click="share">Share</button>
-    <!-- Eateries REPLACE ROUTER LINK!!-->
-    <button class="ui button" v-on:click="$router.push('/home')">
-      Explore Food Options
-    </button>
-    <!-- Attractions REPLACE ROUTER LINK!!-->
-    <button class="ui button" v-on:click="$router.push('/activityList')">
-      Explore More Attractions
-    </button>
+
+
+    <!-- Attractions -->
+
+
+    <button class="ui button" v-on:click="$router.push('/activityList')">Explore More Attractions</button>
+
   </div>
 </template>
 
 <script>
 import PlannedActivity from "@/components/PlannedActivity";
+
 import axios from "axios";
 import html2canvas from "html2canvas";
+
 import { storage } from "@/firebase/";
 
 export default {
@@ -36,6 +37,7 @@ export default {
   },
 
   methods: {
+
     fetchData: async function(name) {
       const URL =
         "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=" +
@@ -52,6 +54,7 @@ export default {
         })
         .catch((error) => console.log(error));
     },
+
 
     share: function() {
       html2canvas(document.body, { allowTaint: true, useCORS: true }).then(
@@ -96,41 +99,71 @@ export default {
   },
 
   mounted() {
+    if (sessionStorage.plannedActivities) {
+      this.plannedActivities = JSON.parse(sessionStorage.plannedActivities)
+    }
     var plannedActivity = {
-      name: "",
-      address: "",
-      picture: "",
-      hour: "",
-      min: "",
-      am: "",
+      name: '',
+      address: '',
+      picture: '',
+      hour: '',
+      min: '',
+      am: '',
     };
     if (sessionStorage.date) {
-      this.date = sessionStorage.date;
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      this.date = new Date(sessionStorage.date).toLocaleDateString("en-US", options);
     }
-    if (sessionStorage.hour) {
-      plannedActivity.hour = sessionStorage.hour; //Session storage: Once added to the planner, need to store the value in a separate variable bc once they add another attraction, the previous value will disappear
+    if(sessionStorage.hour){
+      plannedActivity.hour = sessionStorage.hour //Session storage: Once added to the planner, need to store the value in a separate variable bc once they add another attraction, the previous value will disappear
     }
-    if (sessionStorage.min) {
-      plannedActivity.min = sessionStorage.min;
+    if(sessionStorage.min){
+      plannedActivity.min = sessionStorage.min
     }
-    if (sessionStorage.am) {
-      plannedActivity.am = sessionStorage.am;
+    if(sessionStorage.am){
+      plannedActivity.am = sessionStorage.am
     }
     if (sessionStorage.picture) {
-      plannedActivity.picture = sessionStorage.picture;
+      plannedActivity.picture = sessionStorage.picture
     }
-    plannedActivity.address = this.address;
-    if (sessionStorage.name) {
-      console.log("NAME");
-      plannedActivity.name = sessionStorage.name;
-      this.fetchData(plannedActivity.name).then((value) => {
+    plannedActivity.address = this.address
+    if(sessionStorage.name){
+      plannedActivity.name = sessionStorage.name
+      this.fetchData(plannedActivity.name).then(value => {
         plannedActivity.address = value;
-      });
+      })
+
       // add plannedActivity to plannedActivities array
-      this.plannedActivities.push(plannedActivity);
+      var added = false;
+      for (var i = 0; i < this.plannedActivities.length; i++) {
+        // If add same attraction, different time, it REPLACES the old time
+        if (this.plannedActivities[i].name.valueOf() == plannedActivity.name.valueOf()) {
+          this.plannedActivities[i] = plannedActivity;
+          added = true;
+          break;
+        }
+      }
+      if (!added) {
+        this.plannedActivities.push(plannedActivity);
+      }
+      //SORT ACCORDING TO TIME
+      this.plannedActivities.sort(function(a, b){
+        if (a.am == "am" & b.am == "pm") {
+          return -1;
+        } else if (b.am == "am" & a.am == "pm") {
+          return 1;
+        } else {
+          if (a.hour == b.hour) {
+            return a.min - b.min;
+          } else {
+            return a.hour - b.hour;
+          }
+        }
+      });
+      sessionStorage.plannedActivities = JSON.stringify(this.plannedActivities);
     }
   },
-};
+}
 </script>
 
 <style scoped>

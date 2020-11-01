@@ -1,48 +1,51 @@
 <template>
    <div>
-     <div v-if="rain()" v-bind:style="{'background-image':'url('+require('../assets/Rain.jpg')+')'}" >
+    
      
-     <header >
+     <header :style="{ background:'url('+picture+')',opacity:0.8}">
+      
         <h2>Trip <br> Details</h2>
-        <h3 id="title1">Selected Date</h3>
+        <h3 id="title1">Selected Date:</h3>
         <p>{{date}} </p>
-        <h3 id= "title2">Weather</h3>
+        <h3 id= "title2">Weather:</h3>
               <h3>{{Selected_weather}}</h3>
               <img v-bind:src="icon"/>
      
-
+      
       </header> 
       
       
-      </div>
+     
     </div>
     
 </template>
 
 
 <script>
+import rain from '@/assets/Rain.jpg';
+import cloud from '@/assets/Cloud.jpg';
 import axios from 'axios'
 
-export default {
 
+export default {
   data(){
     return{
       date:'',
       weather_results: [],
       Selected_weather:'',
       icon:'',
-      picture:'',
-       
-    
-      
+      picture:''
       
       
 
+      
+   
       
 
     
     }
   },
+
 
 
   methods:{
@@ -55,47 +58,35 @@ export default {
      
           if(this.weather_results[key].datetime==this.date ){
             this.Selected_weather=this.weather_results[key].weather.description
+           
      
             this.icon="https://www.weatherbit.io/static/img/icons/"+this.weather_results[key].weather.icon+".png"
             
           }
             
         }
+          this.picture_display();
     }).catch(error => console.log(error))
     
     },
-    rain:function(){
+    picture_display:function(){
       var x=this.Selected_weather;
-      
+      console.log(this.Selected_weather+'aa');
       if(x.includes('rain')){
-        console.log(x);
-        this.picture= '../assets/Rain.jpg';
-        return true;
-       
+        
+        this.picture= rain;
+        
       }else{
-        //this.picture='../assets/Cloud.jpg';
-        return false;
+       this.picture=cloud;
+        
       }
 
 
     },
-    cloud:function(){
-      var x=this.Selected_weather;
-      
-      if(x.includes('cloud')){
-        console.log(x);
-        this.picture='../assets/Cloud.jpg';
-        return true;
-       
-      }else{
-        //
-        return false;
-      }
-
-
-    }
+  },
     
-    },
+    
+  
 
 
 
@@ -103,9 +94,7 @@ export default {
     if (sessionStorage.date) {
       this.date = sessionStorage.date;
       this.fetchData();
-      this.picture_display();
-      console.log(this.picture);
-      
+ 
     }
   }
   
@@ -115,8 +104,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 header{
-    height:180px;
-    
+  height: 180px;
+  position:fixed;
+  width: 100%;
+  
+  
+ 
 }
 
 h2{
@@ -133,29 +126,33 @@ h3{
     float: left;
     margin-left: 75%;
     line-height: 0px;
-    color: ivory;
+    color: rgb(248, 248, 248);
     margin-top: 2%;
     text-size-adjust: 8px;
  
 }
 p{
-  position: absolute;
+   position: absolute;
   left:83.5%;
-  top:4%;
-  color:white;
+   top:15%;
+  background-color: rgba(11, 23, 49, 0.233);
+  color:rgb(255, 255, 255);
   font-weight:bold;
+  font-size: 18px;
 }
 #title2{
   position: relative;
   margin-top: 3%;
-   color : rgb(112, 112, 112);
+   color : rgb(203, 230, 255);
    font-display: bold;
    font-display:Abel;
+   font-size: 25px;
 }
 #title1{
   position: relative;
+  font-size: 25px;
   margin-top: 1%;
-  color : rgb(112, 112, 112);
+  color : rgb(255, 255, 255);
 }
 img{
   float:right;

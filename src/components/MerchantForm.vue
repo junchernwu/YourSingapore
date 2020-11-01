@@ -20,6 +20,11 @@
         </div>
       </div>
 
+      <!-- attraction address -->
+      <div class="input-focus">
+        <input type="text" name = "address" placeholder="Attraction Address*" v-model="attraction.address">
+      </div>
+
       <!-- attraction description -->
       <div>
         <textarea name="description" rows="4" placeholder="Attraction Description*" v-model="attraction.description"></textarea>
@@ -524,54 +529,26 @@
           <option value="Central">Central</option>
         </select>
       </div>
+
       <!-- Promotion Type -->
       
       <div class="select-options">
-        <select name="promotion-type" v-model="attraction.promotiontype"> // SHOULD CHANGE TO MULTI-SELECT!!!
-          <option value="" disabled selected>Promotion Type</option>
-          <optgroup label="Percentage">
-            <option value="< 10%">&lt; 10%</option>
-            <option value="10 - 20%">10 - 20%</option>
-            <option value="> 20%">> 20%</option>
-          </optgroup>
-          <optgroup label="Absolute">
-            <option value="< $20">&lt; $20</option>
-            <option value="$20 - $50">$20 - $50</option>
-            <option value="> $50">> $50</option>
-          </optgroup>
-          <optgroup label="Bundle Promotion">
-            <option value="1 for 1">1 for 1</option>
-            <option value="2 for 1">Buy 2 get 1 Free</option>
-          </optgroup>
-        </select>
+        <multiselect id="promotionType" v-model="attraction.promotiontype" placeholder="Promotion Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="promotionOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
       </div>
+
       <!-- Attraction Type -->
       <div class="select-options">
-      
-      <multiselect id="attractionType" v-model="attraction.attractionType" tag-placeholder="Add this as new tag" placeholder="Add Attraction Type" label="name" track-by="code" :options="attraction.options" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
-      
+
+
+        <multiselect id="attractionType" v-model="attraction.attractionType" placeholder="Attraction Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="typeOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
       </div>
-      
-      <!-- <div class="select-options">
-        <select name="attraction-type" v-model="attraction.attractionType" multiple="" class="ui fluid dropdown">
-         // SHOULD CHANGE TO MULTI-SELECT!!!
-          <option value="" disabled selected>Attraction Type</option>
-          <optgroup label="Activity">
-            <option value="Exhibitions">Exhibitions</option>
-            <option value="Museum">Museum</option>
-            <option value="Nature">Nature</option>
-            <option value="Sightseeing">Sightseeing</option>
-            <option value="Sports">Sports</option>
-            <option value="Theme Parks">Theme Parks</option>
-          </optgroup>
-          <optgroup label="Demographic">
-            <option value="Elderly">Elderly</option>
-            <option value="Kids">Kids</option>
-            <option value="Wheelchair-Friendly">Wheelchair-Friendly</option>
-          </optgroup>
-        </select>
-      </div> -->
-      
+
+      <!-- Demographic Type -->
+      <div class="select-options">
+        <multiselect id="demographicType" v-model="attraction.demographicType" placeholder="Demographic Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="demographicOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
+      </div>
+
+
       <div class="submit">
         <button class="ui button" v-on:click.prevent="addItem">Submit</button>
       </div>
@@ -588,21 +565,30 @@
   import $ from "jquery";
 
   export default {
-    components: {PricingOptions,Multiselect},
+
+    components: {
+      PricingOptions,
+      Multiselect,
+    },
     data() {
-      return {value: [
-        { name: 'Javascript', code: 'js' }
-      ],
-      options: [
-        { name: 'Vue.js', code: 'vu' },
-        { name: 'Javascript', code: 'js' },
-        { name: 'Open Source', code: 'os' }
-      ],
+      return {
+        // Multi-select
+        value: [
+            { name: 'Javascript', code: 'js' }
+        ],
+        options: [
+            { name: 'Vue.js', code: 'vu' },
+            { name: 'Javascript', code: 'js' },
+            { name: 'Open Source', code: 'os' },
+        ],
+        // Multi-select
+
 
         attraction: {
           auth_id: null,
           approved: "pending",
           name: '',
+          address: '',
           number: null,
           description: '',
           picture: '',
@@ -610,12 +596,12 @@
             mon: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -623,12 +609,12 @@
             tue: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -636,12 +622,12 @@
             wed: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -649,12 +635,12 @@
             thu: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -662,12 +648,12 @@
             fri: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -675,12 +661,12 @@
             sat: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
@@ -688,40 +674,36 @@
             sun: {
               open: false,
               start: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
               end: {
-                hour: '',
+                hour: '0',
                 min: '0',
                 am: 'am',
               },
             },
           },
+          openDays:[], // for filter use
           link: '',
           promotions: '',
-          pricing: {
-            0: {
-              category: '',
-              price: '',
-            },
-            1: {
-              category: '',
-              price: '',
-            },
-            2: {
-              category: '',
-              price: '',
-            }
-          },
+          pricing: {},
           pricerange: '',
           location: '',
-          promotiontype: '',
-          attractionType: [
-            { name: 'Exhibitions', code: 'ex' }
-        
-      ],
+          bump: {
+            date: '',
+            status: false,
+          },
+          bumpTimes: 0,
+          bumpViews: 0,
+          notBumpViews: 0,
+          dateAdded: '',
+          promotiontype: [],
+          attractionType: [],
+          demographicType: [],
+          
+
       options: [
         { name: 'Exhibitions', code: 'ex' },
         { name: 'Museum', code: 'mu' },
@@ -732,7 +714,40 @@
         { name: 'Kids', code: 'kid' },
         { name: 'Wheelchair-Friendly', code: 'whe' },
       ],
+
+
+         
+        
+          
+
+
         },
+
+        typeOptions: [
+          { name: 'Exhibitions', code: 'ex' },
+          { name: 'Museum', code: 'mu' },
+          { name: 'Nature', code: 'na' },
+          { name: 'Sightseeing', code: 'si' },
+          { name: 'Sports', code: 'sp' },
+        ],
+
+        demographicOptions: [
+          { name: 'Elderly', code: 'eld' },
+          { name: 'Kids', code: 'kid' },
+          { name: 'Wheelchair-Friendly', code: 'whe' },
+        ],
+
+        promotionOptions: [
+          { name: '< 10%', code: 'lt10p' },
+          { name: '10 - 20%', code: '1020p'},
+          { name: '> 20%', code: 'mt20p'},
+          { name: '< $20', code: 'lt$20'},
+          { name: '$20 - $50', code: '$2050'},
+          { name: '> $50', code: 'mt$50'},
+          { name: '1 for 1', code: '1for1'},
+          { name: '2 for 1', code: '2for1'},
+        ],
+
         weekday: false,
         weekend: false,
         everyday: false,
@@ -743,6 +758,7 @@
     },
     methods: {
       addTag (newTag) {
+
       const tag = {
         name: newTag,
         code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
@@ -750,6 +766,7 @@
       this.attraction.attractionType.push(tag)
 
     },
+
       checkOperatingHourFilled(){
         if (this.attraction.operations.mon.open == true && (this.attraction.operations.mon.start.hour == '' || this.attraction.operations.mon.end.hour == '')) {
           return false;
@@ -775,8 +792,14 @@
       checkNumberFilled(){
         return (this.attraction.number != null)
       },
+      checkAddressFilled(){
+        return (this.attraction.address != '')
+      },
       checkDescriptionFilled(){
         return (this.attraction.description != '')
+      },
+      checkImageUploaded(){
+        return (this.attraction.picture != '')
       },
       addItem(){
         console.log()
@@ -785,133 +808,146 @@
           alert("Please Fill Up the Attraction's Name")
         } else if (this.checkNumberFilled() == false) {
           alert("Please Fill Up the Attraction's Contact Number")
+        } else if (this.checkAddressFilled() == false) {
+          alert("Please Fill Up the Attraction's Address")
         } else if (this.checkDescriptionFilled() == false) {
           alert("Please Fill Up the Attraction's Description")
+        } else if (this.checkImageUploaded() == false) {
+          alert("Please Upload the Attraction's Image")
         } else if (this.checkOperatingHourFilled() == false) {
           alert("Please Fill Up the Attraction's Operating Hours")
         } else {
-          database.collection('attractions').add(this.attraction)
+          this.attraction.dateAdded = new Date();
+
+          var operations = this.attraction.operations
+          for (var day in operations) {
+            console.log(operations[day].open);
+            if (operations[day].open == true) {
+              this.attraction.openDays.push(day);
+            }
+          }
+
+          database.collection('attraction2').add(this.attraction)
           alert('Submitted')
           this.attraction = {
-            auth_id:"",
+            auth_id: null,
             name: '',
-                number: null,
-                description: '',
-                picture: '',
-                operations: {
+            address: '',
+            number: null,
+            description: '',
+            picture: '',
+            operations: {
               mon: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               tue: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               wed: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               thu: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               fri: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               sat: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
               sun: {
                 open: false,
-                    start: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                start: {
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
                 end: {
-                  hour: '',
-                      min: '0',
-                      am: 'am',
+                  hour: '0',
+                  min: '0',
+                  am: 'am',
                 },
               },
             },
             link: '',
-                promotions: '',
-                pricing: {
-              0: {
-                category: '',
-                    price: '',
-              },
-              1: {
-                category: '',
-                    price: '',
-              },
-              2: {
-                category: '',
-                    price: '',
-              }
-            },
+            promotions: '',
+            pricing: {},
             pricerange: '',
+
                 location: '',
                 promotiontype: '',
                 attractionType: [],
-          };
+          
+            bump: {
+              date: '',
+              status: false,
+            },
+            bumpTimes: 0,
+            bumpViews: 0,
+            notBumpViews: 0,
+            dateAdded: '',
+          },
+
           this.weekday = false;
           this.weekend = false;
           this.everyday = false;
@@ -932,12 +968,12 @@
           this.attraction.operations.tue = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -945,12 +981,12 @@
           this.attraction.operations.wed = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -958,12 +994,12 @@
           this.attraction.operations.thu = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -971,12 +1007,12 @@
           this.attraction.operations.fri = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -994,12 +1030,12 @@
           this.attraction.operations.sun = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1022,12 +1058,12 @@
           this.attraction.operations.tue = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1035,12 +1071,12 @@
           this.attraction.operations.wed = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1048,12 +1084,12 @@
           this.attraction.operations.thu = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1061,12 +1097,12 @@
           this.attraction.operations.fri = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1074,12 +1110,12 @@
           this.attraction.operations.sat = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1087,12 +1123,12 @@
           this.attraction.operations.sun = {
             open: false,
             start: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
             end: {
-              hour: '',
+              hour: '0',
               min: '0',
               am: 'am',
             },
@@ -1146,6 +1182,10 @@
 </script>
 
 <style scoped>
+  h1 {
+    margin: 20px;
+    text-align: center;
+  }
   form {
     display: flex;
     flex-direction: column;
@@ -1262,11 +1302,14 @@
   }
   .select-options select {
     width: calc(100% - 20px);
-
     padding: 5px;
     background-color: transparent;
     border: none;
     color: white;
+  }
+
+  multiselect {
+
   }
 
   /* submit button styling */
@@ -1276,36 +1319,13 @@
   .ui.button {
     float: right;
   }
-  body {
-  padding: 40px;
-}
 
-.ui.dropdown {
-  max-width: 800px;
-}
 
-@media only screen and (max-width: 767px) {
-    .ui.selection.dropdown .menu {
-/*      max-height: 8.01428571rem; /* + 1.335714285 to 9.349999995rem */
-/*      max-height: 9.349999995rem; /* Adds a half */
-        max-height: 16.02857142rem; /* Double size */
-    }
-}
-@media only screen and (min-width: 768px) {
-    .ui.selection.dropdown .menu {
-/*         max-height: 10.68571429rem; /* + 1.3357142863 to 12.0214285763rem */
-      max-height: 12.0214285763rem;
-    }
-}
-@media only screen and (min-width: 992px) {
-    .ui.selection.dropdown .menu {
-      max-height: 16.02857143rem; /* + 1.3357142858 to 17.3642857158rem */
-    }
-}
-@media only screen and (min-width: 1920px) {
-    .ui.selection.dropdown .menu {
-        max-height: 21.37142857rem; /* + 1.3357142856 to 22.7071428556rem */
-    }
-}
+  .ui.dropdown {
+    max-width: 800px;
+  }
 </style>
+
+/* MULTI-SELECT STYLING */
+
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
