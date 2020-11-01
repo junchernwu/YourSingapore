@@ -212,9 +212,9 @@ export default {
       sessionStorage.name = this.attraction.name;
       sessionStorage.picture = this.attraction.picture;
 
-      
+      this.checkTimingClash();
       // route to planner page
-      this.$router.push('/planner');
+     
     },
     
     updateViews: function(){
@@ -224,7 +224,7 @@ export default {
         if (documentSnapshot.exists) {
           var bumpStatus = documentSnapshot.data().bump.status;
           if (bumpStatus == false) {
-            databases
+            database
                 .collection("attraction2")
                 .doc(this.attractionId)
                 .update({
@@ -244,10 +244,10 @@ export default {
 
       
 
-      this.checkTimingClash();
+      
     },
   }
-}
+
 
 </script>
 

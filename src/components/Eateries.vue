@@ -1,328 +1,314 @@
 <template>
-<div id="page" class="main">
+  <div id="page" class="main">
+    <div class="col-md-12">
+      <iframe
+        frameborder="0"
+        style="width: 100%; height: 350px; border:0"
+        v-bind:src="
+          'https://www.google.com/maps/embed/v1/directions?key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI&mode=walking&origin=' +
+            this.origin +
+            '&destination=' +
+            this.search +
+            'Singapore' +
+            '&avoid=tolls|highways'
+        "
+        allowfullscreen
+      ></iframe>
+    </div>
 
-  <div class="col-md-12"  >
-          <iframe frameborder="0" style="width: 100%; height: 350px; border:0" v-bind:src="'https://www.google.com/maps/embed/v1/directions?key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI&mode=walking&origin='+this.origin+'&destination='+this.search+'Singapore'+'&avoid=tolls|highways'" allowfullscreen></iframe></div>
-          
     <section>
-     <nav>
+      <nav>
         <div class="ui icon input">
-            <input
-              class="prompt"
-              type="text"
-              v-model="origin"
-              placeholder="Search Attractions"
-              v-on:change="fetchData()"
-            >
-            <i class="search icon"></i>
+          <input
+            class="prompt"
+            type="text"
+            v-model="origin"
+            placeholder="Search Attractions"
+            v-on:change="fetchData()"
+          />
+          <i class="search icon"></i>
         </div>
-         <div class="ui icon input" id="place">
-            <input
-              class="prompt"
-              type="text"
-              v-model="restaurant"
-              placeholder="Search Restaurant"
-            >
+        <div class="ui icon input" id="place">
+          <input
+            class="prompt"
+            type="text"
+            v-model="restaurant"
+            placeholder="Search Restaurant"
+          />
+        </div>
 
-        </div>
-      
         <div class="innerbox">
-          <p id="datetitle"> DATE</p>
-          <p id="datetitle">  TIME </p>
-          
-          <p id="date">{{date}}</p>
-          
+          <p id="datetitle">DATE</p>
+          <p id="datetitle">TIME</p>
+
+          <p id="date">{{ date }}</p>
+
           <select class="dropdown" name="hour" id="time" v-model="hour">
             <option value="Hour">Hour</option>
             <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
           </select>
           <select class="dropdown" name="min" id="min" v-model="min">
             <option value="Minute">Minute</option>
             <option value="1">00</option>
-              <option value="2">15</option>
-              <option value="3">30</option>
-              <option value="4">45</option>
+            <option value="2">15</option>
+            <option value="3">30</option>
+            <option value="4">45</option>
           </select>
           <select class="dropdown" name="am" id="am" v-model="am">
-              <option value="am">am</option>
-              <option value="pm">pm</option>
-            </select>
-         
+            <option value="am">am</option>
+            <option value="pm">pm</option>
+          </select>
         </div>
-        
- 
-        </nav>
-        <div id="content">
+      </nav>
+      <div id="content">
         <ul>
-          
-          <li v-for="item in filtersearch"  v-bind:key="item.name">
-            <img v-bind:src="get_pic(item.photos[0].photo_reference)"/>
+          <li v-for="item in filtersearch" v-bind:key="item.name">
+            <img v-bind:src="get_pic(item.photos[0].photo_reference)" />
             <aside>
-            <h3>{{item.name.trim()}}</h3>
-            <br><h5>{{item.formatted_address.trim()}}</h5>
+              <h3>{{ item.name.trim() }}</h3>
+              <br />
+              <h5>{{ item.formatted_address.trim() }}</h5>
 
-           <button v-on:click="getEatery(item.name)">Get Directions</button>
-           <div id="btn"> <button id="button" v-on:click="persist(item)">Add to planner</button></div>
-           
-           
-        
+              <button v-on:click="getEatery(item.name)">Get Directions</button>
+              <div id="btn">
+                <button id="button" v-on:click="persist(item)">
+                  Add to planner
+                </button>
+              </div>
             </aside>
-            
           </li>
         </ul>
       </div>
-      
-      
-
-
-   
-</section>
-
-    </div>
+    </section>
+  </div>
 </template>
 
-
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-  data(){
-    return{
-        search:this.$route.params.name,
-        origin:this.$route.params.name,
-        location:"",
-        results:[],
-        restaurant:"",
-        final_results:[],
-        date:'',
-        hour:0,
-        min:0,
-        am:'',
-    
-    }
+  data() {
+    return {
+      search: this.$route.params.name,
+      origin: this.$route.params.name,
+      location: "",
+      results: [],
+      restaurant: "",
+      final_results: [],
+      date: "",
+      hour: 0,
+      min: 0,
+      am: "",
+    };
   },
   computed: {
-    filtersearch(){
-      return this.final_results.filter(obj => {return obj.name.toLowerCase().includes(this.restaurant.toLowerCase())})
-    }
+    filtersearch() {
+      return this.final_results.filter((obj) => {
+        return obj.name.toLowerCase().includes(this.restaurant.toLowerCase());
+      });
+    },
   },
-  methods:{
-      fetchData : function(){
-        this.final_results=[]
-        console.log(this.origin)
-        const URL="https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+"+this.origin+"&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
-        axios.get(URL).then(response=>{
-          
-        this.results=response.data.results ;
-        for(let key in this.results){
-         
-          if(this.results[key].business_status=="OPERATIONAL"){
-            console.log("photos" in this.results[key])
-              if(("photos" in this.results[key])){
-              this.final_results.push(response.data.results[key]);}
-          }else{
-            var v=[{'photo_reference':this.results[key].icon}];
-            this.results[key]['photos']=v;
-            
-            this.final_results.push(this.results[key]);
+  methods: {
+    fetchData: function() {
+      this.final_results = [];
+      console.log(this.origin);
+      const URL =
+        "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" 
+        +"singapore"+this.origin  + "&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
+      axios
+        .get(URL)
+        .then((response) => {
+          this.results = response.data.results;
+          for (let key in this.results) {
+            if (this.results[key].business_status == "OPERATIONAL") {
+              console.log("photos" in this.results[key]);
+              if ("photos" in this.results[key]) {
+                this.final_results.push(response.data.results[key]);
+              }
+            } else {
+              var v = [{ photo_reference: this.results[key].icon }];
+              this.results[key]["photos"] = v;
+
+              this.final_results.push(this.results[key]);
+            }
           }
-        }
-       
-            
-    }).catch(error => console.log(error))
-    
+        })
+        .catch((error) => console.log(error));
     },
-     get_pic: function(x){
-            
-         var link="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+x+"&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
-         return link
+    get_pic: function(x) {
+      var link =
+        "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" +
+        x +
+        "&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
+      return link;
     },
-     open:function(y){
-        if(""+y==true){
-            var msg="Currently Open"
-            return msg
-        }else{
-            var msgs="Currently Close"
-            return msgs
-        }
+    open: function(y) {
+      if ("" + y == true) {
+        var msg = "Currently Open";
+        return msg;
+      } else {
+        var msgs = "Currently Close";
+        return msgs;
+      }
     },
-    getEatery:function(x){
-      this.search=x
-      this.item=x
-      console.log(this.search)
-      
-      
+    getEatery: function(x) {
+      this.search = x;
+      this.item = x;
+      console.log(this.search);
     },
-    persist:function(item){
-      sessionStorage.hour= this.hour;
-      sessionStorage.min= this.min;
-      sessionStorage.am= this.am;
-      sessionStorage.name= item.name;
-      sessionStorage.picture=this.get_pic(item.photos[0].photo_reference);
-      sessionStorage.address=item.formatted_address.trim();
+    persist: function(item) {
+      sessionStorage.hour = this.hour;
+      sessionStorage.min = this.min;
+      sessionStorage.am = this.am;
+      sessionStorage.name = item.name;
+      sessionStorage.picture = this.get_pic(item.photos[0].photo_reference);
+      sessionStorage.address = item.formatted_address.trim();
       console.log(item.formatted_address.trim());
-      this.$router.push('/planner');
-    }
+      this.$router.push("/planner");
     },
-beforeCreate: function() {
-        document.body.className = 'eateries';
+  },
+  beforeCreate: function() {
+    document.body.className = "eateries";
   },
   created() {
-      this.fetchData();
-   
-   
+    this.fetchData();
   },
   mounted() {
-      if (sessionStorage.date) {
-        this.date = sessionStorage.date; 
-      }
-      if(sessionStorage.hour){
-        this.hour = sessionStorage.hour //Session storage: Once added to the planner, need to store the value in a separate variable bc once they add another attraction, the previous value will disappear
-      }
-      if(sessionStorage.min){
-        this.min = sessionStorage.min
-      }
-      if(sessionStorage.am){
-        this.am = sessionStorage.am
-      }
+    if (sessionStorage.date) {
+      this.date = sessionStorage.date;
     }
-  
-}
+    if (sessionStorage.hour) {
+      this.hour = sessionStorage.hour; //Session storage: Once added to the planner, need to store the value in a separate variable bc once they add another attraction, the previous value will disappear
+    }
+    if (sessionStorage.min) {
+      this.min = sessionStorage.min;
+    }
+    if (sessionStorage.am) {
+      this.am = sessionStorage.am;
+    }
+  },
+};
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   color: rgb(148, 155, 155);
-  float:left;
+  float: left;
   font-size: 25px;
   margin-bottom: 1px;
   text-align: center;
- 
 }
-button{
- padding-top:5px;
-  padding-bottom:5px;
+button {
+  padding-top: 5px;
+  padding-bottom: 5px;
   margin-right: 100px;
   background-color: tomato;
   color: azure;
 }
-.innerbox{
+.innerbox {
   background-color: rgba(82, 82, 100, 0.554);
-  width:165%;
+  width: 165%;
   border-radius: 20px;
-  padding-left:5%;
-  padding-top:1%;
-  padding-bottom:5%;
-  
+  padding-left: 5%;
+  padding-top: 1%;
+  padding-bottom: 5%;
 }
-#datetitle{
-  float:left;
-  width:50%;
-  color:gray;
-  
+#datetitle {
+  float: left;
+  width: 50%;
+  color: gray;
 }
-#time{
-  
-  margin-bottom:10px;
+#time {
+  margin-bottom: 10px;
 }
-#date{
-  float:left;
-  width:50%;
-  margin-top:-10px;
-  color:rgb(245, 245, 245);
-  
+#date {
+  float: left;
+  width: 50%;
+  margin-top: -10px;
+  color: rgb(245, 245, 245);
 }
 h5 {
-  
-  color:white;
- 
-  font-size:15px;
+  color: white;
+
+  font-size: 15px;
   text-align: left;
-  
 }
 aside {
-  width:60%;
+  width: 60%;
   padding-left: 10px;
   margin-left: 10px;
   float: right;
   font-style: Times;
- 
 }
-#place{
-    padding-top:20px;
-    padding-bottom:20px;
+#place {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 nav {
   float: left;
-  width:18%;
+  width: 18%;
   padding-left: 30px;
   padding-top: 30px;
   height: 800px;
-  position:fixed;
+  position: fixed;
 }
-.bar{
+.bar {
   float: left;
-  padding-right:200px;
+  padding-right: 200px;
 }
-#btn{
-  
+#btn {
 }
-#content{
+#content {
   float: right;
   padding: 0px;
   text-align: right;
- 
 }
-section{
-height:6200px;
+section {
+  height: 6200px;
 }
-img{
-  width:250px;
+img {
+  width: 250px;
   height: 200px;
   margin-right: 10px;
 }
-ul{
-    display: flex;
-    flex-wrap: wrap;
-    text-align: right;
-    padding-left: 400px;
-    padding-right: 20px;
-    display: block;
-    padding-top:1px;
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: right;
+  padding-left: 400px;
+  padding-right: 20px;
+  display: block;
+  padding-top: 1px;
 }
-li{
-  
-background: rgb(66, 66, 73);
-flex: 50%;
-flex-basis: 100px;
-text-align: right;
-padding:  50px 50px;
-margin: 10px;
-display: block;
-width: 900px;
-    
-    
+li {
+  background: rgb(66, 66, 73);
+  flex: 50%;
+  flex-basis: 100px;
+  text-align: right;
+  padding: 50px 50px;
+  margin: 10px;
+  display: block;
+  position: relative;
+  right: 60%;
+  width: 160%;
 }
-input{
-  padding-left:5px;
+input {
+  padding-left: 5px;
   border-radius: 15px;
-  border:none;
-  width:250px;
-  height:25px;
-  position:relative;
-  left:4%;
+  border: none;
+  width: 250px;
+  height: 25px;
+  position: relative;
+  left: 4%;
 }
-
-
 </style>
-

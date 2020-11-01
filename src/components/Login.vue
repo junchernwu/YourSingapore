@@ -81,8 +81,10 @@ export default {
                   router.push("/master");
         
             } else {
+
+   
               database
-                .collection("attractions")
+                .collection("attraction2")
                 .get()
                 .then((querySnapShot) => {
                   let item = {};

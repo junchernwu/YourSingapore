@@ -8,7 +8,7 @@
         <h3 id="title1">Selected Date:</h3>
         <input type="date" id="date" name="date" v-model= "date" v-on:change="fetchData()">
         <h3 id= "title2">Weather:</h3>
-              <h3>{{Selected_weather}}</h3>
+              <h3 id="weather">{{Selected_weather}}</h3>
               <img v-bind:src="icon"/>
      
       
@@ -111,9 +111,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 header{
-  height: 180px;
+  height: 210px;
   position:fixed;
-  width: 1400px;
+  width: 100%;
+
   
   
  
@@ -140,8 +141,8 @@ h3{
 }
 #date{
    position: absolute;
-  left:83.5%;
-   top:15%;
+  left: 80%;
+   top:25%;
   background-color: rgba(11, 23, 49, 0.233);
   color:rgb(255, 255, 255);
   font-weight:bold;
@@ -149,11 +150,12 @@ h3{
 }
 #title2{
   position: relative;
-  margin-top: 3%;
+  margin-top: 5%;
    color : rgb(203, 230, 255);
    font-display: bold;
    font-display:Abel;
    font-size: 25px;
+   
 }
 #title1{
   position: relative;
@@ -170,6 +172,11 @@ img{
   margin-bottom: 30px;
   padding-left: 15px;
 
+}
+
+#weather{
+  position: relative;
+  left: 7%;
 }
 
 

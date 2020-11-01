@@ -591,16 +591,7 @@ export default {
   beforeCreate: function() {
     document.body.className = "details";
   },
-  computed: {
-    divStyle() {
-      return {
-        "border-radius": "50px",
-        margin: "5px 5px",
-        float: "left",
-        width: "calc(" + 100 / this.count + "%" + " - 10px",
-      };
-    },
-  },
+  
 
   created() {
     this.fetchItems();
@@ -616,6 +607,14 @@ export default {
           'background-color': 'red',
         }
       }
+    },
+    divStyle() {
+      return {
+        "border-radius": "50px",
+        margin: "5px 5px",
+        float: "left",
+        width: "calc(" + 100 / this.count + "%" + " - 10px",
+      };
     },
   },
 
@@ -748,12 +747,19 @@ export default {
 
       database
 
-        .collection(""attraction2"")
+        .collection("attraction2")
         .doc(id)
         .set(updated)
         .then(console.log("SET"))
         .then(alert("Succesfully updated attraction's details"));
       this.title_edit = false;
+      this.RevertMonday();
+      this.RevertTues();
+      this.RevertWed();
+      this.RevertThurs();
+      this.RevertFri();
+      this.RevertSat();
+      this.RevertSun();
     },
     bump: function(){
       if (this.bumped == false) {
@@ -794,16 +800,7 @@ export default {
   }
 }
 
-      this.RevertMonday();
-      this.RevertTues();
-      this.RevertWed();
-      this.RevertThurs();
-      this.RevertFri();
-      this.RevertSat();
-      this.RevertSun();
-    },
-  },
-};
+      
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -918,6 +915,7 @@ button {
   flex-basis: 50px;
   border-radius: 5px;
   text-align: center;
+}
 
 
 .price ul{
@@ -926,7 +924,7 @@ button {
     list-style-type: none;
     padding-right: 5%;
     text-align: left;
-    margin-left:-45px;
+    margin-left: -45px;
 
 }
 

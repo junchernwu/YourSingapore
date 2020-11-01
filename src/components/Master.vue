@@ -28,7 +28,7 @@ export default {
 
   beforeCreate() {
     database
-      .collection("attractions")
+      .collection("attraction2")
       .get()
       .then((querySnapShot) => {
         let item = {};
@@ -51,7 +51,7 @@ export default {
       var id = document_id;
       console.log("APPROVED");
       database
-        .collection("attractions")
+        .collection("attraction2")
         .doc(id)
         .update({
           approved: "approved",
