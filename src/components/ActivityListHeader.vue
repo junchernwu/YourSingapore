@@ -68,19 +68,12 @@ export default {
           this.picture_display();
     }).catch(error => console.log(error))
 
-    if(sessionStorage.date!=this.date){
-      sessionStorage.date= this.date;
-      //var d=new Date(this.date);
-      console.log(sessionStorage.date)
-      //console.log(d.getDay());
-
-
-    }
+  
     
     },
     picture_display:function(){
       var x=this.Selected_weather;
-      console.log(this.Selected_weather+'aa');
+      
       if(x.includes('rain')){
         
         this.picture= rain;

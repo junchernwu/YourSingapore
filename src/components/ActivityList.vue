@@ -115,7 +115,7 @@ export default {
 
     filteredList(){
    
-        return this.filterbydemographic(this.filterbydiscount(this.filterbyactivity(this.filterbyprice(this.filterbylocation(this.filtersearch)))))
+        return this.sortItems(this.filterbydemographic(this.filterbydiscount(this.filterbyactivity(this.filterbyprice(this.filterbylocation(this.filtersearch))))))
 
     },
 
@@ -141,6 +141,35 @@ export default {
         });
     },
 
+    sortItems: function(obj){
+      var bump=[]
+      for(let y in obj){
+      
+        if("bump" in obj[y] && obj[y].bump.status==true){//can remove the 2nd condition after updating all attractions
+          bump.push(obj[y]);
+          
+        }
+      }
+      bump.sort(function(x, y){ return x.bump.date - y.bump.date; })
+      bump.reverse();
+      var randomise=[]
+      for(let x in obj){
+        if(!bump.includes(obj[x])){
+          randomise.push(obj[x]);
+        }
+      }
+      this.shuffle(randomise);
+      var final = bump.concat(randomise);
+      return final;
+ 
+    },
+  shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+},
+
     filterbylocation:function(obj){
       if(this.location=="all" || this.location==""){
         return obj;
@@ -163,7 +192,7 @@ export default {
         for( let key in obj){
           for(let x in obj[key].attractionType){
             if(obj[key].attractionType[x].name==this.attractionType){
-              console.log(obj[key].attractionType[x].name)
+              
              dict.push(obj[key]);
 
           }
@@ -201,7 +230,7 @@ export default {
     },
     filterbydemographic:function(obj){
       if(this.demographic=="all" || this.demographic==""){
-        console.log(this.demographic);
+      
         return obj;
       }else{
         var dict=[];
@@ -227,6 +256,7 @@ export default {
   },
   created() {
     this.fetchItems();
+   
   },
   mounted() {
     if (sessionStorage.date) {
