@@ -3,7 +3,7 @@
     <div class="ui  middle aligned center aligned grid">
       <div class="column">
         <h2 class="ui image header">
-          <div class="content" style="color: white;">
+          <div  class="content" style="color: white;">
             Fill In Your Details
           </div>
         </h2>
@@ -33,8 +33,12 @@
             </div>
             <div id="image">
               <label id="image-label">Upload Verification Details</label>
-              <input type="file" accept="image/png, image/jpeg" name="file-upload" value="file-upload" v-on:change="imgUpload">
+              <br/>
+              <input style="text-align: center" type="file" accept="image/png, image/jpeg" name="file-upload" value="file-upload" v-on:change="imgUpload">
+              
+              
             </div>
+            <br/>
             <button class="ui fluid large red submit button" v-on:click.prevent= "checkform">
               Next
             </button>
@@ -125,4 +129,6 @@ body > .grid {
 .column {
   max-width: 600px;
 }
+.content{
+  padding-top: 50px;}
 </style>

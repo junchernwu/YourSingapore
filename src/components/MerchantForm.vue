@@ -601,6 +601,7 @@
 
         attraction: {
           auth_id: null,
+          approved: "pending",
           name: '',
           number: null,
           description: '',
@@ -1122,7 +1123,7 @@
       }
     },
     mounted() {
-      
+      var router= this.$router;
       if (sessionStorage.uid) {
         this.attraction.auth_id = sessionStorage.uid;
         console.log("UID")
@@ -1131,6 +1132,10 @@
           $('dropdown')
           .dropdown()
           });
+      }  else {
+        alert("Please login before entering this page")
+        router.push('/login')
+
       }
     }
   }
