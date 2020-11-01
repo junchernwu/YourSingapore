@@ -1,6 +1,6 @@
 <template>
   <div id="background">
-    <h2>BUMP</h2>
+    <h2>STATISTICS</h2>
     <h1>{{this.stat}}</h1>
     <h4>increased views / day</h4>
   </div>
@@ -8,7 +8,6 @@
 
 <script>
 import { database } from "@/firebase/";
-
 export default {
   name: "BumpStats",
   props: {
@@ -47,27 +46,8 @@ export default {
               this.boostStat()
             }
           })
-    },
-    boostStat: function() {
-      var boostDays;
-      if (this.lastBumpDate == '') {
-        boostDays = this.timesBoosted * 7
-      } else {
-        var currentBoostDays = (new Date().getTime() - this.lastBumpDate.toDate().getTime()) / (1000 * 3600 * 24);
-        boostDays = Math.round((this.timesBoosted - 1) * 7 + currentBoostDays)
-      }
-      var nonBoostStat = this.totalNonBoostViews / (this.numDays - boostDays)
-      var boostStat = this.totalBoostViews / boostDays
-      var calculated = Math.round((boostStat - nonBoostStat) / nonBoostStat * 100)
-      if (calculated >= 0) {
-        this.stat = "+ " + calculated + " %"
-      } else {
-        this.stat = "- " + -calculated + " %"
-      }
-      console.log("BOOST DAYS: " + boostDays)
-      console.log("DAYS: " + this.numDays)
     }
-  },
+  }
 }
 </script>
 
@@ -77,13 +57,14 @@ export default {
     border-radius: 20px;
     padding: 20px;
     margin: 20px;
-    width: 400px;
+    width: 98%;
   }
   h2 {
     text-align: center;
     margin: 0;
-    font-weight: bold;
-    font-family: 'Montserrat'
+    font-weight: bolder;
+    font-family: 'Montserrat';
+    color:rgb(177, 177, 177);
   }
   h1 {
     text-align: center;

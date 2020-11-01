@@ -195,6 +195,25 @@ export default {
           .collection("attraction2")
           .doc(this.attractionId).get().then((documentSnapshot) => {
         if (documentSnapshot.exists) {
+          var currentDate= new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())
+          console.log(currentDate)
+          if(currentDate in documentSnapshot.data().stats){
+            database
+                  .collection("attraction2")
+                  .doc(this.attractionId)
+                  .update({
+                    [`stats.${currentDate}.views`]: firebase.firestore.FieldValue.increment(1)
+                  })
+          } else{
+            database
+                  .collection("attraction2")
+                  .doc(this.attractionId)
+                  .update({
+                    [`stats.${currentDate}.views`]: 1,
+                    [`stats.${currentDate}.adds`]: 0
+                  })
+          }
+        
           var bumpStatus = documentSnapshot.data().bump;
           if (bumpStatus == null) {
             database
