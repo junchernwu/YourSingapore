@@ -1,12 +1,12 @@
 <template>
   <div id="background">
     <h2>DAILY STATISTICS</h2>
-    <h4>NUMBER OF VIEWERS TODAY</h4>
-    {{viewsToday}}
-    <h4>NUMBER OF PEOPLE WHO ADDED YOUR ATTRACTION TO THEIR PLANNER TODAY</h4>
-    {{addsToday}}
-    <h4>EXPECTED NUMBER OF ARRIVALS</h4>
-    {{arrivals}}
+    <h4>NUMBER OF VIEWERS TODAY</h4><br>
+    <h1>{{viewsToday}}</h1>
+    <h4>NUMBER OF PEOPLE WHO ADDED YOUR ATTRACTION TO THEIR PLANNER TODAY</h4><br>
+    <h1>{{addsToday}}</h1>
+    <h4>EXPECTED NUMBER OF ARRIVALS</h4><br>
+    <h1>{{arrivals}}</h1>
   </div>
 </template>
 
@@ -35,7 +35,8 @@ export default {
           .collection("attraction2")
           .doc(this.docId).get().then((documentSnapshot) => {
             if (documentSnapshot.exists) {
-                var currentDate= new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())
+                var currentDate1= new Date()
+                var currentDate=this.formatDate(currentDate1)
                 if(currentDate in documentSnapshot.data().stats){
                     this.viewsToday=documentSnapshot.data().stats[`${currentDate}`].views
                     this.addsToday=documentSnapshot.data().stats[`${currentDate}`].adds
@@ -43,6 +44,19 @@ export default {
                 }
             }
         })
+    },
+    formatDate: function(date) {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+
+      if (month.length < 2) 
+          month = '0' + month;
+      if (day.length < 2) 
+          day = '0' + day;
+
+      return [year, month, day].join('-');
     }
   }
 }

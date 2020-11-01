@@ -196,8 +196,8 @@ export default {
           .collection("attraction2")
           .doc(this.attractionId).get().then((documentSnapshot) => {
         if (documentSnapshot.exists) {
-          var currentDate= new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())
-          console.log(currentDate)
+          var currentDate1= new Date()
+          var currentDate=this.formatDate(currentDate1)
           if(currentDate in documentSnapshot.data().stats){
             database
                   .collection("attraction2")
@@ -239,7 +239,8 @@ export default {
           .collection("attraction2")
           .doc(this.attractionId).get().then((documentSnapshot) => {
             if (documentSnapshot.exists) {
-                var currentDate= new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())
+                var currentDate1= new Date()
+                var currentDate=this.formatDate(currentDate1)
                 if(currentDate in documentSnapshot.data().stats){
                   database
                         .collection("attraction2")
@@ -271,6 +272,19 @@ export default {
           }
         }
       });
+    },
+    formatDate: function(date) {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+
+      if (month.length < 2) 
+          month = '0' + month;
+      if (day.length < 2) 
+          day = '0' + day;
+
+      return [year, month, day].join('-');
     }
   }
 }
