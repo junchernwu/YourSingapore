@@ -682,6 +682,11 @@
           location: '',
           promotiontype: '',
           attractionType: '',
+          bump: null,
+          bumpTimes: 0,
+          bumpViews: 0,
+          notBumpViews: 0,
+          dateAdded: '',
         },
         weekday: false,
         weekend: false,
@@ -734,7 +739,8 @@
         } else if (this.checkOperatingHourFilled() == false) {
           alert("Please Fill Up the Attraction's Operating Hours")
         } else {
-          database.collection('attractions').add(this.attraction)
+          this.attraction.dateAdded = new Date();
+          database.collection('attraction2').add(this.attraction)
           alert('Submitted')
           this.attraction = {
             auth_id: null,
@@ -842,6 +848,11 @@
             location: '',
             promotiontype: '',
             attractionType: '',
+            bump: null,
+            bumpTimes: 0,
+            bumpViews: 0,
+            notBumpViews: 0,
+            dateAdded: '',
           },
           this.weekday = false;
           this.weekend = false;
