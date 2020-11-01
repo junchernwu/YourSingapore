@@ -121,16 +121,17 @@
 
 <script>
 import { database } from "@/firebase/";
+import firebase from "firebase";
 
 export default {
     data() {
         return {
-            date:'',
-            hour:0,
-            min:0,
-            am:'',
-            attractions:[],
-            attractionId:this.$route.params.id,
+          date:'',
+          hour:0,
+          min:0,
+          am:'',
+          attractions:[],
+          attractionId:this.$route.params.id,
         }
     },
     beforeCreate: function() {
@@ -149,6 +150,7 @@ export default {
       if(sessionStorage.am){
         this.am = sessionStorage.am
       }
+      this.updateViews();
     },
     created(){
         this.fetchItems();
@@ -161,7 +163,7 @@ export default {
   methods: {
     fetchItems: function () {
       database
-        .collection("attractions")
+        .collection("attraction2")
         .get()
         .then((querySnapShot) => {
           let item = {};
@@ -203,12 +205,44 @@ export default {
       }
     },
     persist:function(){
+      sessionStorage.address = this.attraction.address;
       sessionStorage.hour= this.hour;
       sessionStorage.min= this.min;
       sessionStorage.am= this.am;
       sessionStorage.name = this.attraction.name;
       sessionStorage.picture = this.attraction.picture;
-      sessionStorage.address = this.attraction.address;
+
+      
+      // route to planner page
+      this.$router.push('/planner');
+    },
+    
+    updateViews: function(){
+      database
+          .collection("attraction2")
+          .doc(this.attractionId).get().then((documentSnapshot) => {
+        if (documentSnapshot.exists) {
+          var bumpStatus = documentSnapshot.data().bump.status;
+          if (bumpStatus == false) {
+            databases
+                .collection("attraction2")
+                .doc(this.attractionId)
+                .update({
+                  notBumpViews: firebase.firestore.FieldValue.increment(1),
+                })
+          } else {
+            database
+                .collection("attraction2")
+                .doc(this.attractionId)
+                .update({
+                  bumpViews: firebase.firestore.FieldValue.increment(1),
+                })
+          }
+        }
+      });
+    }
+
+      
 
       this.checkTimingClash();
     },

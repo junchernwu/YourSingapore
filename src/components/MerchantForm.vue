@@ -678,9 +678,21 @@
           pricing: {},
           pricerange: '',
           location: '',
+
+         
+        
+          bump: {
+            date: '',
+            status: false,
+          },
+          bumpTimes: 0,
+          bumpViews: 0,
+          notBumpViews: 0,
+          dateAdded: '',
           promotiontype: [],
           attractionType: [],
           demographicType: [],
+
         },
 
         typeOptions: [
@@ -771,6 +783,8 @@
         } else if (this.checkOperatingHourFilled() == false) {
           alert("Please Fill Up the Attraction's Operating Hours")
         } else {
+          this.attraction.dateAdded = new Date();
+
           var operations = this.attraction.operations
           for (var day in operations) {
             console.log(operations[day].open);
@@ -778,6 +792,7 @@
               this.attraction.openDays.push(day);
             }
           }
+
           database.collection('attraction2').add(this.attraction)
           alert('Submitted')
           this.attraction = {
@@ -887,6 +902,14 @@
             location: '',
             promotiontype: '',
             attractionType: '',
+            bump: {
+              date: '',
+              status: false,
+            },
+            bumpTimes: 0,
+            bumpViews: 0,
+            notBumpViews: 0,
+            dateAdded: '',
           },
           this.weekday = false;
           this.weekend = false;
