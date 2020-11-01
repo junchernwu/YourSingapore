@@ -22,8 +22,7 @@ export default {
   mounted() {
     if (sessionStorage.date) {
       this.date = sessionStorage.date;
-      var d=new Date(this.date);
-      console.log(d.getDay());
+      
     }
   },
   methods:{

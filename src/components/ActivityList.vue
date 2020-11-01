@@ -29,7 +29,7 @@
             <option value="">Discount type</option>
             <option value="all">All</option>
             <optgroup label="Percentage">
-            <option value="<10%"> Less than 10%</option>
+            <option value="< 10%"> Less than 10%</option>
             <option value="10-20%">10-20%</option>
             <option value=">20%"> 20%</option>
             </optgroup>
@@ -106,13 +106,15 @@ export default {
       discount: "",
       attractionType: "",
       pricerange: "",
-      demographic:""
+      demographic:"",
+      days:[],
     };
   },
 
   computed: {
 
     filteredList(){
+   
         return this.filterbydemographic(this.filterbydiscount(this.filterbyactivity(this.filterbyprice(this.filterbylocation(this.filtersearch)))))
 
     },
@@ -126,7 +128,7 @@ export default {
     
     fetchItems: function () {
       database
-        .collection("attractions")
+        .collection("attraction2")
         .get()
         .then((querySnapShot) => {
           let item = {};
@@ -157,22 +159,66 @@ export default {
       if(this.attractionType=="all" || this.attractionType==""){
         return obj;
       }else{
-      return obj.filter(obj => obj.attractionType==this.attractionType);}
+     var dict=[];
+        for( let key in obj){
+          for(let x in obj[key].attractionType){
+            if(obj[key].attractionType[x].name==this.attractionType){
+              console.log(obj[key].attractionType[x].name)
+             dict.push(obj[key]);
+
+          }
+         }
+      
+      
+        }
+        return dict;
+      }
+
 
     },
+
     filterbydiscount:function(obj){
       if(this.discount=="all" || this.discount==""){
         return obj;
       }else{
-      return obj.filter(obj => obj.discount.includes(this.discount));}
+        var dict=[];
+        for( let key in obj){
+          for(let x in obj[key].demographicType){
+            if(obj[key].promotiontype[x].name==this.discount){
+             dict.push(obj[key]);
 
+          }
+         }
+      
+     
+        }
+         return dict;
+      }
+        
+     
+      
+      
     },
     filterbydemographic:function(obj){
       if(this.demographic=="all" || this.demographic==""){
+        console.log(this.demographic);
         return obj;
       }else{
+        var dict=[];
+        for( let key in obj){
+          for(let x in obj[key].demographicType){
+            if(obj[key].demographicType[x].name==this.demographic){
+             dict.push(obj[key]);
+             
+
+          }
+         }
+      
+     
+       }
+        return dict;
        
-        return obj.filter(obj =>obj.demographic.includes(this.demographic));
+       // return obj.filter(obj =>obj.demographic.includes(this.demographic));
 
     }
     

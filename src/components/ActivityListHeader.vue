@@ -6,7 +6,7 @@
       
         <h2>Trip <br> Details</h2>
         <h3 id="title1">Selected Date:</h3>
-        <p>{{date}} </p>
+        <input type="date" id="date" name="date" v-model= "date" v-on:change="fetchData()">
         <h3 id= "title2">Weather:</h3>
               <h3>{{Selected_weather}}</h3>
               <img v-bind:src="icon"/>
@@ -67,6 +67,15 @@ export default {
         }
           this.picture_display();
     }).catch(error => console.log(error))
+
+    if(sessionStorage.date!=this.date){
+      sessionStorage.date= this.date;
+      //var d=new Date(this.date);
+      console.log(sessionStorage.date)
+      //console.log(d.getDay());
+
+
+    }
     
     },
     picture_display:function(){
@@ -83,6 +92,8 @@ export default {
 
 
     },
+
+   
   },
     
     
@@ -93,6 +104,8 @@ export default {
   mounted() {
     if (sessionStorage.date) {
       this.date = sessionStorage.date;
+      
+      
       this.fetchData();
  
     }
@@ -101,12 +114,13 @@ export default {
 }
 </script>
 
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 header{
   height: 180px;
   position:fixed;
-  width: 100%;
+  width: 1400px;
   
   
  
@@ -131,7 +145,7 @@ h3{
     text-size-adjust: 8px;
  
 }
-p{
+#date{
    position: absolute;
   left:83.5%;
    top:15%;

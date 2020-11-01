@@ -161,7 +161,7 @@ export default {
   methods: {
     fetchItems: function () {
       database
-        .collection("attractions")
+        .collection("attraction2")
         .get()
         .then((querySnapShot) => {
           let item = {};
