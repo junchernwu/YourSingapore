@@ -196,9 +196,9 @@ export default {
           .collection("attraction2")
           .doc(this.attractionId).get().then((documentSnapshot) => {
         if (documentSnapshot.exists) {
-          var bumpStatus = documentSnapshot.data().bump;
-          if (bumpStatus == null) {
-            database
+          var bumpStatus = documentSnapshot.data().bump.status;
+          if (bumpStatus == false) {
+            databases
                 .collection("attraction2")
                 .doc(this.attractionId)
                 .update({
