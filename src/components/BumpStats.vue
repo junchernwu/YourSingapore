@@ -1,7 +1,7 @@
 <template>
   <div id="background">
     <h2>BUMP</h2>
-    <h1>{{this.stat}}</h1>
+    <p>{{this.stat}}</p>
     <h4>increased views / day</h4>
   </div>
 </template>
@@ -41,7 +41,7 @@ export default {
               this.numDays = Math.round((new Date().getTime() - this.dateAdded.toDate().getTime()) / (1000 * 3600 * 24));
               this.totalBoostViews = documentSnapshot.data().bumpViews;
               this.totalNonBoostViews = documentSnapshot.data().notBumpViews;
-              if (documentSnapshot.data().bump != null) {
+              if (documentSnapshot.data().bump.status) {
                 this.lastBumpDate = documentSnapshot.data().bump.date;
               }
               this.boostStat()
@@ -49,23 +49,33 @@ export default {
           })
     },
     boostStat: function() {
-      var boostDays;
-      if (this.lastBumpDate == '') {
-        boostDays = this.timesBoosted * 7
+      if (this.timesBoosted == 0) {
+        this.stat = "No Bumps Yet"
       } else {
-        var currentBoostDays = (new Date().getTime() - this.lastBumpDate.toDate().getTime()) / (1000 * 3600 * 24);
-        boostDays = Math.round((this.timesBoosted - 1) * 7 + currentBoostDays)
+        var boostDays;
+        if (this.lastBumpDate == '') {
+          boostDays = this.timesBoosted * 7
+        } else {
+          var currentBoostDays = (new Date().getTime() - this.lastBumpDate.toDate().getTime()) / (1000 * 3600 * 24);
+          boostDays = Math.round((this.timesBoosted - 1) * 7 + currentBoostDays)
+        }
+        var nonBoostStat = this.totalNonBoostViews / (this.numDays - boostDays)
+        var boostStat = this.totalBoostViews / boostDays
+        var calculated = Math.round((boostStat - nonBoostStat) / nonBoostStat * 100)
+        if (calculated == 0) {
+          this.stat = 0 + " %"
+        } else if (isNaN(calculated)) {
+          this.stat = "NIL"
+        } else if (calculated > 0) {
+          this.stat = "+ " + calculated + " %"
+        } else {
+          this.stat = "- " + -calculated + " %"
+        }
+        console.log("Non Boost Stat: " + nonBoostStat)
+        console.log("CALCULATED: " + calculated)
+        console.log("BOOST DAYS: " + boostDays)
+        console.log("DAYS: " + this.numDays)
       }
-      var nonBoostStat = this.totalNonBoostViews / (this.numDays - boostDays)
-      var boostStat = this.totalBoostViews / boostDays
-      var calculated = Math.round((boostStat - nonBoostStat) / nonBoostStat * 100)
-      if (calculated >= 0) {
-        this.stat = "+ " + calculated + " %"
-      } else {
-        this.stat = "- " + -calculated + " %"
-      }
-      console.log("BOOST DAYS: " + boostDays)
-      console.log("DAYS: " + this.numDays)
     }
   },
 }
@@ -77,7 +87,7 @@ export default {
     border-radius: 20px;
     padding: 20px;
     margin: 20px;
-    width: 250px;
+    width: 300px;
   }
   h2 {
     text-align: center;
@@ -85,17 +95,17 @@ export default {
     font-weight: bold;
     font-family: 'Montserrat'
   }
-  h1 {
-    text-align: center;
-    margin: 10px 0;
-    font-weight: bold;
-    font-size: 60px;
-    font-family: 'Montserrat'
-  }
   h4 {
     margin: 0;
     text-align: center;
     font-weight: bold;
     font-family: 'Montserrat'
+  }
+  p {
+    text-align: center;
+    margin: 10px 0;
+    font-weight: bold;
+    font-size: 60px;
+    font-family: Montserrat;
   }
 </style>
