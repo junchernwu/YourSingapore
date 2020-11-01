@@ -16,6 +16,11 @@
         </div>
       </div>
 
+      <!-- attraction address -->
+      <div class="input-focus">
+        <input type="text" name = "address" placeholder="Attraction Address*" v-model="attraction.address">
+      </div>
+
       <!-- attraction description -->
       <div>
         <textarea name="description" rows="4" placeholder="Attraction Description*" v-model="attraction.description"></textarea>
@@ -520,44 +525,20 @@
           <option value="Central">Central</option>
         </select>
       </div>
+
       <!-- Promotion Type -->
       <div class="select-options">
-        <select name="promotion-type" v-model="attraction.promotiontype"> // SHOULD CHANGE TO MULTI-SELECT!!!
-          <option value="" disabled selected>Promotion Type</option>
-          <optgroup label="Percentage">
-            <option value="< 10%">&lt; 10%</option>
-            <option value="10 - 20%">10 - 20%</option>
-            <option value="> 20%">> 20%</option>
-          </optgroup>
-          <optgroup label="Absolute">
-            <option value="< $20">&lt; $20</option>
-            <option value="$20 - $50">$20 - $50</option>
-            <option value="> $50">> $50</option>
-          </optgroup>
-          <optgroup label="Bundle Promotion">
-            <option value="1 for 1">1 for 1</option>
-            <option value="2 for 1">Buy 2 get 1 Free</option>
-          </optgroup>
-        </select>
+        <multiselect id="promotionType" v-model="attraction.promotiontype" placeholder="Promotion Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="promotionOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
       </div>
+
       <!-- Attraction Type -->
       <div class="select-options">
-        <select name="attraction-type" v-model="attraction.attractionType"> // SHOULD CHANGE TO MULTI-SELECT!!!
-          <option value="" disabled selected>Attraction Type</option>
-          <optgroup label="Activity">
-            <option value="Exhibitions">Exhibitions</option>
-            <option value="Museum">Museum</option>
-            <option value="Nature">Nature</option>
-            <option value="Sightseeing">Sightseeing</option>
-            <option value="Sports">Sports</option>
-            <option value="Theme Parks">Theme Parks</option>
-          </optgroup>
-          <optgroup label="Demographic">
-            <option value="Elderly">Elderly</option>
-            <option value="Kids">Kids</option>
-            <option value="Wheelchair-Friendly">Wheelchair-Friendly</option>
-          </optgroup>
-        </select>
+        <multiselect id="attractionType" v-model="attraction.attractionType" placeholder="Attraction Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="typeOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
+      </div>
+
+      <!-- Demographic Type -->
+      <div class="select-options">
+        <multiselect id="demographicType" v-model="attraction.demographicType" placeholder="Demographic Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="demographicOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
       </div>
 
       <div class="submit">
@@ -569,16 +550,32 @@
 
 <script>
   import PricingOptions from "@/components/PricingOptions";
+  import Multiselect from 'vue-multiselect'
   import { database, storage } from "@/firebase/";
   // import storage from "@/firebase/";
 
   export default {
-    components: {PricingOptions},
+    components: {
+      PricingOptions,
+      Multiselect,
+    },
     data() {
       return {
+        // Multi-select
+        value: [
+            { name: 'Javascript', code: 'js' }
+        ],
+        options: [
+            { name: 'Vue.js', code: 'vu' },
+            { name: 'Javascript', code: 'js' },
+            { name: 'Open Source', code: 'os' },
+        ],
+        // Multi-select
+
         attraction: {
           auth_id: null,
           name: '',
+          address: '',
           number: null,
           description: '',
           picture: '',
@@ -675,13 +672,15 @@
               },
             },
           },
+          openDays:[], // for filter use
           link: '',
           promotions: '',
           pricing: {},
           pricerange: '',
           location: '',
-          promotiontype: '',
-          attractionType: '',
+
+         
+        
           bump: {
             date: '',
             status: false,
@@ -690,13 +689,50 @@
           bumpViews: 0,
           notBumpViews: 0,
           dateAdded: '',
+          promotiontype: [],
+          attractionType: [],
+          demographicType: [],
+
         },
+
+        typeOptions: [
+          { name: 'Exhibitions', code: 'ex' },
+          { name: 'Museum', code: 'mu' },
+          { name: 'Nature', code: 'na' },
+          { name: 'Sightseeing', code: 'si' },
+          { name: 'Sports', code: 'sp' },
+        ],
+
+        demographicOptions: [
+          { name: 'Elderly', code: 'eld' },
+          { name: 'Kids', code: 'kid' },
+          { name: 'Wheelchair-Friendly', code: 'whe' },
+        ],
+
+        promotionOptions: [
+          { name: '< 10%', code: 'lt10p' },
+          { name: '10 - 20%', code: '1020p'},
+          { name: '> 20%', code: 'mt20p'},
+          { name: '< $20', code: 'lt$20'},
+          { name: '$20 - $50', code: '$2050'},
+          { name: '> $50', code: 'mt$50'},
+          { name: '1 for 1', code: '1for1'},
+          { name: '2 for 1', code: '2for1'},
+        ],
+
         weekday: false,
         weekend: false,
         everyday: false,
       }
     },
     methods: {
+      addTag (newTag) {
+        const tag = {
+          name: newTag,
+          code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+        }
+        this.attraction.attractionType.push(tag)
+      },
       checkOperatingHourFilled(){
         if (this.attraction.operations.mon.open == true && (this.attraction.operations.mon.start.hour == '' || this.attraction.operations.mon.end.hour == '')) {
           return false;
@@ -722,6 +758,9 @@
       checkNumberFilled(){
         return (this.attraction.number != null)
       },
+      checkAddressFilled(){
+        return (this.attraction.address != '')
+      },
       checkDescriptionFilled(){
         return (this.attraction.description != '')
       },
@@ -735,6 +774,8 @@
           alert("Please Fill Up the Attraction's Name")
         } else if (this.checkNumberFilled() == false) {
           alert("Please Fill Up the Attraction's Contact Number")
+        } else if (this.checkAddressFilled() == false) {
+          alert("Please Fill Up the Attraction's Address")
         } else if (this.checkDescriptionFilled() == false) {
           alert("Please Fill Up the Attraction's Description")
         } else if (this.checkImageUploaded() == false) {
@@ -743,11 +784,21 @@
           alert("Please Fill Up the Attraction's Operating Hours")
         } else {
           this.attraction.dateAdded = new Date();
+
+          var operations = this.attraction.operations
+          for (var day in operations) {
+            console.log(operations[day].open);
+            if (operations[day].open == true) {
+              this.attraction.openDays.push(day);
+            }
+          }
+
           database.collection('attraction2').add(this.attraction)
           alert('Submitted')
           this.attraction = {
             auth_id: null,
             name: '',
+            address: '',
             number: null,
             description: '',
             picture: '',
@@ -1082,6 +1133,10 @@
 </script>
 
 <style scoped>
+  h1 {
+    margin: 20px;
+    text-align: center;
+  }
   form {
     display: flex;
     flex-direction: column;
@@ -1193,11 +1248,14 @@
   }
   .select-options select {
     width: calc(100% - 20px);
-
     padding: 5px;
     background-color: transparent;
     border: none;
     color: white;
+  }
+
+  multiselect {
+
   }
 
   /* submit button styling */
@@ -1207,4 +1265,11 @@
   .ui.button {
     float: right;
   }
+
+  .ui.dropdown {
+    max-width: 800px;
+  }
 </style>
+
+/* MULTI-SELECT STYLING */
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
