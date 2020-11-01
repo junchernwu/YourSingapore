@@ -2,41 +2,55 @@
   <div id="total">
     <div :style="divStyle">
       <div id="field">
-        <input type="text" class="category" placeholder="Category" v-model="attractionId.category">
-        <br>
-        <input type="text" class="price" placeholder="Price" v-model="attractionId.price">
+        <input
+          type="text"
+          class="category"
+          placeholder="Category"
+          v-model="attractionId.category"
+        />
+        <br />
+        <input
+          type="text"
+          class="price"
+          placeholder="Price"
+          v-model="attractionId.price"
+        />
       </div>
     </div>
   </div>
 </template>
 
-
 <script>
 
 export default {
   name: "PricingOptionField",
-  props:{
-    count:{
+  props: {
+    count: {
       type: Number,
     },
-    id:{
+    id: {
       type: Number,
     },
-    attractionId:{
+
+    list: {
+      type: Array,
+    },
+    attractionId: {
       type: Object,
     },
   },
   computed: {
     divStyle() {
       return {
-        'background-color': 'rgba(255,248,248,0.2)',
-        'border-radius': '20px',
-        'margin': '5px 5px',
-        'float': 'left',
-        'width': 'calc(' + (100 / this.count) + '%' + ' - 10px',
-      }
+        "background-color": "rgba(255,248,248,0.2)",
+        "border-radius": "50px",
+        margin: "50px 50px",
+        float: "left",
+        width: "calc(" + 100 / this.count + "%" + " - 10px",
+      };
     },
   },
+
 }
 </script>
 
@@ -81,3 +95,4 @@ export default {
     width: 4.5em;
   }
 </style>
+

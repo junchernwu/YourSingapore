@@ -13,7 +13,9 @@ import Verification from "@/components/Verification";
 import Eateries from './components/Eateries.vue';
 import Planner from "@/components/Planner";
 import Edit_details_merchant from  "./components/Edit_details_merchant"
+import Master from "./components/Master"
 import Dashboard from "@/components/Dashboard";
+
 
 
 export default[
@@ -33,6 +35,10 @@ export default[
     {path: '/attraction/:id', component: ActivityDetails},
     {path: '/planner', component: Planner},
     {path: '/merchant/:merchantId', component: Edit_details_merchant},
+
+    {path: '/master', component: Master}
+
     {path: '/merchant/:merchantId/dashboard', name: 'dashboard', component: Dashboard, props: true}
+
 ]
 

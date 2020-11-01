@@ -12,34 +12,36 @@
       </div>
     </div>
     <div v-for="field in fieldsList" v-bind:key="field.id">
+
       <PricingOptionField v-bind:count="count" v-bind:id="field.id" v-bind:attractionId="attraction.pricing[field.id]"></PricingOptionField>
+
     </div>
   </div>
 </template>
 
 <script>
-  import PricingOptionField from "@/components/PricingOptionField";
+import PricingOptionField from "@/components/PricingOptionField";
 
-  export default {
-    name: "PricingOptions",
-    components: {
-       PricingOptionField,
+export default {
+  name: "PricingOptions",
+  components: {
+    PricingOptionField,
+  },
+  props: {
+    attraction: {
+      type: Object,
     },
-    props: {
-      attraction: {
-        type: Object,
-      }
+  },
+  data() {
+    return {
+      fieldsList: [],
+    };
+  },
+  computed: {
+    count() {
+      return this.fieldsList.length;
     },
-    data() {
-      return {
-        fieldsList: [],
-      }
-    },
-    computed: {
-      count() {
-        return this.fieldsList.length;
-      }
-    },
+
     methods: {
       newPrice: function(){
         if (this.fieldsList.length == 3) {
@@ -55,12 +57,15 @@
       delPrice: function(){
         this.fieldsList.pop();
         delete this.attraction.pricing[this.fieldsList.length];
+
       }
     },
-  }
+  },
+};
 </script>
 
 <style scoped>
+
   /* Pricing Options Styling */
   #mainButton {
     margin: 5px 10px;
@@ -111,3 +116,4 @@
     border-radius: 20px;
   }
 </style>
+

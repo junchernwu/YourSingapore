@@ -1,5 +1,9 @@
 <template>
   <div id="main">
+       
+
+
+
     <h1>Register Your Attraction!</h1>
     <form>
       <!-- name and number -->
@@ -527,12 +531,15 @@
       </div>
 
       <!-- Promotion Type -->
+      
       <div class="select-options">
         <multiselect id="promotionType" v-model="attraction.promotiontype" placeholder="Promotion Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="promotionOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
       </div>
 
       <!-- Attraction Type -->
       <div class="select-options">
+
+
         <multiselect id="attractionType" v-model="attraction.attractionType" placeholder="Attraction Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="typeOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
       </div>
 
@@ -541,6 +548,7 @@
         <multiselect id="demographicType" v-model="attraction.demographicType" placeholder="Demographic Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="demographicOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
       </div>
 
+
       <div class="submit">
         <button class="ui button" v-on:click.prevent="addItem">Submit</button>
       </div>
@@ -548,13 +556,16 @@
   </div>
 </template>
 
+
 <script>
   import PricingOptions from "@/components/PricingOptions";
   import Multiselect from 'vue-multiselect'
   import { database, storage } from "@/firebase/";
   // import storage from "@/firebase/";
+  import $ from "jquery";
 
   export default {
+
     components: {
       PricingOptions,
       Multiselect,
@@ -572,8 +583,10 @@
         ],
         // Multi-select
 
+
         attraction: {
           auth_id: null,
+          approved: "pending",
           name: '',
           address: '',
           number: null,
@@ -678,9 +691,6 @@
           pricing: {},
           pricerange: '',
           location: '',
-
-         
-        
           bump: {
             date: '',
             status: false,
@@ -692,6 +702,24 @@
           promotiontype: [],
           attractionType: [],
           demographicType: [],
+          
+
+      options: [
+        { name: 'Exhibitions', code: 'ex' },
+        { name: 'Museum', code: 'mu' },
+        { name: 'Nature', code: 'na' },
+        { name: 'Sightseeing', code: 'si' },
+        { name: 'Sports', code: 'sp' },
+        { name: 'Elderly', code: 'eld' },
+        { name: 'Kids', code: 'kid' },
+        { name: 'Wheelchair-Friendly', code: 'whe' },
+      ],
+
+
+         
+        
+          
+
 
         },
 
@@ -723,16 +751,22 @@
         weekday: false,
         weekend: false,
         everyday: false,
+        
+    
+    
       }
     },
     methods: {
       addTag (newTag) {
-        const tag = {
-          name: newTag,
-          code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
-        }
-        this.attraction.attractionType.push(tag)
-      },
+
+      const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+      }
+      this.attraction.attractionType.push(tag)
+
+    },
+
       checkOperatingHourFilled(){
         if (this.attraction.operations.mon.open == true && (this.attraction.operations.mon.start.hour == '' || this.attraction.operations.mon.end.hour == '')) {
           return false;
@@ -899,9 +933,11 @@
             promotions: '',
             pricing: {},
             pricerange: '',
-            location: '',
-            promotiontype: '',
-            attractionType: '',
+
+                location: '',
+                promotiontype: '',
+                attractionType: [],
+          
             bump: {
               date: '',
               status: false,
@@ -911,6 +947,7 @@
             notBumpViews: 0,
             dateAdded: '',
           },
+
           this.weekday = false;
           this.weekend = false;
           this.everyday = false;
@@ -1122,14 +1159,26 @@
       }
     },
     mounted() {
+      var router= this.$router;
       if (sessionStorage.uid) {
         this.attraction.auth_id = sessionStorage.uid;
         console.log("UID")
         console.log(this.auth_id)
-      }
-    },
+        $(document).ready(function($){
+          $('dropdown')
+          .dropdown()
+          });
+      }  else {
+        alert("Please login before entering this page")
+        router.push('/login')
 
+      }
+    }
   }
+    
+
+
+  
 </script>
 
 <style scoped>
@@ -1191,6 +1240,11 @@
     width: 60%;
     text-align: right;
     direction: rtl;
+  }
+  #attractionType{
+    padding: 5px;
+    background-color: transparent;
+    border: none;
   }
 
   /* operating hours styling */
@@ -1266,10 +1320,12 @@
     float: right;
   }
 
+
   .ui.dropdown {
     max-width: 800px;
   }
 </style>
 
 /* MULTI-SELECT STYLING */
+
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

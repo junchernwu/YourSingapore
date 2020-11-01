@@ -1,14 +1,15 @@
 <template>
   <div>
     <p id="date">
-      {{activity.hour}}:{{activity.min}}
-      <br>
-      {{activity.am}}
+      {{ activity.hour }}:{{ activity.min }}
+      <br />
+      {{ activity.am }}
     </p>
-    <img v-bind:src="activity.picture">
+    <img v-bind:src="activity.picture" />
     <div id="details">
-      <p id="name">{{activity.name}}</p>
+      <p id="name">{{ activity.name }}</p>
       <location-icon></location-icon>
+
       <p id="address">{{activity.address}}</p>
       <button id="exploreEateries">
         <router-link :to="'/eateries/'+ activity.name">Explore Food Options</router-link>
@@ -16,23 +17,25 @@
     </div>
     <div id="button">
       <button id="deleteButton" v-on:click="deleteActivity(activity.name)" type="button">x</button>
+
     </div>
   </div>
 </template>
 
 <script>
-import LocationIcon from 'vue-material-design-icons/MapMarker.vue';
+import LocationIcon from "vue-material-design-icons/MapMarker.vue";
 
 export default {
   name: "PlannedActivity.vue",
   props: {
     activity: {
       type: Object,
-    }
+    },
   },
   components: {
     LocationIcon,
   },
+
   methods: {
     deleteActivity: function(name) {
       console.log("DELETE")
@@ -89,11 +92,14 @@ export default {
     top: 15%;
   }
 
-  h3 {
-    position: relative;
-    margin: 0;
-    left: 5%;
-  }
+
+img {
+  margin: 0 20px;
+  width: 25%;
+  border-radius: 20px;
+  float: left;
+}
+
 
   #details {
     background-color: transparent;
@@ -107,11 +113,23 @@ export default {
     width: 50%;
   }
 
-  #name {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
+
+#details {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: left;
+  position: relative;
+  left: 5%;
+}
+
+
+#name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 
   #address {
     font-size: 16px;
@@ -122,11 +140,13 @@ export default {
     left: -4%;
   }
 
-  location-icon {
-    position: relative;
-    float: left;
-    width: 5%;
-  }
+
+
+location-icon {
+  position: relative;
+  float: left;
+  width: 5%;
+}
 
   #button {
     float: right;
@@ -162,3 +182,4 @@ export default {
   }
 
 </style>
+
