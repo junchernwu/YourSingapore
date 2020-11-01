@@ -95,9 +95,7 @@
 
 <script>
 import axios from 'axios'
-
 export default {
-
   data(){
     return{
         search:this.$route.params.name,
@@ -114,12 +112,10 @@ export default {
     }
   },
   computed: {
-
     filtersearch(){
       return this.final_results.filter(obj => {return obj.name.toLowerCase().includes(this.restaurant.toLowerCase())})
     }
   },
-
   methods:{
       fetchData : function(){
         this.final_results=[]
@@ -134,18 +130,14 @@ export default {
             console.log("photos" in this.results[key])
               if(("photos" in this.results[key])){
               this.final_results.push(response.data.results[key]);}
-
           }else{
             var v=[{'photo_reference':this.results[key].icon}];
             this.results[key]['photos']=v;
             
-
             this.final_results.push(this.results[key]);
-
           }
         }
        
-
             
     }).catch(error => console.log(error))
     
@@ -154,8 +146,6 @@ export default {
             
          var link="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference="+x+"&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
          return link
-
-
     },
      open:function(y){
         if(""+y==true){
@@ -165,7 +155,6 @@ export default {
             var msgs="Currently Close"
             return msgs
         }
-
     },
     getEatery:function(x){
       this.search=x
@@ -182,15 +171,12 @@ export default {
       sessionStorage.picture=this.get_pic(item.photos[0].photo_reference);
       sessionStorage.address=item.formatted_address.trim();
       console.log(item.formatted_address.trim());
-
       this.$router.push('/planner');
     }
     },
-
 beforeCreate: function() {
         document.body.className = 'eateries';
   },
-
   created() {
       this.fetchData();
    
@@ -212,7 +198,6 @@ beforeCreate: function() {
     }
   
 }
-
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
@@ -222,7 +207,6 @@ h3 {
   font-size: 25px;
   margin-bottom: 1px;
   text-align: center;
-
  
 }
 button{
@@ -231,9 +215,7 @@ button{
   margin-right: 100px;
   background-color: tomato;
   color: azure;
-
 }
-
 .innerbox{
   background-color: rgba(82, 82, 100, 0.554);
   width:165%;
@@ -241,7 +223,6 @@ button{
   padding-left:5%;
   padding-top:1%;
   padding-bottom:5%;
-
   
 }
 #datetitle{
@@ -250,11 +231,9 @@ button{
   color:gray;
   
 }
-
 #time{
   
   margin-bottom:10px;
-
 }
 #date{
   float:left;
@@ -282,10 +261,7 @@ aside {
 #place{
     padding-top:20px;
     padding-bottom:20px;
-
-
 }
-
 nav {
   float: left;
   width:18%;
@@ -293,7 +269,6 @@ nav {
   padding-top: 30px;
   height: 800px;
   position:fixed;
-
 }
 .bar{
   float: left;
@@ -307,22 +282,15 @@ nav {
   padding: 0px;
   text-align: right;
  
-
-
 }
 section{
 height:6200px;
-
-
 }
-
 img{
   width:250px;
   height: 200px;
   margin-right: 10px;
 }
-
-
 ul{
     display: flex;
     flex-wrap: wrap;
@@ -332,7 +300,6 @@ ul{
     display: block;
     padding-top:1px;
 }
-
 li{
   
 background: rgb(66, 66, 73);
@@ -344,7 +311,6 @@ margin: 10px;
 display: block;
 width: 900px;
     
-
     
 }
 input{
@@ -357,4 +323,6 @@ input{
   left:4%;
 }
 
+
 </style>
+

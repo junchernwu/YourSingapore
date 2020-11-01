@@ -29,7 +29,7 @@
             <option value="">Discount type</option>
             <option value="all">All</option>
             <optgroup label="Percentage">
-            <option value="<10%"> Less than 10%</option>
+            <option value="< 10%"> Less than 10%</option>
             <option value="10-20%">10-20%</option>
             <option value=">20%"> 20%</option>
             </optgroup>
@@ -106,14 +106,16 @@ export default {
       discount: "",
       attractionType: "",
       pricerange: "",
-      demographic:""
+      demographic:"",
+      days:[],
     };
   },
 
   computed: {
 
     filteredList(){
-        return this.filterbydemographic(this.filterbydiscount(this.filterbyactivity(this.filterbyprice(this.filterbylocation(this.filtersearch)))))
+   
+        return this.sortItems(this.filterbydemographic(this.filterbydiscount(this.filterbyactivity(this.filterbyprice(this.filterbylocation(this.filtersearch))))))
 
     },
 
@@ -139,6 +141,35 @@ export default {
         });
     },
 
+    sortItems: function(obj){
+      var bump=[]
+      for(let y in obj){
+      
+        if("bump" in obj[y] && obj[y].bump.status==true){//can remove the 2nd condition after updating all attractions
+          bump.push(obj[y]);
+          
+        }
+      }
+      bump.sort(function(x, y){ return x.bump.date - y.bump.date; })
+      bump.reverse();
+      var randomise=[]
+      for(let x in obj){
+        if(!bump.includes(obj[x])){
+          randomise.push(obj[x]);
+        }
+      }
+      this.shuffle(randomise);
+      var final = bump.concat(randomise);
+      return final;
+ 
+    },
+  shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+},
+
     filterbylocation:function(obj){
       if(this.location=="all" || this.location==""){
         return obj;
@@ -157,22 +188,66 @@ export default {
       if(this.attractionType=="all" || this.attractionType==""){
         return obj;
       }else{
-      return obj.filter(obj => obj.attractionType==this.attractionType);}
+     var dict=[];
+        for( let key in obj){
+          for(let x in obj[key].attractionType){
+            if(obj[key].attractionType[x].name==this.attractionType){
+              
+             dict.push(obj[key]);
+
+          }
+         }
+      
+      
+        }
+        return dict;
+      }
+
 
     },
+
     filterbydiscount:function(obj){
       if(this.discount=="all" || this.discount==""){
         return obj;
       }else{
-      return obj.filter(obj => obj.discount.includes(this.discount));}
+        var dict=[];
+        for( let key in obj){
+          for(let x in obj[key].demographicType){
+            if(obj[key].promotiontype[x].name==this.discount){
+             dict.push(obj[key]);
 
+          }
+         }
+      
+     
+        }
+         return dict;
+      }
+        
+     
+      
+      
     },
     filterbydemographic:function(obj){
       if(this.demographic=="all" || this.demographic==""){
+      
         return obj;
       }else{
+        var dict=[];
+        for( let key in obj){
+          for(let x in obj[key].demographicType){
+            if(obj[key].demographicType[x].name==this.demographic){
+             dict.push(obj[key]);
+             
+
+          }
+         }
+      
+     
+       }
+        return dict;
        
-        return obj.filter(obj =>obj.demographic.includes(this.demographic));
+       // return obj.filter(obj =>obj.demographic.includes(this.demographic));
 
     }
     
@@ -181,6 +256,7 @@ export default {
   },
   created() {
     this.fetchItems();
+   
   },
   mounted() {
     if (sessionStorage.date) {
