@@ -687,7 +687,8 @@
           bumpViews: 0,
           notBumpViews: 0,
           dateAdded: '',
-          stats:{}
+          stats:{},
+          arrivals:{},
         },
         weekday: false,
         weekend: false,
@@ -854,7 +855,8 @@
             bumpViews: 0,
             notBumpViews: 0,
             dateAdded: '',
-            stats: {}
+            stats: {},
+            arrivals:{}
           },
           this.weekday = false;
           this.weekend = false;

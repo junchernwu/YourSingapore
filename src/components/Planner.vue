@@ -75,7 +75,7 @@ export default {
           });
         });
       });
-    },
+    }
   },
 
   mounted() {
@@ -141,6 +141,7 @@ export default {
         }
       });
       sessionStorage.plannedActivities = JSON.stringify(this.plannedActivities);
+      
     }
   },
 }

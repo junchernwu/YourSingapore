@@ -4,8 +4,9 @@
     <h4>NUMBER OF VIEWERS TODAY</h4>
     {{viewsToday}}
     <h4>NUMBER OF PEOPLE WHO ADDED YOUR ATTRACTION TO THEIR PLANNER TODAY</h4>
-    
+    {{addsToday}}
     <h4>EXPECTED NUMBER OF ARRIVALS</h4>
+    {{arrivals}}
   </div>
 </template>
 
@@ -21,7 +22,8 @@ export default {
   data(){
       return{
           viewsToday:0,
-          addsToday:0
+          addsToday:0,
+          arrivals:0
       }
   },
   mounted() {
@@ -36,7 +38,8 @@ export default {
                 var currentDate= new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())
                 if(currentDate in documentSnapshot.data().stats){
                     this.viewsToday=documentSnapshot.data().stats[`${currentDate}`].views
-                    console.log(this.viewsToday)
+                    this.addsToday=documentSnapshot.data().stats[`${currentDate}`].adds
+                    this.arrivals=documentSnapshot.data().arrivals[`${currentDate}`].numArrivals
                 }
             }
         })

@@ -180,6 +180,7 @@ export default {
     },
       
     persist:function(){
+      this.updateAdds();
       sessionStorage.hour= this.hour;
       sessionStorage.min= this.min;
       sessionStorage.am= this.am;
@@ -229,6 +230,44 @@ export default {
                 .update({
                   bumpViews: firebase.firestore.FieldValue.increment(1),
                 })
+          }
+        }
+      });
+    },
+    updateAdds: function(){
+      database
+          .collection("attraction2")
+          .doc(this.attractionId).get().then((documentSnapshot) => {
+            if (documentSnapshot.exists) {
+                var currentDate= new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())
+                if(currentDate in documentSnapshot.data().stats){
+                  database
+                        .collection("attraction2")
+                        .doc(this.attractionId)
+                        .update({
+                          [`stats.${currentDate}.adds`]: firebase.firestore.FieldValue.increment(1)
+                        })
+                } 
+            }
+        });
+        database
+          .collection("attraction2")
+          .doc(this.attractionId).get().then((documentSnapshot) => {
+        if (documentSnapshot.exists) {
+          if(this.date in documentSnapshot.data().arrivals){
+            database
+                  .collection("attraction2")
+                  .doc(this.attractionId)
+                  .update({
+                    [`arrivals.${this.date}.numArrivals`]: firebase.firestore.FieldValue.increment(1)
+                  })
+          } else{
+            database
+                  .collection("attraction2")
+                  .doc(this.attractionId)
+                  .update({
+                    [`arrivals.${this.date}.numArrivals`]: 1,
+                  })
           }
         }
       });
