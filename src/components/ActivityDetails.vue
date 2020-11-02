@@ -211,7 +211,8 @@ export default {
                   .doc(this.attractionId)
                   .update({
                     [`stats.${currentDate}.views`]: 1,
-                    [`stats.${currentDate}.adds`]: 0
+                    [`stats.${currentDate}.adds`]: 0,
+                    [`stats.${currentDate}.date`]: currentDate1
                   })
           }
         
@@ -433,4 +434,5 @@ a,button{
 #box2{
   height:230px;
 }
+
 </style>  

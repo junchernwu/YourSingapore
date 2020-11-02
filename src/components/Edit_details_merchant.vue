@@ -445,6 +445,7 @@ export default {
             .doc(id)
             .update({
               bump: {
+                status: true,
                 date: new Date(),
               },
               bumpTimes: firebase.firestore.FieldValue.increment(1),
@@ -463,11 +464,14 @@ export default {
           .collection("attraction2")
           .doc(id)
           .update({
-            bump: null
+            bump: {
+              date: '',
+              status: false,
+            },
           })
       console.log("REMOVED BUMP")
-    },
-  }
+    }
+  } 
 }
 
 </script>

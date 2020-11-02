@@ -13,7 +13,7 @@
 <script>
 import { database } from "@/firebase/";
 export default {
-  name: "BumpStats",
+  name: "Dailystats",
   props: {
     docId: {
       type: String,
@@ -41,8 +41,10 @@ export default {
                     this.viewsToday=documentSnapshot.data().stats[`${currentDate}`].views
                     this.addsToday=documentSnapshot.data().stats[`${currentDate}`].adds
                     this.arrivals=documentSnapshot.data().arrivals[`${currentDate}`].numArrivals
+
                 }
             }
+            
         })
     },
     formatDate: function(date) {

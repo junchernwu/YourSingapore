@@ -682,7 +682,10 @@
           location: '',
           promotiontype: '',
           attractionType: '',
-          bump: null,
+          bump: {
+          date: '',
+          status: false,
+          },      
           bumpTimes: 0,
           bumpViews: 0,
           notBumpViews: 0,
@@ -850,7 +853,10 @@
             location: '',
             promotiontype: '',
             attractionType: '',
-            bump: null,
+            bump: {
+              date: '',
+              status: false,
+            },
             bumpTimes: 0,
             bumpViews: 0,
             notBumpViews: 0,

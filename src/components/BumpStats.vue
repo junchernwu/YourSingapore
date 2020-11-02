@@ -83,7 +83,8 @@ export default {
     text-align: center;
     margin: 0;
     font-weight: bold;
-    font-family: 'Montserrat'
+    font-family: 'Montserrat';
+    color:rgb(177, 177, 177);
   }
   h1 {
     text-align: center;
