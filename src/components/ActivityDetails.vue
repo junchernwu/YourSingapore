@@ -121,16 +121,17 @@
 
 <script>
 import { database } from "@/firebase/";
+import firebase from "firebase";
 
 export default {
     data() {
         return {
-            date:'',
-            hour:0,
-            min:0,
-            am:'',
-            attractions:[],
-            attractionId:this.$route.params.id,
+          date:'',
+          hour:0,
+          min:0,
+          am:'',
+          attractions:[],
+          attractionId:this.$route.params.id,
         }
     },
     beforeCreate: function() {
@@ -149,6 +150,7 @@ export default {
       if(sessionStorage.am){
         this.am = sessionStorage.am
       }
+      this.updateViews();
     },
     created(){
         this.fetchItems();
@@ -161,7 +163,7 @@ export default {
   methods: {
     fetchItems: function () {
       database
-        .collection("attractions")
+        .collection("attraction2")
         .get()
         .then((querySnapShot) => {
           let item = {};
@@ -178,6 +180,7 @@ export default {
     },
       
     persist:function(){
+      this.updateAdds();
       sessionStorage.hour= this.hour;
       sessionStorage.min= this.min;
       sessionStorage.am= this.am;
@@ -186,6 +189,103 @@ export default {
       
       // route to planner page
       this.$router.push('/planner');
+    },
+
+    updateViews: function(){
+      database
+          .collection("attraction2")
+          .doc(this.attractionId).get().then((documentSnapshot) => {
+        if (documentSnapshot.exists) {
+          var currentDate1= new Date()
+          var currentDate=this.formatDate(currentDate1)
+          if(currentDate in documentSnapshot.data().stats){
+            database
+                  .collection("attraction2")
+                  .doc(this.attractionId)
+                  .update({
+                    [`stats.${currentDate}.views`]: firebase.firestore.FieldValue.increment(1)
+                  })
+          } else{
+            database
+                  .collection("attraction2")
+                  .doc(this.attractionId)
+                  .update({
+                    [`stats.${currentDate}.views`]: 1,
+                    [`stats.${currentDate}.adds`]: 0,
+                    [`stats.${currentDate}.date`]: currentDate1
+                  })
+          }
+        
+          var bumpStatus = documentSnapshot.data().bump;
+          if (bumpStatus == null) {
+            database
+                .collection("attraction2")
+                .doc(this.attractionId)
+                .update({
+                  notBumpViews: firebase.firestore.FieldValue.increment(1),
+                })
+          } else {
+            database
+                .collection("attraction2")
+                .doc(this.attractionId)
+                .update({
+                  bumpViews: firebase.firestore.FieldValue.increment(1),
+                })
+          }
+        }
+      });
+    },
+    updateAdds: function(){
+      database
+          .collection("attraction2")
+          .doc(this.attractionId).get().then((documentSnapshot) => {
+            if (documentSnapshot.exists) {
+                var currentDate1= new Date()
+                var currentDate=this.formatDate(currentDate1)
+                if(currentDate in documentSnapshot.data().stats){
+                  database
+                        .collection("attraction2")
+                        .doc(this.attractionId)
+                        .update({
+                          [`stats.${currentDate}.adds`]: firebase.firestore.FieldValue.increment(1)
+                        })
+                } 
+            }
+        });
+        database
+          .collection("attraction2")
+          .doc(this.attractionId).get().then((documentSnapshot) => {
+        if (documentSnapshot.exists) {
+          if(this.date in documentSnapshot.data().arrivals){
+            database
+                  .collection("attraction2")
+                  .doc(this.attractionId)
+                  .update({
+                    [`arrivals.${this.date}.numArrivals`]: firebase.firestore.FieldValue.increment(1)
+                  })
+          } else{
+            database
+                  .collection("attraction2")
+                  .doc(this.attractionId)
+                  .update({
+                    [`arrivals.${this.date}.numArrivals`]: 1,
+                  })
+          }
+        }
+      });
+    },
+    formatDate: function(date) {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+
+      if (month.length < 2) 
+          month = '0' + month;
+      if (day.length < 2) 
+          day = '0' + day;
+
+      return [year, month, day].join('-');
     }
   }
 }
@@ -334,4 +434,5 @@ a,button{
 #box2{
   height:230px;
 }
+
 </style>  

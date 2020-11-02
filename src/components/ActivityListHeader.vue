@@ -2,7 +2,7 @@
    <div>
     
      
-     <header :style="{ background:'url('+picture+')',opacity:0.8}">
+     <header :style="{ background:'url('+picture+')'}">
       
         <h2>Trip <br> Details</h2>
         <h3 id="title1">Selected Date:</h3>
