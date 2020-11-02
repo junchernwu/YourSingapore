@@ -6,9 +6,9 @@
       
         <h2>Trip <br> Details</h2>
         <h3 id="title1">Selected Date:</h3>
-        <p>{{date}} </p>
+        <input type="date" id="date" name="date" v-model= "date" v-on:change="fetchData()">
         <h3 id= "title2">Weather:</h3>
-              <h3>{{Selected_weather}}</h3>
+              <h3 id="weather">{{Selected_weather}}</h3>
               <img v-bind:src="icon"/>
      
       
@@ -67,11 +67,13 @@ export default {
         }
           this.picture_display();
     }).catch(error => console.log(error))
+
+  
     
     },
     picture_display:function(){
       var x=this.Selected_weather;
-      console.log(this.Selected_weather+'aa');
+      
       if(x.includes('rain')){
         
         this.picture= rain;
@@ -83,6 +85,8 @@ export default {
 
 
     },
+
+   
   },
     
     
@@ -93,6 +97,8 @@ export default {
   mounted() {
     if (sessionStorage.date) {
       this.date = sessionStorage.date;
+      
+      
       this.fetchData();
  
     }
@@ -101,12 +107,14 @@ export default {
 }
 </script>
 
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 header{
-  height: 180px;
+  height: 210px;
   position:fixed;
   width: 100%;
+
   
   
  
@@ -131,10 +139,10 @@ h3{
     text-size-adjust: 8px;
  
 }
-p{
+#date{
    position: absolute;
-  left:83.5%;
-   top:15%;
+  left: 80%;
+   top:25%;
   background-color: rgba(11, 23, 49, 0.233);
   color:rgb(255, 255, 255);
   font-weight:bold;
@@ -142,11 +150,12 @@ p{
 }
 #title2{
   position: relative;
-  margin-top: 3%;
+  margin-top: 5%;
    color : rgb(203, 230, 255);
    font-display: bold;
    font-display:Abel;
    font-size: 25px;
+   
 }
 #title1{
   position: relative;
@@ -163,6 +172,11 @@ img{
   margin-bottom: 30px;
   padding-left: 15px;
 
+}
+
+#weather{
+  position: relative;
+  left: 7%;
 }
 
 

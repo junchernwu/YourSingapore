@@ -53,6 +53,7 @@
 
 <script>
 import firebase from "firebase";
+import { database } from "@/firebase/";
 export default {
   name: "Login",
   data() {
@@ -63,30 +64,57 @@ export default {
   },
   methods: {
     login: function() {
-      var router= this.$router;
-      var uid = null
+      var router = this.$router;
+      var uid = null;
+
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(
           function() {
-            console.log("LOGGED IN SUCCESSFULLY")
+            // console.log("LOGGED IN SUCCESSFULLY")
             var loggedin = firebase.auth().currentUser;
-            uid = loggedin.uid
-            router.push('/merchant/'+uid);
-            console.log(uid)
+            uid = loggedin.uid;
+           
+            if (uid == "BRNb1ldfYYMEQMU4lZaP2ucoSNC3") {
+              console.log("MASTER ACCOUNT");
+                  router.push("/master");
+        
+            } else {
 
+   
+              database
+                .collection("attraction2")
+                .get()
+                .then((querySnapShot) => {
+                  let item = {};
+                  querySnapShot.forEach((doc) => {
+                    item = doc.data();
+                    if (item.auth_id == uid && item.approved == "pending") {
+                      alert("Your application is still awaiting approval");
+                      router.push("/");
+                    } else if (
+                      item.auth_id == uid &&
+                      item.approved == "approved"
+                    ) {
+                      console.log("succesfully approved");
+                      router.push("/merchant/" + uid);
+                    }
+                  });
+                });
+            }
           },
           function(err) {
             alert("oops" + err.message);
           }
         );
     },
-    persist: function(){
-        sessionStorage.date= this.date;
-    }
-  }
-}
+
+    persist: function() {
+      sessionStorage.date = this.date;
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -98,5 +126,8 @@ body > .grid {
 }
 .column {
   max-width: 600px;
+}
+.content {
+  padding-top: 50px;
 }
 </style>
