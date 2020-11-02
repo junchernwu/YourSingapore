@@ -87,7 +87,7 @@ export default {
     border-radius: 20px;
     padding: 20px;
     margin: 20px;
-    width: 300px;
+    width: 110%;
   }
   h2 {
     text-align: center;
@@ -106,7 +106,7 @@ export default {
     text-align: center;
     margin: 10px 0;
     font-weight: bold;
-    font-size: 60px;
+    font-size: 40px;
     font-family: Montserrat;
   }
 </style>
