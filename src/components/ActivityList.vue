@@ -165,8 +165,8 @@ export default {
     },
   shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
 },
 
@@ -193,7 +193,7 @@ export default {
           for(let x in obj[key].attractionType){
             if(obj[key].attractionType[x].name==this.attractionType){
               
-             dict.push(obj[key]);
+            dict.push(obj[key]);
 
           }
          }
@@ -214,7 +214,7 @@ export default {
         for( let key in obj){
           for(let x in obj[key].demographicType){
             if(obj[key].promotiontype[x].name==this.discount){
-             dict.push(obj[key]);
+            dict.push(obj[key]);
 
           }
          }
@@ -237,11 +237,11 @@ export default {
         for( let key in obj){
           for(let x in obj[key].demographicType){
             if(obj[key].demographicType[x].name==this.demographic){
-             dict.push(obj[key]);
+            dict.push(obj[key]);
              
 
           }
-         }
+        }
       
      
        }
@@ -284,7 +284,7 @@ a{
   font-weight:lighter;
 }
 p {
-  padding: 2px;
+  padding: 2%;
   color:#2c3e50;
   float: left;
   
@@ -293,55 +293,55 @@ p {
 nav {
   float: left;
   width:18%;
-  padding-left: 30px;
-  padding-top: 200px;
-  height: 800px;
+  padding-left: 2%;
+  padding-top: 15%;
+  height: 100%;
   position:fixed;
 
 }
 .bar{
   float: left;
-  padding-right:200px;
+  padding-right:20%;
 }
 #filters{
   position:static;
 
   float:center;
-  padding-top:10px;
+  padding-top:10%;
   color: whitesmoke;
-  padding:10px;
-  width:250px;
-  padding-left:10px;
+  padding:1%;
+  width:160%;
+  padding-left:10%;
   background-color: rgba(87, 80, 80, 0.404);
   fill-opacity: initial;
   border-color:white;
-  border-width:1px;
-  border-radius: 5px;
-  margin-left: 10px;
+  border-width:2%;
+  border-radius: 2%;
+  margin-left: 10%;
 }
 
 #content{
   float: right;
-  padding-top: 200px;
+  padding-top: 13%;
   width:85%;
 
 }
 section{
-height:800px;
+height:100%px;
 
 }
 
 #attractions {
   width: 100%;
-  max-width: 1200px;
-  margin: 30px auto;
-  padding: 0 5px;
+  max-width: 100%;
+  margin: 30% auto;
+  padding: 0 5%;
   box-sizing: border-box;
 }
 img{
-  width:250px;
+  width:280px;
   height: 200px;
-  border-radius:5px;
+  border-radius:5%;
 }
 
 
@@ -349,24 +349,24 @@ ul{
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
-    padding-left: 100px;
+    padding-left: 8%;
 }
 
 li{
     flex-grow: 1;
     flex-basis: 300px;
     text-align: center;
-    padding: 10px;
-    margin: 10px;
-    
+    padding: 3%;
+
 }
 input{
-  padding-left:5px;
-  border-radius: 15px;
+  
+  border-radius: 15%;
   border:none;
-  width:250px;
-  height:25px;
+  width:240px;
+  height:20%;
   position:relative;
-  left:4%;
+  left:6%;
 }
+
 </style>

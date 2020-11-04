@@ -2,7 +2,7 @@
    <div>
     
      
-     <header :style="{ background:'url('+picture+')',opacity:0.8}">
+     <header :style="{ background:'url('+picture+')'}">
       
         <h2>Trip <br> Details</h2>
         <h3 id="title1">Selected Date:</h3>
@@ -24,6 +24,7 @@
 <script>
 import rain from '@/assets/Rain.jpg';
 import cloud from '@/assets/Cloud.jpg';
+import sunny from '@/assets/sunny.jpg';
 import axios from 'axios'
 
 
@@ -78,9 +79,12 @@ export default {
         
         this.picture= rain;
         
-      }else{
+      }else if(x.includes("clouds")){
        this.picture=cloud;
         
+      }
+      else{
+        this.picture=sunny;
       }
 
 
@@ -111,9 +115,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 header{
-  height: 180px;
+  height: 30%;
   position:fixed;
-  width: 1400px;
+  width: 100%;
   
   
  
@@ -122,7 +126,7 @@ header{
 h2{
     color:ivory;
     float:left;
-    padding:20px;
+    padding:2%;
     text-align: justify;
     font-display:Abel;
 
@@ -132,43 +136,42 @@ h3{
     
     float: left;
     margin-left: 75%;
-    line-height: 0px;
+    line-height: 0%;
     color: rgb(248, 248, 248);
     margin-top: 2%;
-    text-size-adjust: 8px;
+    text-size-adjust: 2%;
  
 }
 #date{
-   position: absolute;
+  position: absolute;
   left:83.5%;
-   top:15%;
+  top:15%;
   background-color: rgba(11, 23, 49, 0.233);
   color:rgb(255, 255, 255);
   font-weight:bold;
-  font-size: 18px;
+  font-size: 110%
 }
 #title2{
   position: relative;
   margin-top: 3%;
-   color : rgb(203, 230, 255);
+   color : rgb(240, 235, 235);
    font-display: bold;
    font-display:Abel;
-   font-size: 25px;
+   font-size: 150%;
 }
 #title1{
   position: relative;
-  font-size: 25px;
+  font-size: 145%;
   margin-top: 1%;
-  color : rgb(255, 255, 255);
+  color : rgb(253, 253, 253);
 }
 img{
   float:right;
-  width:80px;
-  height: 80px;
-  margin-right:12%;
-  padding-bottom:18px;
-  margin-bottom: 30px;
-  padding-left: 15px;
+  width:6%;
+  height: 40%;
+  margin-right:8%;
+  padding-bottom:1%;
+  padding-right: 1%;
 
 }
 
