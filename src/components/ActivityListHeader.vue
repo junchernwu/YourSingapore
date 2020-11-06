@@ -115,21 +115,19 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 header{
-  height: 30%;
+  height: 180px;
   position:fixed;
   width: 100%;
   
   
  
 }
-
 h2{
     color:ivory;
     float:left;
     padding:2%;
     text-align: justify;
     font-display:Abel;
-
 }
 h3{
     
@@ -172,12 +170,6 @@ img{
   margin-right:8%;
   padding-bottom:1%;
   padding-right: 1%;
-
-}
-
-#weather{
-  position: relative;
-  left: 7%;
 }
 
 

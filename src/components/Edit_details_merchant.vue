@@ -111,7 +111,7 @@
                     $emit('update');
                   "
                   >>
-                  <option value="Minute">Minute</option>
+                  
                   <option value="10">00</option>
                   <option value="20">15</option>
                   <option value="30">30</option>
@@ -175,7 +175,7 @@
                     $emit('update');
                   "
                   >>
-                  <option value="Minute">Minute</option>
+                  
                   <option value="10">00</option>
                   <option value="20">15</option>
                   <option value="30">30</option>
@@ -240,7 +240,7 @@
                     $emit('update');
                   "
                   >>
-                  <option value="Minute">Minute</option>
+                  
                   <option value="10">00</option>
                   <option value="20">15</option>
                   <option value="30">30</option>
@@ -305,7 +305,7 @@
                     $emit('update');
                   "
                   >>
-                  <option value="Minute">Minute</option>
+                 
                   <option value="10">00</option>
                   <option value="20">15</option>
                   <option value="30">30</option>
@@ -372,7 +372,7 @@
                     $emit('update');
                   "
                   >>
-                  <option id="dropdown" value="Minute">Minute</option>
+                  
                   <option id="dropdown" value="10">00</option>
                   <option id="dropdown" value="20">15</option>
                   <option id="dropdown" value="30">30</option>
@@ -437,7 +437,7 @@
                     $emit('update');
                   "
                   >>
-                  <option id="dropdown" value="Minute">Minute</option>
+                  
                   <option id="dropdown" value="10">00</option>
                   <option id="dropdown" value="20">15</option>
                   <option id="dropdown" value="30">30</option>
@@ -502,7 +502,6 @@
                     $emit('update');
                   "
                   >>
-                  <option id="dropdown" value="Minute">Minute</option>
                   <option id="dropdown" value="10">00</option>
                   <option id="dropdown" value="20">15</option>
                   <option id="dropdown" value="30">30</option>
@@ -964,6 +963,7 @@ button {
 }
 #dropdown {
   background: transparent;
+  color:white;
 }
 #datetitle {
   float: left;
@@ -1106,5 +1106,11 @@ button {
 }
 button h3 {
   float: left;
+}
+select{
+  color:white;
+}
+select option{
+  color:white;
 }
 </style>
