@@ -40,28 +40,28 @@ export default {
   computed: {
     count() {
       return this.fieldsList.length;
-    },
+    }
+  },
 
-    methods: {
-      newPrice: function(){
-        if (this.fieldsList.length == 3) {
-          alert("Maximum of 3 Price Categories allowed!");
-        } else {
-          console.log("TEST PRICING: " + this.fieldsList.length)
-          this.attraction.pricing[this.fieldsList.length] = {category: '', price: ''};
-          this.fieldsList.push({
-            id: this.fieldsList.length,
-          });
-        }
-      },
-      delPrice: function(){
-        this.fieldsList.pop();
-        delete this.attraction.pricing[this.fieldsList.length];
-
+  methods: {
+    newPrice: function(){
+      if (this.fieldsList.length == 3) {
+        alert("Maximum of 3 Price Categories allowed!");
+      } else {
+        console.log("TEST PRICING: " + this.fieldsList.length)
+        this.attraction.pricing[this.fieldsList.length] = {category: '', price: ''};
+        this.fieldsList.push({
+          id: this.fieldsList.length,
+        });
       }
     },
-  },
-};
+    delPrice: function(){
+      this.fieldsList.pop();
+      delete this.attraction.pricing[this.fieldsList.length];
+
+    }
+  }
+}
 </script>
 
 <style scoped>
