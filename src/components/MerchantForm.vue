@@ -587,6 +587,7 @@
         attraction: {
           auth_id: null,
           approved: "pending",
+          verification_url: "",
           name: '',
           address: '',
           number: null,
@@ -804,7 +805,7 @@
         return (this.attraction.picture != '')
       },
       addItem(){
-        console.log()
+
         console.log(this.checkOperatingHourFilled())
         if (this.checkNameFilled() == false) {
           alert("Please Fill Up the Attraction's Name")
@@ -828,6 +829,7 @@
               this.attraction.openDays.push(day);
             }
           }
+       
 
           database.collection('attraction2').add(this.attraction)
           alert('Submitted')
@@ -949,7 +951,8 @@
             notBumpViews: 0,
             dateAdded: '',
             stats: {},
-            arrivals:{}
+            arrivals:{},
+
           },
 
           this.weekday = false;
@@ -1166,8 +1169,12 @@
       var router= this.$router;
       if (sessionStorage.uid) {
         this.attraction.auth_id = sessionStorage.uid;
-        console.log("UID")
-        console.log(this.auth_id)
+        console.log("SESSION STORAGE URL VERIFY  from merchant page")
+        this.attraction.verification_url = sessionStorage.url_verify
+        console.log(this.verification_url)
+        console.log("session url verify")
+   
+    
         $(document).ready(function($){
           $('dropdown')
           .dropdown()
@@ -1312,9 +1319,6 @@
     color: white;
   }
 
-  multiselect {
-
-  }
 
   /* submit button styling */
   .submit {

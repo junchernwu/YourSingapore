@@ -1,7 +1,21 @@
 <template>
   <div class="main">
     <div class="left">
+      <div id="image">
+        <label id="image-label">To Replace Attraction photo</label>
+        <br />
+        <input
+          style="text-align: center"
+          type="file"
+          accept="image/png, image/jpeg"
+          name="file-upload"
+          value="file-upload"
+          v-on:change="imgUpload"
+        />
+      </div>
+
       <img v-bind:src="attractions.picture" />
+
       <input
         id="input_title"
         v-if="title_edit"
@@ -16,18 +30,44 @@
       </div>
 
       <p id="desc">{{ attractions.description }}</p>
+      <h3>Address :</h3>
+      <input
+        id="address"
+        v-if="address_edit"
+        v-model="attractions.address"
+        @keyup.enter="
+          address_edit = false;
+          $emit('update');
+        "
+      />
+      <div v-else>
+        <h1 @click="address_edit = true" id="desc">
+          {{ attractions.address }}
+        </h1>
+      </div>
+      <br />
+
       <a v-bind:href="attractions.link"> BOOK NOW </a>
       <!-- Link in database should have https:// in front -->
       <button>EXPLORE FOOD OPTIONS</button>
     </div>
     <div class="right">
-
-
       <div class="two ui buttons ">
-        <button v-on:click = "update_changes" class="ui green button">Done Editing</button>
-        <button class="ui red button" v-on:click="bump" :style="bumpStyle">BUMP</button>
+        <button v-on:click="update_changes" class="ui green button">
+          Done Editing
+        </button>
+        <button class="ui red button" v-on:click="bump" :style="bumpStyle">
+          BUMP
+        </button>
       </div>
-      <button class="ui button" v-on:click="$router.push({name: 'dashboard', query:{docId: doc_id}})">Dashboard</button>
+      <button
+        class="ui button"
+        v-on:click="
+          $router.push({ name: 'dashboard', query: { docId: doc_id } })
+        "
+      >
+        Dashboard
+      </button>
 
       <div class="box time" id="box2">
         <h1 id="righttitle">Operating hours</h1>
@@ -493,13 +533,11 @@
         </div>
       </div>
 
-
       <div class="box price" id="box3">
         <button id="addbutton" v-on:click="newPrice()" type="button">
           <h3>Pricing Options</h3>
           <p id="plus">&#8853;</p>
         </button>
-
 
         <ul>
           <li v-for="(field, index) in attractions.pricing" v-bind:key="index">
@@ -564,34 +602,32 @@
 <script>
 import { database } from "@/firebase/";
 import firebase from "firebase";
-
+import { storage } from "@/firebase/";
 export default {
-
-    data() {
-        return {
-            curr: 0,
-            attractions: null,
-            attractionId:this.$route.params.merchantId,
-            editedTodo: null,
-            editedTodo_tues:null,
-            editedTodo_wed:null,
-            editedTodo_thurs:null,
-            editedToDo_fri:null,
-            editedToDo_sat:null,
-            editedToDo_sun:null,
-            title_edit:null,
-            price_edit:null,
-            doc_id: null,
-            promo_edit:null,
-            bumped: false,
-        }
-    },
-
+  data() {
+    return {
+      curr: 0,
+      attractions: null,
+      attractionId: this.$route.params.merchantId,
+      editedTodo: null,
+      editedTodo_tues: null,
+      editedTodo_wed: null,
+      editedTodo_thurs: null,
+      editedToDo_fri: null,
+      editedToDo_sat: null,
+      editedToDo_sun: null,
+      title_edit: null,
+      price_edit: null,
+      address_edit: null,
+      doc_id: null,
+      promo_edit: null,
+      bumped: false,
+    };
+  },
 
   beforeCreate: function() {
     document.body.className = "details";
   },
-  
 
   created() {
     this.fetchItems();
@@ -600,12 +636,12 @@ export default {
     bumpStyle() {
       if (this.bumped == true) {
         return {
-          'background-color': 'grey',
-        }
+          "background-color": "grey",
+        };
       } else {
         return {
-          'background-color': 'red',
-        }
+          "background-color": "red",
+        };
       }
     },
     divStyle() {
@@ -619,6 +655,40 @@ export default {
   },
 
   methods: {
+    imgUpload(e) {
+      var files = e.target.files;
+      var image = files[0];
+      console.log("IMAGE");
+      console.log(image);
+      var dt = new Date().getTime();
+      var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+        /[xy]/g,
+        function(c) {
+          var r = (dt + Math.random() * 16) % 16 | 0;
+          dt = Math.floor(dt / 16);
+          return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
+        }
+      );
+      var storageRef = storage.ref();
+      var attractionRef = storageRef.child("images/attractions/" + uuid);
+      var new_pic = this.attractions.picture 
+    
+      attractionRef.put(image).then(() => {
+        
+        attractionRef
+          .getDownloadURL()
+          .then(result => {
+            console.log("after reassignment");
+            new_pic = result;
+            
+            this.attractions.picture = new_pic
+            console.log(this.attractions.picture);
+
+          });
+      })
+
+
+    },
     workingclick: function() {
       console.log("CLICKING WORKS");
     },
@@ -646,22 +716,21 @@ export default {
       }
     },
     fetchItems: function() {
-      console.log("INITIATE FIREBASE")
-      if(firebase.auth().currentUser){
-      database
-        .collection("attraction2")
-        .get()
-        .then((querySnapShot) => {
-          let item = {};
-          querySnapShot.forEach((doc) => {
-            item = doc.data();
-            var match = this.$route.params.merchantId
-            if (item.auth_id == match) {
-           
-              this.doc_id = doc.id
-              this.attractions = item 
-              console.log("WORKS")
-              console.log(this.attractions)
+      console.log("INITIATE FIREBASE");
+      if (firebase.auth().currentUser) {
+        database
+          .collection("attraction2")
+          .get()
+          .then((querySnapShot) => {
+            let item = {};
+            querySnapShot.forEach((doc) => {
+              item = doc.data();
+              var match = this.$route.params.merchantId;
+              if (item.auth_id == match) {
+                this.doc_id = doc.id;
+                this.attractions = item;
+                console.log("WORKS");
+                console.log(this.attractions);
               }
             });
           });
@@ -761,46 +830,44 @@ export default {
       this.RevertSat();
       this.RevertSun();
     },
-    bump: function(){
+    bump: function() {
       if (this.bumped == false) {
-        console.log("BUMP")
+        console.log("BUMP");
         this.bumped = true;
-        var id = this.doc_id
+        var id = this.doc_id;
         database
-            .collection("attraction2")
-            .doc(id)
-            .update({
-              bump: {
-                status: true,
-                date: new Date(),
-              },
-              bumpTimes: firebase.firestore.FieldValue.increment(1),
-            })
-        // NOTE: TESTED FOR 11 MINUTES
-        // 7 Days: 86400000 TO CHANGE!!!
-        setTimeout(this.removeBump, 60000)
-      } else {
-        alert("Attraction can only be bumped once every 7 days")
-      }
-    },
-    removeBump: function() {
-      this.bumped = false;
-      var id = this.doc_id
-      database
           .collection("attraction2")
           .doc(id)
           .update({
             bump: {
-              date: '',
-              status: false,
+              status: true,
+              date: new Date(),
             },
-          })
-      console.log("REMOVED BUMP")
-    }
-  } 
-}
-
-      
+            bumpTimes: firebase.firestore.FieldValue.increment(1),
+          });
+        // NOTE: TESTED FOR 11 MINUTES
+        // 7 Days: 86400000 TO CHANGE!!!
+        setTimeout(this.removeBump, 60000);
+      } else {
+        alert("Attraction can only be bumped once every 7 days");
+      }
+    },
+    removeBump: function() {
+      this.bumped = false;
+      var id = this.doc_id;
+      database
+        .collection("attraction2")
+        .doc(id)
+        .update({
+          bump: {
+            date: "",
+            status: false,
+          },
+        });
+      console.log("REMOVED BUMP");
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -839,7 +906,7 @@ img {
 }
 #pricefield_input {
   background-color: transparent;
-  width: 120%;
+  width: 80%;
   margin-bottom: 2%;
   font-weight: bold;
   text-transform: uppercase;
@@ -872,7 +939,6 @@ button {
   font-size: 10px;
   border: none;
 }
-
 
 .box {
   background-color: rgba(0, 0, 0, 0.342);
@@ -917,15 +983,13 @@ button {
   text-align: center;
 }
 
-
-.price ul{
-    display: flex;
-    flex-wrap: wrap;
-    list-style-type: none;
-    padding-right: 5%;
-    text-align: left;
-    margin-left: -45px;
-
+.price ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding-right: 5%;
+  text-align: left;
+  margin-left: -45px;
 }
 
 #time {
@@ -966,6 +1030,11 @@ button {
   font-size: 30px;
   line-height: 10px;
   top: 0px;
+}
+
+#address {
+  font-size: 26px;
+  float: left;
 }
 .time ul {
   list-style-type: none;
