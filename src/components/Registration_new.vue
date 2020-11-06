@@ -3,7 +3,7 @@
     <div class="ui  middle aligned center aligned grid">
       <div class="column">
         <h2 class="ui image header">
-          <div class="content" style="color: white;">
+          <div  class="content" style="color: white;">
             Fill In Your Details
           </div>
         </h2>
@@ -31,7 +31,15 @@
                 />
               </div>
             </div>
-            <button class="ui fluid large red submit button" v-on:click.prevent= "submit">
+            <div id="image">
+              <label id="image-label">Upload Verification Details</label>
+              <br/>
+              <input style="text-align: center" type="file" accept="image/png, image/jpeg" name="file-upload" value="file-upload" v-on:change="imgUpload">
+              
+              
+            </div>
+            <br/>
+            <button class="ui fluid large red submit button" v-on:click.prevent= "checkform">
               Next
             </button>
           </div>
@@ -43,21 +51,39 @@
 
 <script>
 import firebase from "firebase"
-
+import {  storage } from "@/firebase/";
 export default {
   name: "signUp",
   data() {
     return {
       email: "",
       password: "",
+      validation_photo: "",
       success: false
     };
   },
-  methods: {
+  methods: {imgUpload(e){
+        
+        var files = e.target.files;
+        var image = files[0];
+        console.log("IMAGE")
+        this.validation_photo = image
+        console.log(this.validation_photo)
+      },
+    checkform: function(){
+      if (this.validation_photo == "") {
+        alert("Please attach validation details ")
+      } else {
+        this.submit()
+      }
+    },
     submit: function() {
       var uid = null
       var success= this.success;
       var router= this.$router;
+      var validation_photo = this.validation_photo
+      
+
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
@@ -74,11 +100,17 @@ export default {
           }
         ).then(
           function(){
+            
+            // console.log("VALIDATION PHOTO")
+            // console.log(validation_photo)
             if(success){
-              console.log("successfully routed");
-              console.log(uid)
+              // console.log("successfully routed");
+              // console.log(uid)
               sessionStorage.uid = uid
-              router.push('/merchant/form');
+              var storageRef = storage.ref();
+              var attractionRef = storageRef.child('images/validation_details/' + uid);
+              attractionRef.put(validation_photo).then(router.push('/merchant/form'))
+              
             }
           } 
         )
@@ -97,4 +129,6 @@ body > .grid {
 .column {
   max-width: 600px;
 }
+.content{
+  padding-top: 50px;}
 </style>

@@ -1,35 +1,41 @@
 <template>
   <div>
     <p id="date">
-      {{activity.hour}}:{{activity.min}}
-      <br>
-      {{activity.am}}
+      {{ activity.hour }}:{{ activity.min }}
+      <br />
+      {{ activity.am }}
     </p>
-    <img v-bind:src="activity.picture">
+    <img v-bind:src="activity.picture" />
     <div id="details">
-      <p id="name">{{activity.name}}</p>
+      <p id="name">{{ activity.name }}</p>
       <location-icon></location-icon>
+
       <p id="address">{{activity.address}}</p>
+      <button id="exploreEateries">
+        <router-link :to="'/eateries/'+ activity.name">Explore Food Options</router-link>
+      </button>
     </div>
     <div id="button">
-      <button v-on:click="deleteActivity(activity.name)" type="button">x</button>
+      <button id="deleteButton" v-on:click="deleteActivity(activity.name)" type="button">x</button>
+
     </div>
   </div>
 </template>
 
 <script>
-import LocationIcon from 'vue-material-design-icons/MapMarker.vue';
+import LocationIcon from "vue-material-design-icons/MapMarker.vue";
 
 export default {
   name: "PlannedActivity.vue",
   props: {
     activity: {
       type: Object,
-    }
+    },
   },
   components: {
     LocationIcon,
   },
+
   methods: {
     deleteActivity: function(name) {
       console.log("DELETE")
@@ -39,7 +45,7 @@ export default {
         if (plannedActivities[i].name.valueOf() == name.valueOf()) {
           console.log("CHECK INDEX: " + i);
           console.log("BEFORE DELETE: " + plannedActivities.length);
-          plannedActivities.pop(i);
+          plannedActivities.splice(i, 1);
           console.log("AFTER DELETE: " + plannedActivities.length);
           sessionStorage.plannedActivities = JSON.stringify(plannedActivities);
           sessionStorage.removeItem('hour');
@@ -62,6 +68,7 @@ export default {
     border-radius: 20px;
     margin: 15px 0;
     overflow: hidden;
+    height: 200px;
   }
 
   #date {
@@ -80,13 +87,19 @@ export default {
     width: 25%;
     border-radius: 20px;
     float: left;
+    position: relative;
+    height: 75%;
+    top: 15%;
   }
 
-  h3 {
-    position: relative;
-    margin: 0;
-    left: 5%;
-  }
+
+img {
+  margin: 0 20px;
+  width: 25%;
+  border-radius: 20px;
+  float: left;
+}
+
 
   #details {
     background-color: transparent;
@@ -96,15 +109,27 @@ export default {
     text-align: left;
     position: relative;
     left: 5%;
-    top: 15px;
+    top: 20%;
     width: 50%;
   }
 
-  #name {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
+
+#details {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: left;
+  position: relative;
+  left: 5%;
+}
+
+
+#name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 
   #address {
     font-size: 16px;
@@ -115,27 +140,46 @@ export default {
     left: -4%;
   }
 
-  location-icon {
-    position: relative;
-    float: left;
-    width: 5%;
-  }
+
+
+location-icon {
+  position: relative;
+  float: left;
+  width: 5%;
+}
 
   #button {
     float: right;
     position: relative;
     padding: 5px;
     margin: 0;
-    top: -70px;
-    right: -15px;
+    top: -220px;
+    right: -20px;
     background: transparent;
   }
 
-  button {
+  #deleteButton {
     background: none;
     border: none;
     color: white;
     font-weight: bold;
+    font-size: 15px;
+  }
+
+  a {
+    color:white;
+    margin: 5px;
+  }
+
+  button{
+    background-color:rgb(255, 46, 81);
+    padding:7px 5px;
+    border-radius:20px;
+    font-weight: bolder;
+    font-size: 10px;
+    border:none;
+    position: relative;
   }
 
 </style>
+

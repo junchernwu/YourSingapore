@@ -7,7 +7,7 @@
           <router-link to="/about" exact class="small" id="about">ABOUT US </router-link>
         </a>
         <a class="item">
-         <router-link to="/merchants" exact class="small">FOR MERCHANTS</router-link>
+         <router-link to="/login" exact class="small">FOR MERCHANTS</router-link>
         </a>
         
         </nav>

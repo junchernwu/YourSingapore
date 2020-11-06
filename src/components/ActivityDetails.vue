@@ -121,16 +121,17 @@
 
 <script>
 import { database } from "@/firebase/";
+import firebase from "firebase";
 
 export default {
     data() {
         return {
-            date:'',
-            hour:0,
-            min:0,
-            am:'',
-            attractions:[],
-            attractionId:this.$route.params.id,
+          date:'',
+          hour:0,
+          min:0,
+          am:'',
+          attractions:[],
+          attractionId:this.$route.params.id,
         }
     },
     beforeCreate: function() {
@@ -149,6 +150,7 @@ export default {
       if(sessionStorage.am){
         this.am = sessionStorage.am
       }
+      this.updateViews();
     },
     created(){
         this.fetchItems();
@@ -176,19 +178,149 @@ export default {
     getAttraction:function(obj){
         return obj.find(obj => obj.id===this.$route.params.id);
     },
-      
+    checkTimingClash:function () {
+      var clash = false;
+      if (sessionStorage.plannedActivities) {
+        var activities = JSON.parse(sessionStorage.plannedActivities);
+        for (var i = 0; i < activities.length; i++) {
+          var activity = activities[Object.keys(activities)[i]];
+          var hourTiming = activity.hour;
+          var minTiming = activity.min;
+          var amTiming = activity.am;
+          // If clashing time, alert user
+          if (hourTiming == this.hour) {
+            if (minTiming == this.min) {
+              if (amTiming == this.am) {
+                clash = true;
+              }
+            }
+          }
+        }
+      }
+      if (clash) {
+        alert('There is a clash in timing with your planned activities')
+      } else {
+        // route to planner page
+        this.$router.push('/planner');
+      }
+    },
     persist:function(){
+      this.updateAdds();
+      sessionStorage.address = this.attraction.address;
       sessionStorage.hour= this.hour;
       sessionStorage.min= this.min;
       sessionStorage.am= this.am;
       sessionStorage.name = this.attraction.name;
       sessionStorage.picture = this.attraction.picture;
-      
+
+      this.checkTimingClash();
       // route to planner page
-      this.$router.push('/planner');
+     
+    },
+    
+    updateViews: function(){
+      database
+          .collection("attraction2")
+          .doc(this.attractionId).get().then((documentSnapshot) => {
+        if (documentSnapshot.exists) {
+          var currentDate1= new Date()
+          var currentDate=this.formatDate(currentDate1)
+          if(currentDate in documentSnapshot.data().stats){
+            database
+                  .collection("attraction2")
+                  .doc(this.attractionId)
+                  .update({
+                    [`stats.${currentDate}.views`]: firebase.firestore.FieldValue.increment(1)
+                  })
+          } else{
+            database
+                  .collection("attraction2")
+                  .doc(this.attractionId)
+                  .update({
+                    [`stats.${currentDate}.views`]: 1,
+                    [`stats.${currentDate}.adds`]: 0,
+                    [`stats.${currentDate}.date`]: currentDate1
+                  })
+          }
+        
+          var bumpStatus = documentSnapshot.data().bump.status;
+          if (bumpStatus == false) {
+            database
+                .collection("attraction2")
+                .doc(this.attractionId)
+                .update({
+                  notBumpViews: firebase.firestore.FieldValue.increment(1),
+                })
+          } else {
+            database
+                .collection("attraction2")
+                .doc(this.attractionId)
+                .update({
+                  bumpViews: firebase.firestore.FieldValue.increment(1),
+                })
+          }
+        }
+      });
+    },
+    updateAdds: function(){
+      database
+          .collection("attraction2")
+          .doc(this.attractionId).get().then((documentSnapshot) => {
+            if (documentSnapshot.exists) {
+                var currentDate1= new Date()
+                var currentDate=this.formatDate(currentDate1)
+                if(currentDate in documentSnapshot.data().stats){
+                  database
+                        .collection("attraction2")
+                        .doc(this.attractionId)
+                        .update({
+                          [`stats.${currentDate}.adds`]: firebase.firestore.FieldValue.increment(1)
+                        })
+                } 
+            }
+        });
+        database
+          .collection("attraction2")
+          .doc(this.attractionId).get().then((documentSnapshot) => {
+        if (documentSnapshot.exists) {
+          if(this.date in documentSnapshot.data().arrivals){
+            database
+                  .collection("attraction2")
+                  .doc(this.attractionId)
+                  .update({
+                    [`arrivals.${this.date}.numArrivals`]: firebase.firestore.FieldValue.increment(1)
+                  })
+          } else{
+            database
+                  .collection("attraction2")
+                  .doc(this.attractionId)
+                  .update({
+                    [`arrivals.${this.date}.numArrivals`]: 1,
+                  })
+          }
+        }
+      });
+    },
+    formatDate: function(date) {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+
+      if (month.length < 2) 
+          month = '0' + month;
+      if (day.length < 2) 
+          day = '0' + day;
+
+      return [year, month, day].join('-');
     }
+
+      
+
+      
+    },
   }
-}
+
 
 </script>
 
@@ -334,4 +466,5 @@ a,button{
 #box2{
   height:230px;
 }
+
 </style>  

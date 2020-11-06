@@ -8,7 +8,7 @@
         <h3 id="title1">Selected Date:</h3>
         <input type="date" id="date" name="date" v-model= "date" v-on:change="fetchData()">
         <h3 id= "title2">Weather:</h3>
-              <h3>{{Selected_weather}}</h3>
+              <h3 id="weather">{{Selected_weather}}</h3>
               <img v-bind:src="icon"/>
      
       
@@ -173,6 +173,11 @@ img{
   padding-bottom:1%;
   padding-right: 1%;
 
+}
+
+#weather{
+  position: relative;
+  left: 7%;
 }
 
 
