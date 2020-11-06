@@ -225,17 +225,19 @@ export default {
     filterbyactivity: function(obj) {
       if (this.attractionType == "all" || this.attractionType == "") {
         return obj;
-      }else{
-     var dict=[];
-        for(let key in obj){
-          for(let x in obj[key].attractionType){
-            if(obj[key].attractionType[x].name==this.attractionType){
-              
-            dict.push(obj[key]);
+      }
+      else{
+      var dict=[];
+          for(let key in obj){
+            for(let x in obj[key].attractionType){
+              if(obj[key].attractionType[x].name==this.attractionType){
+                
+              dict.push(obj[key]);
 
+            }
           }
+          return dict;
         }
-        return dict;
       }
     },
 
