@@ -214,8 +214,6 @@ export default {
       sessionStorage.picture = this.attraction.picture;
 
       this.checkTimingClash();
-      // route to planner page
-     
     },
     
     updateViews: function(){

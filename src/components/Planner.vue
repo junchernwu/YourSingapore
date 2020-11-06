@@ -20,10 +20,7 @@
 
 <script>
 import PlannedActivity from "@/components/PlannedActivity";
-
-import axios from "axios";
 import html2canvas from "html2canvas";
-
 import { storage } from "@/firebase/";
 
 export default {
@@ -37,25 +34,6 @@ export default {
   },
 
   methods: {
-
-    fetchData: async function(name) {
-      const URL =
-        "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=" +
-        name +
-        "&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
-      return await axios
-        .get(URL)
-        .then((response) => {
-          this.results = response.data.results;
-          // Only obtain the top result
-          var address = this.results[0].formatted_address;
-          console.log("ADDRESS: " + address);
-          return address;
-        })
-        .catch((error) => console.log(error));
-    },
-
-
     share: function() {
       html2canvas(document.body, { allowTaint: true, useCORS: true }).then(
         function(canvas) {
@@ -126,13 +104,11 @@ export default {
     if (sessionStorage.picture) {
       plannedActivity.picture = sessionStorage.picture
     }
-    plannedActivity.address = this.address
+    if (sessionStorage.address) {
+      plannedActivity.address = sessionStorage.address
+    }
     if(sessionStorage.name){
       plannedActivity.name = sessionStorage.name
-      this.fetchData(plannedActivity.name).then(value => {
-        plannedActivity.address = value;
-      })
-
       // add plannedActivity to plannedActivities array
       var added = false;
       for (var i = 0; i < this.plannedActivities.length; i++) {
@@ -155,13 +131,16 @@ export default {
         } else {
           if (a.hour == b.hour) {
             return a.min - b.min;
+          } else if (a.hour == 12) {
+            return -1;
+          } else if (b.hour == 12) {
+            return 1;
           } else {
             return a.hour - b.hour;
           }
         }
       });
       sessionStorage.plannedActivities = JSON.stringify(this.plannedActivities);
-      
     }
   },
 }

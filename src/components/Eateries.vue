@@ -60,10 +60,10 @@
           </select>
           <select class="dropdown" name="min" id="min" v-model="min">
             <option value="Minute">Minute</option>
-            <option value="1">00</option>
-            <option value="2">15</option>
-            <option value="3">30</option>
-            <option value="4">45</option>
+            <option value="00">00</option>
+            <option value="15">15</option>
+            <option value="30">30</option>
+            <option value="45">45</option>
           </select>
           <select class="dropdown" name="am" id="am" v-model="am">
             <option value="am">am</option>
@@ -166,6 +166,32 @@ export default {
       this.item = x;
       console.log(this.search);
     },
+    checkTimingClash:function () {
+      var clash = false;
+      if (sessionStorage.plannedActivities) {
+        var activities = JSON.parse(sessionStorage.plannedActivities);
+        for (var i = 0; i < activities.length; i++) {
+          var activity = activities[Object.keys(activities)[i]];
+          var hourTiming = activity.hour;
+          var minTiming = activity.min;
+          var amTiming = activity.am;
+          // If clashing time, alert user
+          if (hourTiming == this.hour) {
+            if (minTiming == this.min) {
+              if (amTiming == this.am) {
+                clash = true;
+              }
+            }
+          }
+        }
+      }
+      if (clash) {
+        alert('There is a clash in timing with your planned activities')
+      } else {
+        // route to planner page
+        this.$router.push('/planner');
+      }
+    },
     persist: function(item) {
       sessionStorage.hour = this.hour;
       sessionStorage.min = this.min;
@@ -174,7 +200,7 @@ export default {
       sessionStorage.picture = this.get_pic(item.photos[0].photo_reference);
       sessionStorage.address = item.formatted_address.trim();
       console.log(item.formatted_address.trim());
-      this.$router.push("/planner");
+      this.checkTimingClash();
     },
   },
   beforeCreate: function() {
