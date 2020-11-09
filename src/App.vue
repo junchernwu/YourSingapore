@@ -8,7 +8,6 @@
 <script>
 import Header from './components/Header.vue'
 import ActivityListHeader from './components/ActivityListHeader.vue'
-//import Home from './components/Home.vue'
 
 export default {
   name: 'App',
@@ -41,51 +40,42 @@ body {
   background-color: #0A223D;
 }
 
-body.home {
+body:global(.home) {
   background-image: url(./assets/IndexBG.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-body.about {
+body:global(.about) {
   background-image: url(./assets/AboutBG.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
-body.date {
+body:global(.date) {
   background-image: url(./assets/DateBG.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
-body.location{
+body:global(.location) {
   background-image: url(./assets/LocationBG.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
-body.activityList{
+body:global(.activityList) {
   background-color: #0A223D;
 }
-body.reminder{
+body:global(.reminder) {
   background-image: url(./assets/ReminderBG.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
-body.merchants{
-  background-color: #0A223D;
-}
-body.details{
-  background-color: #0A223D;
-}
-body.dashboard{
-  background-color: #0A223D;
-}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
 }
-
 
 </style>
 
