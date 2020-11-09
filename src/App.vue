@@ -36,38 +36,38 @@ html,body {
   min-height: 100vh;
 }
 
-body {
-  background-color: #0A223D;
-}
-
-body:global(.home) {
+body.home {
   background-image: url(./assets/IndexBG.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-body:global(.about) {
+body.about {
   background-image: url(./assets/AboutBG.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
-body:global(.date) {
+body.date {
   background-image: url(./assets/DateBG.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
-body:global(.location) {
+body.location {
   background-image: url(./assets/LocationBG.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
-body:global(.activityList) {
+body.activityList {
   background-color: #0A223D;
 }
-body:global(.reminder) {
+body.reminder {
   background-image: url(./assets/ReminderBG.png);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+body {
+  background-color: #0A223D;
 }
 
 #app {
