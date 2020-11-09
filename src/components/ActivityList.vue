@@ -136,6 +136,7 @@ export default {
       pricerange: "",
       demographic: "",
       days: [],
+      date:""
     };
   },
 
@@ -167,11 +168,44 @@ export default {
         .then((querySnapShot) => {
           let item = {};
           querySnapShot.forEach((doc) => {
-            item = doc.data();
-            item.id = doc.id;
-            this.attractions.push(item);
+              this.getDay(this.date);
+              console.log(doc.data().openDays)
+            if(doc.data().openDays.includes(this.date)){
+              item = doc.data();
+              item.id = doc.id;
+              this.attractions.push(item);
+            }
           });
+          console.log(this.attractions);
         });
+    },
+    getDay: function(obj){
+      var parts = obj.split('-')
+      var year = parseInt(parts[0],10)
+      var month = parseInt(parts[1],10) -1
+      var day = parseInt(parts[2],10)
+      var date=new Date(year,month,day)
+      if(date.getDay()==0){
+        this.date="sun"
+      }
+      else if(date.getDay()==1){
+        this.date="mon"
+      }
+      else if(date.getDay()==2){
+        this.date="tue"
+      }
+      else if(date.getDay()==3){
+        this.date="wed"
+      }
+      else if(date.getDay()==4){
+        this.date="thu"
+      }
+      else if(date.getDay()==5){
+        this.date="fri"
+      }
+      else if(date.getDay()==6){
+        this.date="sat"
+      }
     },
 
     sortItems: function(obj) {
@@ -280,6 +314,8 @@ export default {
   mounted() {
     if (sessionStorage.date) {
       this.location = sessionStorage.location;
+      this.date = sessionStorage.date;
+      console.log(this.date);
     }
   },
   beforeCreate: function() {
