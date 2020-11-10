@@ -1,6 +1,5 @@
 <template>
   <div class="main">
-      
       <h1 id="title"> Start Your Local<br>Journey Here </h1> 
       <p> Plan your vacation and support our local tourism <br>during this covid period </p>
       <button v-on:click= "$router.push('/date')"> START </button>

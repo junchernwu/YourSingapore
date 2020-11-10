@@ -1,9 +1,5 @@
 <template>
   <div id="main">
-       
-
-
-
     <h1>Register Your Attraction!</h1>
     <form>
       <!-- name and number -->
@@ -510,44 +506,27 @@
 
       <!-- Price Range -->
       <div class="select-options">
-        <select name="price-range" id="price-range" v-model="attraction.pricerange">
-          <option value="" disabled selected>Price Range</option>
-          <option value="$0 - $20">$0 - $20</option>
-          <option value="$20 - $50">$20 - $50</option>
-          <option value="$50 - $100">$50 - $100</option>
-          <option value="> $100">> $100</option>
-        </select>
+        <multiselect id="priceRange" v-model="attraction.priceRange" placeholder="Price Range" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="promotionOptions" :multiple="false" :taggable="true" @tag="addTag" open-direction="bottom" :max-height="150"></multiselect>
       </div>
       <!-- Location -->
       <div class="select-options">
-        <select name="location" id="location" v-model="attraction.location">
-          <option value="" disabled selected>Location</option>
-          <option value="North">North</option>
-          <option value="South">South</option>
-          <option value="East">East</option>
-          <option value="West">West</option>
-          <option value="Central">Central</option>
-        </select>
+        <multiselect id="location" v-model="attraction.location" placeholder="Location" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="locationOptions" :multiple="false" :taggable="true" @tag="addTag" open-direction="bottom" :max-height="150"></multiselect>
       </div>
 
       <!-- Promotion Type -->
-      
       <div class="select-options">
-        <multiselect id="promotionType" v-model="attraction.promotiontype" placeholder="Promotion Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="promotionOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
+        <multiselect id="promotionType" v-model="attraction.promotiontype" placeholder="Promotion Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="promotionOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom" :max-height="150"></multiselect>
       </div>
 
       <!-- Attraction Type -->
       <div class="select-options">
-
-
-        <multiselect id="attractionType" v-model="attraction.attractionType" placeholder="Attraction Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="typeOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
+        <multiselect id="attractionType" v-model="attraction.attractionType" placeholder="Attraction Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="typeOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom" :max-height="150"></multiselect>
       </div>
 
       <!-- Demographic Type -->
       <div class="select-options">
-        <multiselect id="demographicType" v-model="attraction.demographicType" placeholder="Demographic Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="demographicOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom"></multiselect>
+        <multiselect id="demographicType" v-model="attraction.demographicType" placeholder="Demographic Type" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="demographicOptions" :multiple="true" :taggable="true" @tag="addTag" open-direction="bottom" :max-height="150"></multiselect>
       </div>
-
 
       <div class="submit">
         <button class="ui button" v-on:click.prevent="addItem">Submit</button>
@@ -581,8 +560,6 @@
             { name: 'Javascript', code: 'js' },
             { name: 'Open Source', code: 'os' },
         ],
-        // Multi-select
-
 
         attraction: {
           auth_id: null,
@@ -726,12 +703,27 @@
 
         },
 
+        priceOptions: [
+          {name: '$0 - $20', code: '$0 - $20'},
+          {name: '$20 - $50', code: '$20 - $50'},
+          {name: '$50 - $100', code: '$50 - $100'},
+          {name: '> $100', code: '> $100'},
+        ],
+
         typeOptions: [
           { name: 'Exhibitions', code: 'ex' },
           { name: 'Museum', code: 'mu' },
           { name: 'Nature', code: 'na' },
           { name: 'Sightseeing', code: 'si' },
           { name: 'Sports', code: 'sp' },
+        ],
+
+        locationOptions: [
+          {name: 'North', code: 'North'},
+          {name: 'South', code: 'South'},
+          {name: 'East', code: 'East'},
+          {name: 'West', code: 'West'},
+          {name: 'Central', code: 'Central'}
         ],
 
         demographicOptions: [
@@ -754,20 +746,15 @@
         weekday: false,
         weekend: false,
         everyday: false,
-        
-    
-    
       }
     },
     methods: {
       addTag (newTag) {
-
-      const tag = {
-        name: newTag,
-        code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
-      }
-      this.attraction.attractionType.push(tag)
-
+        const tag = {
+          name: newTag,
+          code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
+        }
+        this.attraction.attractionType.push(tag)
     },
 
       checkOperatingHourFilled(){
@@ -805,7 +792,6 @@
         return (this.attraction.picture != '')
       },
       addItem(){
-
         console.log(this.checkOperatingHourFilled())
         if (this.checkNameFilled() == false) {
           alert("Please Fill Up the Attraction's Name")
@@ -1197,6 +1183,7 @@
     margin: 20px;
     text-align: center;
   }
+
   form {
     display: flex;
     flex-direction: column;
@@ -1307,33 +1294,32 @@
   .select-options {
     width: calc(100% - 30px);
     margin: 10px 15px 0px;
-    height: 2em;
-    background-color: rgba(255,248,248,0.2);
-    border-radius: 20px;
+    height: 3em;
+    background-color: white;
+    border-radius: 10px;
   }
-  .select-options select {
-    width: calc(100% - 20px);
-    padding: 5px;
-    background-color: transparent;
-    border: none;
-    color: white;
-  }
-
 
   /* submit button styling */
   .submit {
     margin: 20px 15px;
+    height: 200px;
   }
   .ui.button {
     float: right;
   }
 
-
-  .ui.dropdown {
-    max-width: 800px;
-  }
 </style>
 
 /* MULTI-SELECT STYLING */
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+
+<style>
+  /* multiselect styling */
+  .multiselect__tags {
+    border-radius: 100px;
+    border: none;
+    padding: 10px 40px 0px 20px;
+    font-weight: 600;
+  }
+</style>
