@@ -293,31 +293,31 @@ export default {
 h1 {
   color: paleturquoise;
 }
-a {
-  color: white;
-  font-weight: lighter;
+a{
+  
+  color:white;
+  font-weight:lighter;
 }
 p {
-  padding: 2px;
-  color: #2c3e50;
+  padding: 2%;
+  color:#2c3e50;
   float: left;
+  
 }
-
 nav {
   float: left;
-  width: 18%;
-  padding-left: 30px;
-  padding-top: 200px;
-  height: 800px;
-  position: fixed;
+  width:18%;
+  padding-left: 2%;
+  padding-top: 15%;
+  height: 100%;
+  position:fixed;
 }
-.bar {
+.bar{
   float: left;
   padding-right:20%;
 }
-#filters {
-  position: static;
-
+#filters{
+  position:static;
   float:center;
   padding-top:10%;
   color: whitesmoke;
@@ -331,18 +331,14 @@ nav {
   border-radius: 2%;
   margin-left: 10%;
 }
-
-#content {
+#content{
   float: right;
   padding-top: 13%;
   width:85%;
-
 }
 section{
 height:100%px;
-
 }
-
 #attractions {
   width: 100%;
   max-width: 100%;
@@ -355,21 +351,17 @@ img{
   height: 200px;
   border-radius:5%;
 }
-
-
 ul{
     display: flex;
     flex-wrap: wrap;
     list-style-type: none;
     padding-left: 8%;
 }
-
 li{
     flex-grow: 1;
     flex-basis: 300px;
     text-align: center;
     padding: 3%;
-
 }
 input{
   
@@ -380,5 +372,4 @@ input{
   position:relative;
   left:6%;
 }
-
 </style>
