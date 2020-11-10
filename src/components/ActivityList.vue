@@ -246,14 +246,14 @@ export default {
       if (this.location == "all" || this.location == "") {
         return obj;
       } else {
-        return obj.filter((obj) => obj.location == this.location);
+        return obj.filter((obj) => obj.location.name == this.location);
       }
     },
     filterbyprice: function(obj) {
       if (this.pricerange == "all" || this.pricerange == "") {
         return obj;
       } else {
-        return obj.filter((obj) => obj.pricerange == this.pricerange);
+        return obj.filter((obj) => obj.pricerange.name == this.pricerange);
       }
     },
     filterbyactivity: function(obj) {

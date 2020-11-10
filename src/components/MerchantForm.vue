@@ -506,7 +506,7 @@
 
       <!-- Price Range -->
       <div class="select-options">
-        <multiselect id="priceRange" v-model="attraction.priceRange" placeholder="Price Range" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="promotionOptions" :multiple="false" :taggable="true" @tag="addTag" open-direction="bottom" :max-height="150"></multiselect>
+        <multiselect id="priceRange" v-model="attraction.priceRange" placeholder="Price Range" label="name" select-label="Click to Select" deselect-label="Click to Remove" track-by="code" :options="priceOptions" :multiple="false" :taggable="true" @tag="addTag" open-direction="bottom" :max-height="150"></multiselect>
       </div>
       <!-- Location -->
       <div class="select-options">
