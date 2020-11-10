@@ -12,12 +12,11 @@
 </template>
 
 <script>
-export default {
-     beforeCreate: function() {
-        document.body.className = 'about';
-    }
-}
-
+  export default {
+       beforeCreate: function() {
+          document.body.className = 'about';
+      }
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

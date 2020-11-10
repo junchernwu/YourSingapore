@@ -12,9 +12,7 @@
       </div>
     </div>
     <div v-for="field in fieldsList" v-bind:key="field.id">
-
       <PricingOptionField v-bind:count="count" v-bind:id="field.id" v-bind:attractionId="attraction.pricing[field.id]"></PricingOptionField>
-
     </div>
   </div>
 </template>
@@ -115,5 +113,6 @@ export default {
     color: white;
     border-radius: 20px;
   }
+
 </style>
 
