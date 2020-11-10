@@ -2,7 +2,7 @@
    <div>
     
      
-     <header :style="{ background:'url('+picture+')'}">
+     <header :style="{ background:'url('+picture+')',backgroundSize: 'cover' } ">
       
         <h2>Trip <br> Details</h2>
         <h3 id="title1">Selected Date:</h3>
@@ -22,9 +22,9 @@
 
 
 <script>
-import rain from '@/assets/Rain.jpg';
+import rain from '@/assets/Rain4.jpg';
 import cloud from '@/assets/Cloud.jpg';
-import sunny from '@/assets/sunny.jpg';
+import sunny from '@/assets/sunny9.jpg';
 import axios from 'axios'
 
 
@@ -79,12 +79,14 @@ export default {
         
         this.picture= rain;
         
-      }else if(x.includes("clouds")){
-       this.picture=cloud;
+      }else if(x.includes("Broken")){
+        this.picture=sunny;
+       
         
       }
       else{
-        this.picture=sunny;
+        this.picture=cloud;
+        
       }
 
 

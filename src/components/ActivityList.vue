@@ -409,11 +409,4 @@ input{
   position:relative;
   left:6%;
 }
-<<<<<<< HEAD
 </style>
-=======
-
-</style>
-
-
->>>>>>> 094220cb62739cc3315f2a7d82a5686213027928
