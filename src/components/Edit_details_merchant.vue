@@ -104,18 +104,20 @@
                 </select>
                 <select
                   id="dropdown"
+                  class="dropdown"
                   name="min"
                   v-model="time.min"
                   @keyup.enter="
                     RevertMonday();
                     $emit('update');
                   "
-                  >>
-                  
-                  <option value="10">00</option>
-                  <option value="20">15</option>
+                  >
+                  <option value="00">00</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
                   <option value="30">30</option>
-                  <option value="45">45</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
                 </select>
                 <select
                   id="dropdown"
@@ -176,10 +178,12 @@
                   "
                   >>
                   
-                  <option value="10">00</option>
-                  <option value="20">15</option>
+                  <option value="00">00</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
                   <option value="30">30</option>
-                  <option value="45">45</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
                 </select>
                 <select
                   class="dropdown"
@@ -241,10 +245,12 @@
                   "
                   >>
                   
-                  <option value="10">00</option>
-                  <option value="20">15</option>
+                  <option value="00">00</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
                   <option value="30">30</option>
-                  <option value="45">45</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
                 </select>
                 <select
                   id="dropdown"
@@ -306,10 +312,12 @@
                   "
                   >>
                  
-                  <option value="10">00</option>
-                  <option value="20">15</option>
+                  <option value="00">00</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
                   <option value="30">30</option>
-                  <option value="45">45</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
                 </select>
                 <select
                   class="dropdown"
@@ -373,10 +381,12 @@
                   "
                   >>
                   
-                  <option id="dropdown" value="10">00</option>
-                  <option id="dropdown" value="20">15</option>
-                  <option id="dropdown" value="30">30</option>
-                  <option id="dropdown" value="45">45</option>
+                  <option value="00">00</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
                 </select>
                 <select
                   class="dropdown"
@@ -436,12 +446,14 @@
                     RevertSat();
                     $emit('update');
                   "
-                  >>
+                  >
                   
-                  <option id="dropdown" value="10">00</option>
-                  <option id="dropdown" value="20">15</option>
-                  <option id="dropdown" value="30">30</option>
-                  <option id="dropdown" value="45">45</option>
+                  <option value="00">00</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
                 </select>
                 <select
                   class="dropdown"
@@ -501,11 +513,13 @@
                     RevertSun();
                     $emit('update');
                   "
-                  >>
-                  <option id="dropdown" value="10">00</option>
-                  <option id="dropdown" value="20">15</option>
-                  <option id="dropdown" value="30">30</option>
-                  <option id="dropdown" value="45">45</option>
+                  >
+                  <option value="00">00</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                  <option value="40">40</option>
+                  <option value="50">50</option>
                 </select>
                 <select
                   class="dropdown"
@@ -516,7 +530,7 @@
                     RevertSun();
                     $emit('update');
                   "
-                  >>
+                  >
                   <option id="dropdown" value="am">am</option>
                   <option id="dropdown" value="pm">pm</option>
                 </select>
