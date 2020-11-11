@@ -2,8 +2,8 @@
   <div class="main">
     <h1 id="title"> When would you <br> like to go? </h1> 
     
-      <input type="date" id="date" name="date" v-model= "date">
-      <button v-on:click= "persist();$router.push('/location')">></button>
+      <input type="date" id="date" name="date" v-model= "date" min="">
+      <button v-on:click= "persist()">></button>
       
   </div>
 </template>
@@ -20,6 +20,8 @@ export default {
         document.body.className = 'date';
   },
   mounted() {
+    document.getElementById("date").min= new Date().toISOString().split("T")[0];
+    console.log(document.getElementById("date").min)
     if (sessionStorage.date) {
       this.date = sessionStorage.date;
       
@@ -27,9 +29,13 @@ export default {
   },
   methods:{
     persist:function(){
-      sessionStorage.date= this.date;
+      if(document.getElementById("date").value==""){
+        alert("Date input required");
+      }else{
+        sessionStorage.date= this.date;
+        this.$router.push('/location');
+      }
     }
-    
   }
 
 }
