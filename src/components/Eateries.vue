@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <iframe
         frameborder="0"
-        style="width: 100%; height: 350px; border:0"
+        style="width: 100%; height: 250px; border:0"
         v-bind:src="
           'https://www.google.com/maps/embed/v1/directions?key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI&mode=walking&origin=' +
             this.origin +
@@ -124,7 +124,7 @@ export default {
       console.log(this.origin);
       const URL =
         "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" 
-        +"singapore"+this.origin  + "&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
+        +"Singapore"+this.origin + "&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
       axios
         .get(URL)
         .then((response) => {
@@ -208,6 +208,7 @@ export default {
   },
   created() {
     this.fetchData();
+    console.log(this.final_results)
   },
   mounted() {
     if (sessionStorage.date) {
@@ -243,7 +244,7 @@ button {
 }
 .innerbox {
   background-color: rgba(82, 82, 100, 0.554);
-  width: 165%;
+  width: 180%;
   border-radius: 20px;
   padding-left: 5%;
   padding-top: 1%;
@@ -292,8 +293,7 @@ nav {
   float: left;
   padding-right: 200px;
 }
-#btn {
-}
+
 #content {
   float: right;
   padding: 0px;
