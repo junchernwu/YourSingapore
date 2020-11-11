@@ -11,13 +11,12 @@
       <location-icon></location-icon>
 
       <p id="address">{{activity.address}}</p>
-      <button id="exploreEateries">
+      <button id="exploreEateries" v-show="activity.exploreFood == 'true'">
         <router-link :to="'/eateries/'+ activity.name">Explore Food Options</router-link>
       </button>
     </div>
     <div id="button">
       <button id="deleteButton" v-on:click="deleteActivity(activity.name)" type="button">x</button>
-
     </div>
   </div>
 </template>

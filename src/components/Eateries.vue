@@ -192,6 +192,14 @@ export default {
         this.$router.push('/planner');
       }
     },
+    checkTimingFilled: function() {
+      if (this.hour == 0) {
+        if (this.min == 0) {
+          return false
+        }
+      }
+      return true
+    },
     persist: function(item) {
       sessionStorage.hour = this.hour;
       sessionStorage.min = this.min;
@@ -199,8 +207,13 @@ export default {
       sessionStorage.name = item.name;
       sessionStorage.picture = this.get_pic(item.photos[0].photo_reference);
       sessionStorage.address = item.formatted_address.trim();
+      sessionStorage.exploreFood = false;
       console.log(item.formatted_address.trim());
-      this.checkTimingClash();
+      if (this.checkTimingFilled()) {
+        this.checkTimingClash();
+      } else {
+        alert('Please Select a Timing')
+      }
     },
   },
   beforeCreate: function() {

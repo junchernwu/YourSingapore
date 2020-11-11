@@ -16,8 +16,8 @@
 
           <p id="timetitle"> {{date}}</p>
           <select class="dropdown" name="hour" id="hour" v-model="hour">
-            <option value="Hour">Hour</option>
-            <option value="1">1</option>
+              <option value="0" disabled selected>Hour</option>
+              <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -31,8 +31,8 @@
               <option value="12">12</option>
           </select>
           <select class="dropdown" name="min" id="min" v-model="min">
-            <option value="Minute">Minute</option>
-            <option value="00">00</option>
+              <option value="0" disabled selected>Minute</option>
+              <option value="00">00</option>
               <option value="15">15</option>
               <option value="30">30</option>
               <option value="45">45</option>
@@ -129,7 +129,7 @@ export default {
           date:'',
           hour:0,
           min:0,
-          am:'',
+          am:'am',
           attractions:[],
           attractionId:this.$route.params.id,
         }
@@ -204,6 +204,14 @@ export default {
         this.$router.push('/planner');
       }
     },
+    checkTimingFilled: function() {
+      if (this.hour == 0) {
+        if (this.min == 0) {
+          return false
+        }
+      }
+      return true
+    },
     persist:function(){
       this.updateAdds();
       sessionStorage.address = this.attraction.address;
@@ -212,8 +220,12 @@ export default {
       sessionStorage.am= this.am;
       sessionStorage.name = this.attraction.name;
       sessionStorage.picture = this.attraction.picture;
-
-      this.checkTimingClash();
+      sessionStorage.exploreFood = true;
+      if (this.checkTimingFilled()) {
+        this.checkTimingClash();
+      } else {
+        alert('Please Select a Timing')
+      }
     },
     
     updateViews: function(){
@@ -312,10 +324,6 @@ export default {
 
       return [year, month, day].join('-');
     }
-
-      
-
-      
     },
   }
 

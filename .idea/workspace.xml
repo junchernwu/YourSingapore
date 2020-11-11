@@ -21,7 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4568f15a-a55f-427b-9b9e-5331926c56c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dailystats.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dailystats.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ActivityDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ActivityDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Eateries.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Eateries.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PlannedActivity.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PlannedActivity.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Planner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Planner.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +90,7 @@
       <workItem from="1602916592814" duration="620000" />
       <workItem from="1604946398344" duration="2859000" />
       <workItem from="1604978722606" duration="3598000" />
-      <workItem from="1605071114310" duration="7131000" />
+      <workItem from="1605071114310" duration="9304000" />
     </task>
     <servers />
   </component>
@@ -169,6 +172,12 @@
           <line>571</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/ActivityDetails.vue</url>
+          <line>177</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
