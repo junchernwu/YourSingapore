@@ -581,7 +581,6 @@
                     $emit('update');
                   "
                 />
-
                 <div @click="price_edit = true" v-else>
                   <p id="valueCategory">{{ field.category }}</p>
                   <p id="valuePrice">{{ field.price }}</p>
@@ -593,17 +592,17 @@
       </div>
       <div class="box" id="box4" @click="promo_edit = true">
         <h1 id="righttitle">Promotions</h1>
-        <input
-          class="pricefield_input"
-          v-if="promo_edit"
-          v-model="attractions.promotions"
-          @keyup.enter="
-            promo_edit = false;
-            $emit('update');
-          "
+        <textarea
+            rows="4"
+            v-if="promo_edit"
+            v-model="attractions.promotions"
+            @keyup.enter="
+              promo_edit = false;
+              $emit('update');
+            "
         />
         <div v-else>
-          <h1>{{ attractions.promotions }}</h1>
+          <h4>{{ attractions.promotions }}</h4>
         </div>
       </div>
     </div>
@@ -1091,6 +1090,17 @@ input {
   width: calc(100% - 40px);
   text-align: center;
 }
+
+textarea {
+  background-color: transparent;
+  color: white;
+  border: 1px solid lightblue;
+  padding: 5px 10px;
+  margin: 5px 10px;
+  width: calc(100% - 40px);
+  text-align: left;
+}
+
 ::placeholder {
   color: white;
   text-align: center;
