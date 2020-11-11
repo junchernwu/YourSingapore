@@ -860,7 +860,7 @@ export default {
           });
         // NOTE: TESTED FOR 11 MINUTES
         // 7 Days: 86400000 TO CHANGE!!!
-        setTimeout(this.removeBump, 60000);
+        setTimeout(this.removeBump, 1000);
       } else {
         alert("Attraction can only be bumped once every 7 days");
       }
@@ -873,8 +873,8 @@ export default {
         .doc(id)
         .update({
           bump: {
-            date: "",
             status: false,
+            date: "",
           },
         });
       console.log("REMOVED BUMP");

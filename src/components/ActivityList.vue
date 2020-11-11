@@ -81,9 +81,9 @@
             <i class="dropdown icon"></i>
             <option value="">Price range</option>
             <option value="all">All</option>
-            <option value="$0-$20">$0 - $20</option>
-            <option value="$20-$50">$20 - $50</option>
-            <option value="$50-$100">$50 - $100</option>
+            <option value="$0 - $20">$0 - $20</option>
+            <option value="$20 - $50">$20 - $50</option>
+            <option value="$50 - $100">$50 - $100</option>
             <option value=">$100">> $100</option>
           </select>
           <br />
