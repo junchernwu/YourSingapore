@@ -169,7 +169,7 @@ export default {
           let item = {};
           querySnapShot.forEach((doc) => {
               this.getDay(this.date);
-              console.log(doc.data().openDays)
+              //console.log(doc.data().openDays)
             if(doc.data().openDays.includes(this.date)){
               item = doc.data();
               item.id = doc.id;
@@ -309,7 +309,13 @@ export default {
     },
   },
   created() {
-    this.fetchItems();
+    if(this.date==sessionStorage.date){
+      this.fetchItems();
+    }
+    else{
+      this.date=sessionStorage.date;
+      this.fetchItems();
+    }
   },
   mounted() {
     if (sessionStorage.date) {

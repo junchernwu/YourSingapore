@@ -6,7 +6,7 @@
       
         <h2>Trip <br> Details</h2>
         <h3 id="title1">Selected Date:</h3>
-        <input type="date" id="date" name="date" v-model= "date" v-on:change="fetchData()">
+        <input type="date" id="date" name="date" v-model= "date" v-on:change="setDate();reload();fetchData()">
         <h3 id= "title2">Weather:</h3>
               <h3 id="weather">{{Selected_weather}}</h3>
               <img v-bind:src="icon"/>
@@ -50,8 +50,15 @@ export default {
 
 
   methods:{
-    
+    setDate: function(){
+      sessionStorage.date=this.date
+    },
+    reload: function(){
+      document.location.reload()
+    },
     fetchData : function(){
+      console.log(sessionStorage.date)
+      
         axios.get('https://api.weatherbit.io/v2.0/forecast/daily?city=Singapore&key=782b9a2558104ec1898b21424a5780b4').then(response=>{
         this.weather_results=response.data.data
    
@@ -68,8 +75,6 @@ export default {
         }
           this.picture_display();
     }).catch(error => console.log(error))
-
-  
     
     },
     picture_display:function(){
@@ -101,6 +106,7 @@ export default {
 
 
   mounted() {
+    document.getElementById("date").min= new Date().toISOString().split("T")[0]
     if (sessionStorage.date) {
       this.date = sessionStorage.date;
       
