@@ -41,9 +41,9 @@
         "
       />
       <div v-else>
-        <h1 @click="address_edit = true" id="desc">
+        <h4 @click="address_edit = true" id="desc">
           {{ attractions.address }}
-        </h1>
+        </h4>
       </div>
       <br />
 
@@ -1044,6 +1044,9 @@ button {
   position: relative;
   left: -0.3em;
   text-align: center;
+  white-space: nowrap;
+  margin-right: 20px;
+  margin-left: 5px;
 }
 
 #valuePrice {
@@ -1057,8 +1060,12 @@ button {
 }
 
 #address {
-  font-size: 26px;
+  font-size: 14px;
   float: left;
+  position: relative;
+  left: -10px;
+  top: -10px;
+  text-align: left;
 }
 .time ul {
   list-style-type: none;
