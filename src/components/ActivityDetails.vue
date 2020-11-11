@@ -420,9 +420,9 @@ a,button{
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
-  padding-right: 5%;
+  padding: 0% 5%;
   text-align: left;
-  margin-left:-45px;
+  margin-left: -3%;
 }
 .price li{
   flex-grow: 1;
@@ -441,6 +441,7 @@ a,button{
   text-transform: uppercase;
   font-size:30px;
   line-height: 10px;
+  white-space: nowrap;
 }
 .time ul{
   list-style-type: none;

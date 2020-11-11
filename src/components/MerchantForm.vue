@@ -695,12 +695,6 @@
         { name: 'Wheelchair-Friendly', code: 'whe' },
       ],
 
-
-         
-        
-          
-
-
         },
 
         priceOptions: [

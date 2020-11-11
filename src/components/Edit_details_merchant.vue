@@ -41,9 +41,9 @@
         "
       />
       <div v-else>
-        <h1 @click="address_edit = true" id="desc">
+        <h4 @click="address_edit = true" id="desc">
           {{ attractions.address }}
-        </h1>
+        </h4>
       </div>
       <br />
 
@@ -560,9 +560,9 @@
                   x
                 </button>
               </div>
-              <div :style="divStyle">
+              <div id="price">
                 <input
-                  id="pricefield_input"
+                  class="catfield_input"
                   v-if="price_edit"
                   v-model="field.category"
                   @keyup.enter="
@@ -570,23 +570,20 @@
                     $emit('update');
                   "
                 />
-
                 <br />
                 <input
-                  id="pricefield_input"
+                  class="pricefield_input"
                   v-if="price_edit"
                   type="text"
-                  class="price"
                   v-model="field.price"
                   @keyup.enter="
                     price_edit = false;
                     $emit('update');
                   "
                 />
-
                 <div @click="price_edit = true" v-else>
-                  <p id="value">{{ field.category }}</p>
-                  <p id="value">{{ field.price }}</p>
+                  <p id="valueCategory">{{ field.category }}</p>
+                  <p id="valuePrice">{{ field.price }}</p>
                 </div>
               </div>
             </div>
@@ -595,17 +592,17 @@
       </div>
       <div class="box" id="box4" @click="promo_edit = true">
         <h1 id="righttitle">Promotions</h1>
-        <input
-          id="pricefield_input"
-          v-if="promo_edit"
-          v-model="attractions.promotions"
-          @keyup.enter="
-            promo_edit = false;
-            $emit('update');
-          "
+        <textarea
+            rows="4"
+            v-if="promo_edit"
+            v-model="attractions.promotions"
+            @keyup.enter="
+              promo_edit = false;
+              $emit('update');
+            "
         />
         <div v-else>
-          <h1>{{ attractions.promotions }}</h1>
+          <h4>{{ attractions.promotions }}</h4>
         </div>
       </div>
     </div>
@@ -656,14 +653,6 @@ export default {
           "background-color": "red",
         };
       }
-    },
-    divStyle() {
-      return {
-        "border-radius": "50px",
-        margin: "5px 5px",
-        float: "left",
-        width: "calc(" + 100 / this.count + "%" + " - 10px",
-      };
     },
   },
 
@@ -917,15 +906,30 @@ img {
   float: left;
   clear: both;
 }
-#pricefield_input {
+.catfield_input {
   background-color: transparent;
-  width: 80%;
+  width: calc(85% - 12px);
+  margin: 5px 0px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 15px;
+  padding-right: 3px;
+  text-align: center;
+  position: relative;
+  left: -12px;
+  top: 10px;
+}
+.pricefield_input {
+  background-color: transparent;
+  width: calc(85% - 12px);
   margin-bottom: 2%;
   font-weight: bold;
   text-transform: uppercase;
   font-size: 15px;
-  padding-right: 3%;
-  text-align: left;
+  padding-right: 3px;
+  text-align: center;
+  position: relative;
+  top: 10px;
 }
 
 #title {
@@ -987,15 +991,6 @@ button {
 #date {
   color: gray;
 }
-#total {
-  display: flex;
-  justify-content: center;
-  margin-top: -20px;
-  flex-grow: 1;
-  flex-basis: 50px;
-  border-radius: 5px;
-  text-align: center;
-}
 
 .price ul {
   display: flex;
@@ -1023,9 +1018,9 @@ button {
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
-  padding-right: 5%;
+  padding: 5px;
   text-align: left;
-  margin-left: -45px;
+  margin: 0;
 }
 .price li {
   flex-grow: 1;
@@ -1033,22 +1028,44 @@ button {
   height: 150px;
   border-radius: 10px;
   text-align: center;
-  padding: 5%;
-  padding-top: 6%;
+  padding: 5px 10px;
   margin: 10px;
   background-color: rgba(82, 82, 100, 0.554);
 }
-#value {
+#price {
+  position: relative;
+  top: 25px;
+}
+#valueCategory {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 30px;
   line-height: 10px;
-  top: 0px;
+  position: relative;
+  left: -0.3em;
+  text-align: center;
+  white-space: nowrap;
+  margin-right: 20px;
+  margin-left: 5px;
+}
+
+#valuePrice {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 30px;
+  line-height: 10px;
+  position: relative;
+  left: 0.1em;
+  text-align: center;
 }
 
 #address {
-  font-size: 26px;
+  font-size: 14px;
   float: left;
+  position: relative;
+  left: -10px;
+  top: -10px;
+  text-align: left;
 }
 .time ul {
   list-style-type: none;
@@ -1080,6 +1097,17 @@ input {
   width: calc(100% - 40px);
   text-align: center;
 }
+
+textarea {
+  background-color: transparent;
+  color: white;
+  border: 1px solid lightblue;
+  padding: 5px 10px;
+  margin: 5px 10px;
+  width: calc(100% - 40px);
+  text-align: left;
+}
+
 ::placeholder {
   color: white;
   text-align: center;
@@ -1094,9 +1122,9 @@ input {
 }
 #button {
   float: left;
-  top: 10;
-  right: 30;
-  margin-top: -10px;
+  position: relative;
+  top: 5px;
+  left: 5px;
 }
 button {
   background: none;
