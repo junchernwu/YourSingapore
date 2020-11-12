@@ -1,23 +1,16 @@
 <template>
    <div>
-    
-     
      <header :style="{ background:'url('+picture+')',backgroundSize: 'cover' } ">
-      
-        <h2>Trip <br> Details</h2>
-        <h3 id="title1">Selected Date:</h3>
-        <input type="date" id="date" name="date" v-model= "date" v-on:change="setDate();reload();fetchData()">
-        <h3 id= "title2">Weather:</h3>
-              <h3 id="weather">{{Selected_weather}}</h3>
-              <img v-bind:src="icon"/>
-     
-      
-      </header> 
-      
-      
-     
+       <h2>Trip <br> Details</h2>
+       <div id="rightContent">
+         <h3 id="title1">Selected Date:</h3>
+         <input type="date" id="date" name="date" v-model= "date" v-on:change="setDate();reload();fetchData()">
+         <h3 id= "title2">Weather:</h3>
+         <h3 id="weather">{{Selected_weather}}</h3>
+         <img v-bind:src="icon"/>
+       </div>
+      </header>
     </div>
-    
 </template>
 
 
@@ -27,7 +20,6 @@ import cloud from '@/assets/Cloud.jpg';
 import sunny from '@/assets/sunny9.jpg';
 import axios from 'axios'
 
-
 export default {
   data(){
     return{
@@ -36,18 +28,8 @@ export default {
       Selected_weather:'',
       icon:'',
       picture:''
-      
-      
-
-      
-   
-      
-
-    
     }
   },
-
-
 
   methods:{
     setDate: function(){
@@ -81,41 +63,23 @@ export default {
       var x=this.Selected_weather;
       
       if(x.includes('rain')){
-        
         this.picture= rain;
-        
-      }else if(x.includes("Broken")){
+      } else if(x.includes("Broken")){
         this.picture=sunny;
-       
-        
       }
       else{
         this.picture=cloud;
-        
       }
-
-
     },
-
-   
   },
-    
-    
-  
-
-
 
   mounted() {
     document.getElementById("date").min= new Date().toISOString().split("T")[0]
     if (sessionStorage.date) {
       this.date = sessionStorage.date;
-      
-      
       this.fetchData();
- 
     }
   }
-  
 }
 </script>
 
@@ -123,47 +87,42 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 header{
-  height: 180px;
+  height: 188px;
   position:fixed;
   width: 100%;
-  
-  
- 
 }
 h2{
-    color:ivory;
-    float:left;
-    padding:2%;
-    text-align: justify;
-    font-display:Abel;
+  color:ivory;
+  float:left;
+  padding:2%;
+  text-align: justify;
+  font-display:Abel;
+}
+#rightContent {
+  float: right;
+  width: 15%;
+  padding: 25px 5px;
 }
 h3{
-    
-    
-    float: left;
-    margin-left: 75%;
-    line-height: 0%;
-    color: rgb(248, 248, 248);
-    margin-top: 2%;
-    text-size-adjust: 2%;
- 
+  line-height: 0;
+  color: rgb(248, 248, 248);
+  text-size-adjust: 2%;
 }
 #date{
-  position: absolute;
-  left:83.5%;
-  top:15%;
-  background-color: rgba(11, 23, 49, 0.233);
+  background-color: rgba(255, 248, 248, 0.2);
   color:rgb(255, 255, 255);
   font-weight:bold;
-  font-size: 110%
+  font-size: 110%;
+  border: none;
+  margin: 2% 0%;
 }
 #title2{
   position: relative;
-  margin-top: 3%;
-   color : rgb(240, 235, 235);
-   font-display: bold;
-   font-display:Abel;
-   font-size: 150%;
+  color : rgb(240, 235, 235);
+  font-display: bold;
+  font-display:Abel;
+  font-size: 150%;
+  line-height: 0;
 }
 #title1{
   position: relative;
@@ -171,12 +130,16 @@ h3{
   margin-top: 1%;
   color : rgb(253, 253, 253);
 }
+#weather {
+  float: left;
+  position: relative;
+  top: -10px;
+}
 img{
-  float:right;
-  width:6%;
-  height: 40%;
-  margin-right:8%;
-  padding-bottom:1%;
-  padding-right: 1%;
+  float: left;
+  width: 50px;
+  margin: 1% 5%;
+  position: relative;
+  top: -12px;
 }
 </style>

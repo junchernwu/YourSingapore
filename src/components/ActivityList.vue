@@ -81,9 +81,9 @@
             <i class="dropdown icon"></i>
             <option value="">Price range</option>
             <option value="all">All</option>
-            <option value="$0-$20">$0 - $20</option>
-            <option value="$20-$50">$20 - $50</option>
-            <option value="$50-$100">$50 - $100</option>
+            <option value="$0 - $20">$0 - $20</option>
+            <option value="$20 - $50">$20 - $50</option>
+            <option value="$50 - $100">$50 - $100</option>
             <option value=">$100">> $100</option>
           </select>
           <br />
@@ -151,6 +151,7 @@ export default {
           )
         )
       );
+      
     },
 
     filtersearch() {
@@ -173,6 +174,7 @@ export default {
             if(doc.data().openDays.includes(this.date)){
               item = doc.data();
               item.id = doc.id;
+              console.log(item.promotiontype)
               this.attractions.push(item);
             }
           });
@@ -251,9 +253,11 @@ export default {
     },
     filterbyprice: function(obj) {
       if (this.pricerange == "all" || this.pricerange == "") {
+      
         return obj;
       } else {
-        return obj.filter((obj) => obj.pricerange.name == this.pricerange);
+        
+        return obj.filter((obj) => obj.priceRange.name == this.pricerange);
       }
     },
     filterbyactivity: function(obj) {
@@ -262,16 +266,20 @@ export default {
       }
       else{
       var dict=[];
+     
           for(let key in obj){
+             
             for(let x in obj[key].attractionType){
+              
               if(obj[key].attractionType[x].name==this.attractionType){
                 
               dict.push(obj[key]);
 
             }
           }
-          return dict;
+          
         }
+        return dict;
       }
     },
 
@@ -281,7 +289,7 @@ export default {
       } else {
         var dict = [];
         for (let key in obj) {
-          for (let x in obj[key].demographicType) {
+          for (let x in obj[key].promotiontype) {
             if (obj[key].promotiontype[x].name == this.discount) {
               dict.push(obj[key]);
             }
@@ -321,7 +329,7 @@ export default {
     if (sessionStorage.date) {
       this.location = sessionStorage.location;
       this.date = sessionStorage.date;
-      console.log(this.date);
+      console.log(this.attractions);
     }
   },
   beforeCreate: function() {
