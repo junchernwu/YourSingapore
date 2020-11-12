@@ -114,8 +114,7 @@
         <h1 id="righttitle"> Promotions </h1>
         <p> {{attraction.promotions}}</p>
       </div>
-    </div>
-
+    </div>haha 4 Jan 21 to 18 Jun 21
   </div>
 </template>
 
@@ -338,7 +337,7 @@ export default {
 .left{
   float:left;
   padding-left:4%;
-  padding-top:4%;
+  padding-top: 4%;
   width:50%;
   overflow: hidden;
 

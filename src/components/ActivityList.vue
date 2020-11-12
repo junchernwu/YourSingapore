@@ -2,6 +2,7 @@
   <div>
     <section>
       <nav>
+        <button id="planner"> <router-link :to="'/planner'">VIEW PLANNER</router-link></button>
         <div class="ui icon input">
           <input
             class="prompt"
@@ -11,7 +12,6 @@
           />
           <i class="search icon"></i>
         </div>
-
         <div class="bar">
           <br /><select
             name="location"
@@ -359,7 +359,7 @@ nav {
   float: left;
   width:18%;
   padding-left: 2%;
-  padding-top: 15%;
+  padding-top: 16.5%;
   height: 100%;
   position:fixed;
 }
@@ -368,19 +368,17 @@ nav {
   padding-right:20%;
 }
 #filters{
-  position:static;
-  float:center;
-  padding-top:10%;
+  float: center;
   color: whitesmoke;
-  padding:1%;
-  width:160%;
-  padding-left:10%;
+  width:240px;
+  padding: 1% 1% 1% 10%;
   background-color: rgba(87, 80, 80, 0.404);
   fill-opacity: initial;
   border-color:white;
   border-width:2%;
-  border-radius: 2%;
-  margin-left: 10%;
+  border-radius: 10px;
+  position: relative;
+  left: 6%;
 }
 #content{
   float: right;
@@ -388,7 +386,7 @@ nav {
   width:85%;
 }
 section{
-height:100%px;
+height:100%;
 }
 #attractions {
   width: 100%;
@@ -415,12 +413,29 @@ li{
     padding: 3%;
 }
 input{
-  
   border-radius: 15%;
   border:none;
   width:240px;
   height:20%;
   position:relative;
   left:6%;
+}
+
+/* planner CSS */
+#planner {
+  background-color:rgb(255, 46, 81);
+  color:white;
+  padding: 7px 20px;
+  border-radius:10px;
+  margin-bottom: 20px;
+  border:none;
+  position: relative;
+  left: 6%;
+  width:240px;
+}
+
+#planner a {
+  font-weight: bolder;
+  font-size: 14px;
 }
 </style>
