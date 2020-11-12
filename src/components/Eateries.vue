@@ -193,6 +193,7 @@ export default {
       }
     },
     persist: function(item) {
+      if(this.hour!=0){
       sessionStorage.hour = this.hour;
       sessionStorage.min = this.min;
       sessionStorage.am = this.am;
@@ -200,7 +201,10 @@ export default {
       sessionStorage.picture = this.get_pic(item.photos[0].photo_reference);
       sessionStorage.address = item.formatted_address.trim();
       console.log(item.formatted_address.trim());
-      this.checkTimingClash();
+      this.checkTimingClash();}
+      else{
+        alert("The time of vist is not selected")
+      }
     },
   },
   beforeCreate: function() {

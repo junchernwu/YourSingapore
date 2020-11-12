@@ -117,7 +117,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 header{
-  height: 180px;
+  height: 188px;
   position:fixed;
   width: 100%;
   
@@ -169,7 +169,7 @@ img{
   float:right;
   width:6%;
   height: 40%;
-  margin-right:8%;
+  margin-right:10%;
   padding-bottom:1%;
   padding-right: 1%;
 }
