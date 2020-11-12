@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -21,10 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4568f15a-a55f-427b-9b9e-5331926c56c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ActivityDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ActivityDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Eateries.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Eateries.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PlannedActivity.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PlannedActivity.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Planner.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Planner.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MerchantForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MerchantForm.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +90,7 @@
       <workItem from="1602916592814" duration="620000" />
       <workItem from="1604946398344" duration="2859000" />
       <workItem from="1604978722606" duration="3598000" />
-      <workItem from="1605071114310" duration="9304000" />
+      <workItem from="1605071114310" duration="10105000" />
     </task>
     <servers />
   </component>
@@ -132,13 +132,17 @@
       <screen x="-2560" y="-276" width="2560" height="1440" />
     </state>
     <state x="-1699" y="204" key="run.anything.popup/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1601710521635" />
+    <state x="421" y="18" width="838" height="1032" key="search.everywhere.popup" timestamp="1605114435631">
+      <screen x="0" y="23" width="1680" height="940" />
+    </state>
+    <state x="421" y="18" width="838" height="1032" key="search.everywhere.popup/0.23.1680.940@0.23.1680.940" timestamp="1605114435631" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
-          <line>721</line>
+          <line>722</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -153,7 +157,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
-          <line>1180</line>
+          <line>1182</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

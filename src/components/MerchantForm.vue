@@ -710,6 +710,7 @@
           { name: 'Nature', code: 'na' },
           { name: 'Sightseeing', code: 'si' },
           { name: 'Sports', code: 'sp' },
+          { name: 'Theme Parks', code: 'tp' },
         ],
 
         locationOptions: [
@@ -735,6 +736,7 @@
           { name: '> $50', code: 'mt$50'},
           { name: '1 for 1', code: '1for1'},
           { name: '2 for 1', code: '2for1'},
+          { name: 'Others', code: 'Others'}
         ],
 
         weekday: false,
