@@ -54,7 +54,7 @@
     <div class="right">
       <div class="two ui buttons ">
         <button v-on:click="update_changes" class="ui green button">
-          Done Editing
+          Click to Save Your Edits
         </button>
         <button class="ui red button" v-on:click="bump" :style="bumpStyle">
           BUMP
@@ -831,6 +831,10 @@ export default {
       this.RevertFri();
       this.RevertSat();
       this.RevertSun();
+      this.price_edit = false
+      this.promo_edit = false
+      this.address_edit = false
+
     },
     bump: function() {
       if (this.bumped == false) {

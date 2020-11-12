@@ -4,15 +4,14 @@
       Master Branch<br />
       Start Verifying and Approving Users
     </h1>
-    <div class="ui grid">
-      <ul reversed>
-        Pending approval
+    <br />
+    <br />
+    <div class="ui three wide column padded grid cards">
+      <div class="ui fluid card" v-for="(pending, index) in pending_attractions" v-bind:key="index">
 
-        <li v-for="(pending, index) in pending_attractions" v-bind:key="index">
-          <div class="four wide column ">
-            <div class="ui fluid card">
+     
             <div class="image">
-              <img width="30%" height="10%" :src="geturl(pending.data())" />
+              <img id="resize" :src="geturl(pending.data())" />
             </div>
             <div class="content">
               <a class="header">{{ pending.data()["name"] }}</a>
@@ -21,10 +20,9 @@
                 <span class="date">{{ pending.data()["auth_id"] }}</span>
               </div>
             </div>
-            <div class="extra content">
+            <div class="meta" id="standard">
               <a>
                 <i class="address book icon"></i>
-
                 {{ pending.data()["address"] }}
               </a>
             </div>
@@ -36,15 +34,10 @@
             >
               Approve
             </button>
-            
           </div>
-          </div>
-          <br/>
-          <br/>
-        </li>
-      </ul>
-      <div class="ui special cards"></div>
-    </div>
+
+      </div>
+
   </div>
 </template>
 
@@ -115,3 +108,18 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#resize {
+  max-width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+#standard {
+  height: 80px;
+}
+
+
+</style>
