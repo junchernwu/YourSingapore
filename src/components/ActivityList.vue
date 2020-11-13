@@ -2,7 +2,9 @@
   <div>
     <section>
       <nav>
-        <button id="planner"> <router-link :to="'/planner'">VIEW PLANNER</router-link></button>
+        <button id="planner">
+          <router-link :to="'/planner'">VIEW PLANNER</router-link>
+        </button>
         <div class="ui icon input">
           <input
             class="prompt"
@@ -102,15 +104,14 @@
             <option value="Wheelchair-Friendly">Wheelchair-Friendly</option>
           </select>
           <br />
-          
         </div>
-        
-        <div class="clear_filters" >
-        <button class="clear_filters" v-on:click="Clear_filters()">Clear Filters</button>
+
+        <div class="clear_filters">
+          <button class="clear_filters" v-on:click="Clear_filters()">
+            Clear Filters
+          </button>
         </div>
-        
       </nav>
-      
 
       <div id="content">
         <ul>
@@ -143,7 +144,7 @@ export default {
       pricerange: "",
       demographic: "",
       days: [],
-      date:""
+      date: "",
     };
   },
 
@@ -158,7 +159,6 @@ export default {
           )
         )
       );
-      
     },
 
     filtersearch() {
@@ -176,53 +176,46 @@ export default {
         .then((querySnapShot) => {
           let item = {};
           querySnapShot.forEach((doc) => {
-              this.getDay(this.date);
-              //console.log(doc.data().openDays)
-            if(doc.data().openDays.includes(this.date)){
+            this.getDay(this.date);
+            //console.log(doc.data().openDays)
+            if (doc.data().openDays.includes(this.date)) {
               item = doc.data();
               item.id = doc.id;
-              console.log(item.promotiontype)
+              console.log(item.promotiontype);
               this.attractions.push(item);
             }
           });
           console.log(this.attractions);
         });
     },
-    getDay: function(obj){
-      var parts = obj.split('-')
-      var year = parseInt(parts[0],10)
-      var month = parseInt(parts[1],10) -1
-      var day = parseInt(parts[2],10)
-      var date=new Date(year,month,day)
-      if(date.getDay()==0){
-        this.date="sun"
-      }
-      else if(date.getDay()==1){
-        this.date="mon"
-      }
-      else if(date.getDay()==2){
-        this.date="tue"
-      }
-      else if(date.getDay()==3){
-        this.date="wed"
-      }
-      else if(date.getDay()==4){
-        this.date="thu"
-      }
-      else if(date.getDay()==5){
-        this.date="fri"
-      }
-      else if(date.getDay()==6){
-        this.date="sat"
+    getDay: function(obj) {
+      var parts = obj.split("-");
+      var year = parseInt(parts[0], 10);
+      var month = parseInt(parts[1], 10) - 1;
+      var day = parseInt(parts[2], 10);
+      var date = new Date(year, month, day);
+      if (date.getDay() == 0) {
+        this.date = "sun";
+      } else if (date.getDay() == 1) {
+        this.date = "mon";
+      } else if (date.getDay() == 2) {
+        this.date = "tue";
+      } else if (date.getDay() == 3) {
+        this.date = "wed";
+      } else if (date.getDay() == 4) {
+        this.date = "thu";
+      } else if (date.getDay() == 5) {
+        this.date = "fri";
+      } else if (date.getDay() == 6) {
+        this.date = "sat";
       }
     },
-    Clear_filters(){
-      this.location= ""
-      this.discount= ""
-      this.attractionType= ""
-      this.pricerange= ""
-      this.demographic= ""
-
+    Clear_filters() {
+      this.location = "";
+      this.discount = "";
+      this.attractionType = "";
+      this.pricerange = "";
+      this.demographic = "";
     },
 
     sortItems: function(obj) {
@@ -252,12 +245,12 @@ export default {
       var final = bump.concat(randomise);
       return final;
     },
-  shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-},
+    shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    },
 
     filterbylocation: function(obj) {
       if (this.location == "all" || this.location == "") {
@@ -268,31 +261,23 @@ export default {
     },
     filterbyprice: function(obj) {
       if (this.pricerange == "all" || this.pricerange == "") {
-      
         return obj;
       } else {
-        
         return obj.filter((obj) => obj.priceRange.name == this.pricerange);
       }
     },
     filterbyactivity: function(obj) {
       if (this.attractionType == "all" || this.attractionType == "") {
         return obj;
-      }
-      else{
-      var dict=[];
-     
-          for(let key in obj){
-             
-            for(let x in obj[key].attractionType){
-              
-              if(obj[key].attractionType[x].name==this.attractionType){
-                
-              dict.push(obj[key]);
+      } else {
+        var dict = [];
 
+        for (let key in obj) {
+          for (let x in obj[key].attractionType) {
+            if (obj[key].attractionType[x].name == this.attractionType) {
+              dict.push(obj[key]);
             }
           }
-          
         }
         return dict;
       }
@@ -332,11 +317,10 @@ export default {
     },
   },
   created() {
-    if(this.date==sessionStorage.date){
+    if (this.date == sessionStorage.date) {
       this.fetchItems();
-    }
-    else{
-      this.date=sessionStorage.date;
+    } else {
+      this.date = sessionStorage.date;
       this.fetchItems();
     }
   },
@@ -355,53 +339,50 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 h1 {
   color: paleturquoise;
 }
-a{
-  
-  color:white;
-  font-weight:lighter;
+a {
+  color: white;
+  font-weight: lighter;
 }
 p {
   padding: 2%;
-  color:#2c3e50;
+  color: #2c3e50;
   float: left;
-  
 }
 nav {
   float: left;
-  width:18%;
+  width: 18%;
   padding-left: 2%;
   padding-top: 16.5%;
   height: 100%;
-  position:fixed;
+  position: fixed;
 }
-.bar{
+.bar {
   float: left;
-  padding-right:20%;
+  padding-right: 20%;
 }
-#filters{
+#filters {
   float: center;
   color: whitesmoke;
-  width:240px;
+  width: 240px;
   padding: 1% 1% 1% 10%;
   background-color: rgba(87, 80, 80, 0.404);
   fill-opacity: initial;
-  border-color:white;
-  border-width:2%;
+  border-color: white;
+  border-width: 2%;
   border-radius: 10px;
   position: relative;
   left: 6%;
 }
-#content{
+#content {
   float: right;
   padding-top: 13%;
-  width:85%;
+  width: 85%;
 }
-section{
-height:100%;
+section {
+  height: 100%;
 }
 #attractions {
   width: 100%;
@@ -410,58 +391,58 @@ height:100%;
   padding: 0 5%;
   box-sizing: border-box;
 }
-img{
-  width:280px;
+img {
+  width: 280px;
   height: 200px;
-  border-radius:5%;
+  border-radius: 5%;
 }
-ul{
-    display: flex;
-    flex-wrap: wrap;
-    list-style-type: none;
-    padding-left: 8%;
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding-left: 8%;
 }
-li{
-    flex-grow: 1;
-    flex-basis: 300px;
-    text-align: center;
-    padding: 3%;
+li {
+  flex-grow: 1;
+  flex-basis: 300px;
+  text-align: center;
+  padding: 3%;
 }
-input{
+input {
   border-radius: 15%;
-  border:none;
-  width:240px;
-  height:20%;
-  position:relative;
-  left:6%;
+  border: none;
+  width: 240px;
+  height: 20%;
+  position: relative;
+  left: 6%;
 }
 
 /* planner CSS */
 #planner {
-  background-color:rgb(255, 46, 81);
-  color:white;
+  background-color: rgb(255, 46, 81);
+  color: white;
   padding: 7px 20px;
-  border-radius:10px;
+  border-radius: 10px;
   margin-bottom: 20px;
-  border:none;
+  border: none;
   position: relative;
   left: 6%;
-  width:240px;
+  width: 240px;
 }
 
 #planner a {
   font-weight: bolder;
   font-size: 14px;
 }
-.clear_filters{
+
+.clear_filters {
   padding: 60%;
-  color:rgb(97, 89, 89);
+  color: rgb(97, 89, 89);
   padding: 7px 20px;
-  border-radius:10px;
+  border-radius: 10px;
   margin-top: 20px;
-  border:none;
+  border: none;
   position: relative;
-  left: 25%;
-  
+  left: 15%;
 }
 </style>

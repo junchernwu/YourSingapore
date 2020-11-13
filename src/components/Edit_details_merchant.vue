@@ -477,6 +477,8 @@
               </div>
             </li>
           </ul>
+ 
+
           <ul reversed>
             Sunday
             <li v-for="time in attractions.operations.sun" v-bind:key="time.id">
