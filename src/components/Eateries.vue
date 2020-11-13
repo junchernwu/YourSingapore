@@ -1,10 +1,9 @@
 <template>
   <div id="page" class="main">
-    <div class="col-md-12">
-      
+    <div class="col-md-12" :style="{position: 'fixed', width: '100%', zIndex: '1', top:'0px'}">
       <iframe
         frameborder="0"
-        style="width: 100%; height: 250px; border:0"
+        style="width: 100%; height: 330px; border:0"
         v-bind:src="
           'https://www.google.com/maps/embed/v1/directions?key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI&mode=walking&origin=' +
             this.origin +
@@ -19,7 +18,7 @@
 
     <section>
       <nav>
-        <div class="ui icon input">
+        <div class="ui icon input" :style="{width: 'calc(100% - 10px)', minWidth: '300px'}">
           <input
             class="prompt"
             type="text"
@@ -29,7 +28,7 @@
           />
           <i class="search icon"></i>
         </div>
-        <div class="ui icon input" id="place">
+        <div class="ui icon input" id="place" :style="{width: 'calc(100% - 10px)', minWidth: '300px'}">
           <input
             class="prompt"
             type="text"
@@ -37,39 +36,43 @@
             placeholder="Search Restaurant"
           />
         </div>
-
         <div class="innerbox">
-          <p id="datetitle">DATE</p>
-          <p id="datetitle">TIME</p>
-
-          <p id="date">{{ date }}</p>
-
-          <select class="dropdown" name="hour" id="time" v-model="hour">
-            <option value="Hour">Hour</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-          </select>
-          <select class="dropdown" name="min" id="min" v-model="min">
-            <option value="Minute">Minute</option>
-            <option value="00">00</option>
-            <option value="15">15</option>
-            <option value="30">30</option>
-            <option value="45">45</option>
-          </select>
-          <select class="dropdown" name="am" id="am" v-model="am">
-            <option value="am">am</option>
-            <option value="pm">pm</option>
-          </select>
+          <div class="row">
+            <p id="datetitle">DATE</p>
+            <p id="date">{{ date }}</p>
+            <div style="clear:both;"></div>
+          </div>
+          <div class="row">
+            <p id="datetitle">TIME</p>
+            <div id="timingInput">
+              <select class="dropdown" name="hour" id="time" v-model="hour">
+                <option value="Hour">Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" name="min" id="min" v-model="min">
+                <option value="Minute">Minute</option>
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+              </select>
+              <select class="dropdown" name="am" id="am" v-model="am">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+          </div>
         </div>
       </nav>
       <div id="content">
@@ -80,11 +83,12 @@
               <h3>{{ item.name.trim() }}</h3>
               <br />
               <h5>{{ item.formatted_address.trim() }}</h5>
-
-              <button id="direction" v-on:click="getEatery(item.formatted_address.trim())">Get Directions</button>
              <div>
-                <button id="button" v-on:click="persist(item)">
-                  Add to planner
+                <button v-on:click="getEatery(item.formatted_address.trim())">
+                  GET DIRECTIONS
+                </button>
+                <button v-on:click="persist(item)">
+                  ADD TO PLANNER
                 </button>
               </div>
             </aside>
@@ -245,6 +249,7 @@ export default {
     },
 };
 </script>
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
@@ -254,48 +259,53 @@ h3 {
   margin-bottom: 1px;
   text-align: center;
 }
-#direction{
-  padding: 60%;
-  color: rgb(97, 89, 89);
+a, button {
+  background-color:rgb(255, 46, 81);
+  color:white;
   padding: 7px 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-  padding-bottom: 5px;
-  margin-right: 100px;
-  background-color: rgb(10, 106, 161);
-  color: azure;
-}
-#button {
-  padding: 60%;
-  color: rgb(97, 89, 89);
-  padding: 7px 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-  padding-bottom: 5px;
-  margin-right: 100px;
-  background-color: rgb(190, 33, 5);
-  color: azure;
+  border-radius:20px;
+  font-weight: bolder;
+  font-size: 13px;
+  border:none;
+  margin-top: 5px;
+  margin-right: 30px;
+  float: left;
 }
 .innerbox {
   background-color: rgba(82, 82, 100, 0.554);
-  width: 180%;
+  width: calc(100% - 5px);
   border-radius: 20px;
-  padding-left: 5%;
-  padding-top: 1%;
-  padding-bottom: 5%;
+  padding: 20px;
+  margin-left: 10px;
+  height: 100px;
+  min-width: 300px;
+}
+.row {
+  width: 100%;
 }
 #datetitle {
   float: left;
-  width: 50%;
+  width: 30%;
   color: gray;
+  margin: 0;
+}
+select {
+  border-color: rgba(255, 255, 255, 0.295);
+  background: none;
+  color: white;
+  padding: 2px;
 }
 #time {
-  margin-bottom: 10px;
+  float: left;
+  margin: 0;
+}
+#timingInput {
+  float: right;
+  width: 70%;
 }
 #date {
-  float: left;
-  width: 50%;
-  margin-top: -10px;
+  float: right;
+  width: 70%;
   color: rgb(245, 245, 245);
 }
 h5 {
@@ -305,11 +315,12 @@ h5 {
   text-align: left;
 }
 aside {
-  width: 60%;
+  width: calc(90% - 300px);
   padding-left: 10px;
   margin-left: 10px;
   float: right;
-  font-style: Times;
+  position: relative;
+  top: 5%;
 }
 #place {
   padding-top: 20px;
@@ -317,30 +328,32 @@ aside {
 }
 nav {
   float: left;
-  width: 18%;
+  width: 20%;
   padding-left: 30px;
   padding-top: 30px;
   height: 800px;
   position: fixed;
-}
-.bar {
-  float: left;
-  padding-right: 200px;
+  top: 350px;
 }
 
 #content {
   float: right;
   padding: 0px;
   text-align: right;
-  width: 68%;
+  width: 75%;
+  max-width: calc(100vw - 350px);
+  position: relative;
 }
 section {
-  height: 6200px;
+  position: relative;
+  top: 260px
 }
 img {
   width: 300px;
   height: 200px;
- 
+  float: left;
+  margin-left: 50px;
+  border-radius: 20px;
 }
 ul {
   display: flex;
@@ -352,14 +365,15 @@ ul {
   padding-top: 1px;
 }
 li {
-  background: rgb(66, 66, 73);
+  background: rgba(82, 82, 100, 0.554);
+  border-radius: 20px;
   text-align: right;
   padding: 50px;
   margin: 20px;
   display: block;
   position: static;
-  float: right;
-  width: 100%;
+  margin-left: 1.5%;
+  width: 90%;
   height:300px
 }
 input {

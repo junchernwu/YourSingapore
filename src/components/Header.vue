@@ -43,6 +43,9 @@ div{
     border-bottom-color: white;
     border-bottom-width: 1px;
     height:80px;
+    width: 100%;
+    top: 0;
+    zIndex: 1;
 }
 
 h1 a{

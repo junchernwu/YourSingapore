@@ -473,4 +473,12 @@ a,button{
   height:230px;
 }
 
+.dropdown {
+  position: relative;
+  top: -10px;
+  border-color: rgba(255, 255, 255, 0.295);
+  background: none;
+  color: white;
+}
+
 </style>  
