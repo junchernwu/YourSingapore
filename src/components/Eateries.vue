@@ -1,6 +1,7 @@
 <template>
   <div id="page" class="main">
     <div class="col-md-12">
+      
       <iframe
         frameborder="0"
         style="width: 100%; height: 250px; border:0"
@@ -116,15 +117,18 @@ export default {
       return this.final_results.filter((obj) => {
         return obj.name.toLowerCase().includes(this.restaurant.toLowerCase());
       });
+      
     },
   },
   methods: {
     fetchData: function() {
       this.final_results = [];
-      console.log(this.origin);
+      if(!this.origin.includes("Sinagpore")){
+        this.origin=this.origin+" Singapore"
+      }
       const URL =
         "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" 
-        +"Singapore"+this.origin + "&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
+        +this.origin + "&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
       axios
         .get(URL)
         .then((response) => {
@@ -203,7 +207,7 @@ export default {
       console.log(item.formatted_address.trim());
       this.checkTimingClash();}
       else{
-        alert("The time of vist is not selected")
+        alert("The time of visit is not selected")
       }
     },
   },
@@ -313,7 +317,7 @@ img {
 }
 ul {
   display: flex;
-  flex-wrap: wrap;
+  
   text-align: right;
   padding-left: 400px;
   padding-right: 20px;
@@ -322,15 +326,14 @@ ul {
 }
 li {
   background: rgb(66, 66, 73);
-  flex: 50%;
-  flex-basis: 100px;
   text-align: right;
   padding: 50px 50px;
-  margin: 10px;
+  margin: 20px;
   display: block;
   position: relative;
-  right: 60%;
-  width: 160%;
+  right: -5%;
+  width: 90%;
+  
 }
 input {
   padding-left: 5px;
