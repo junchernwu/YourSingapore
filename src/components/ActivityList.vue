@@ -2,9 +2,9 @@
   <div>
     <section>
       <nav>
-        <button id="planner">
-          <router-link :to="'/planner'">VIEW PLANNER</router-link>
-        </button>
+        <div id="plandiv">
+          <router-link id="planner" :to="'/planner'">VIEW PLANNER</router-link>
+        </div>
         <div class="ui icon input">
           <input
             class="prompt"
@@ -421,7 +421,7 @@ input {
 #planner {
   background-color: rgb(255, 46, 81);
   color: white;
-  padding: 7px 20px;
+  padding: 7px 65px;
   border-radius: 10px;
   margin-bottom: 20px;
   border: none;
@@ -444,5 +444,8 @@ input {
   border: none;
   position: relative;
   left: 15%;
+}
+#plandiv{
+  padding-bottom: 10%;
 }
 </style>
