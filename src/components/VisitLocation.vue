@@ -2,6 +2,7 @@
   <div class="main">
     <h1 id="title"> Where would you <br> like to go? </h1> 
       <select name="location" id="location" v-model= "location">
+        <option value="" selected disabled>Location</option>
         <option value="North">North</option>
         <option value="South">South</option>
         <option value="East">East</option>
