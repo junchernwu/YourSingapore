@@ -27,14 +27,37 @@ export default {
       weather_results: [],
       Selected_weather:'',
       icon:'',
-      picture:''
+      picture:'',
+      maxDate:''
     }
   },
 
   methods:{
     setDate: function(){
       sessionStorage.date=this.date
+      var current=new Date().getTime()
+      this.maxDate=this.formatDate(new Date(current+ (14*86400000)).toString())
+      if(this.date==""){
+        alert("Date input required");
+      }
+      else if(this.date>=this.maxDate){
+        alert("The weather forecast for the date you have selected may not be accurate.");
+      }
+
     },
+    formatDate: function(date) {
+          var d = new Date(date),
+              month = '' + (d.getMonth() + 1),
+              day = '' + d.getDate(),
+              year = d.getFullYear();
+
+          if (month.length < 2) 
+              month = '0' + month;
+          if (day.length < 2) 
+              day = '0' + day;
+
+          return [year, month, day].join('-');
+        },
     reload: function(){
       document.location.reload()
     },
