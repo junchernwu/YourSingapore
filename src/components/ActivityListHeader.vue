@@ -1,6 +1,6 @@
 <template>
    <div>
-     <header :style="{ background:'url('+picture+')',backgroundSize: 'cover' } ">
+     <header :style="{ background:'url('+picture+')',backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundWidth: '100%'} ">
        <h2>Trip <br> Details</h2>
        <div id="rightContent">
          <h3 id="title1">Selected Date:</h3>
