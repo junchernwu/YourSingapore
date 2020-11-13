@@ -113,10 +113,6 @@ header{
   height: 188px;
   position:fixed;
   width: 100%;
-  
-  
-  
- 
 }
 h2{
   color:ivory;

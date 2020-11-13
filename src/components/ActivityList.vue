@@ -2,19 +2,19 @@
   <div>
     <section>
       <nav>
-        <button id="planner">
-          <router-link :to="'/planner'">VIEW PLANNER</router-link>
-        </button>
-        <div class="ui icon input">
-          <input
-            class="prompt"
-            type="text"
-            v-model="search"
-            placeholder="Search Attractions"
-          />
-          <i class="search icon"></i>
-        </div>
         <div class="bar">
+          <button id="planner">
+            <router-link :to="'/planner'">VIEW PLANNER</router-link>
+          </button>
+          <div class="ui icon input" :style="{marginBottom: '20px', width: '100%'}">
+            <input
+                class="prompt"
+                type="text"
+                v-model="search"
+                placeholder="Search Attractions"
+            />
+            <i class="search icon"></i>
+          </div>
           <br /><select
             name="location"
             class="ui dropdown"
@@ -89,7 +89,6 @@
             <option value=">$100">> $100</option>
           </select>
           <br />
-
           <br /><select
             name="demographic"
             class="ui dropdown"
@@ -104,15 +103,11 @@
             <option value="Wheelchair-Friendly">Wheelchair-Friendly</option>
           </select>
           <br />
-        </div>
-
-       
           <button class="clear_filters" v-on:click="Clear_filters()">
             Clear Filters
           </button>
-        
+        </div>
       </nav>
-
       <div id="content">
         <ul>
           <li v-for="item in filteredList" v-bind:key="item.name">
@@ -355,41 +350,33 @@ nav {
   float: left;
   width: 18%;
   padding-left: 2%;
-  padding-top: 16.5%;
   height: 100%;
   position: fixed;
+  padding-top: 30px;
 }
 .bar {
   float: left;
-  padding-right: 20%;
+  width: 90%;
+  max-width: 250px;
 }
 #filters {
-  float: center;
   color: whitesmoke;
-  width: 240px;
-  padding: 1% 1% 1% 10%;
+  width: 100%;
+  padding: 1% 10%;
   background-color: rgba(87, 80, 80, 0.404);
-  fill-opacity: initial;
   border-color: white;
-  border-width: 2%;
+  border-width: 1px;
   border-radius: 10px;
   position: relative;
   left: 6%;
 }
 #content {
   float: right;
-  padding-top: 13%;
-  width: 85%;
+  width: 80%;
+  max-width: 1500px;
 }
 section {
-  height: 100%;
-}
-#attractions {
-  width: 100%;
-  max-width: 100%;
-  margin: 30% auto;
-  padding: 0 5%;
-  box-sizing: border-box;
+  padding-top: 230px;
 }
 img {
   width: 280px;
@@ -400,13 +387,14 @@ ul {
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
+  margin: 0;
   padding-left: 8%;
 }
 li {
   flex-grow: 1;
   flex-basis: 300px;
   text-align: center;
-  padding: 3%;
+  padding: 30px;
 }
 input {
   border-radius: 15%;
@@ -427,7 +415,7 @@ input {
   border: none;
   position: relative;
   left: 6%;
-  width: 240px;
+  width: 100%;
 }
 
 #planner a {
@@ -443,6 +431,7 @@ input {
   margin-top: 20px;
   border: none;
   position: relative;
-  left: 45%;
+  float: right;
+  left: 6%;
 }
 </style>
