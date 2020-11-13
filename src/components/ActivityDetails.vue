@@ -114,7 +114,7 @@
         <h1 id="righttitle"> Promotions </h1>
         <p> {{attraction.promotions}}</p>
       </div>
-    </div>haha 4 Jan 21 to 18 Jun 21
+    </div>
   </div>
 </template>
 
@@ -398,7 +398,6 @@ a,button{
   padding-left:8%;
   padding-top:1%;
   padding-bottom:1%;
-
 }
 #datetitle{
   float:left;
@@ -421,7 +420,8 @@ a,button{
 #planneradd{
   position:relative;
   top:10px;
-  left:410px;
+  margin-right: 10%;
+  float: right;
 }
 .price ul{
   display: flex;
@@ -438,7 +438,7 @@ a,button{
   border-radius: 10px;
   text-align: center;
   padding: 5%;
-  padding-top: 8%;
+  padding-top: calc(12% - 50px);
   margin: 10px;
   background-color: rgba(82, 82, 100, 0.554);
 

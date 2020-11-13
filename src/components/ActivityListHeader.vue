@@ -1,6 +1,6 @@
 <template>
    <div>
-     <header :style="{ background:'url('+picture+')',backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundWidth: '100%'} ">
+     <header :style="{ background:'url('+picture+')',backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundSize: '100%'}">
        <h2>Trip <br> Details</h2>
        <div id="rightContent">
          <h3 id="title1">Selected Date:</h3>
@@ -15,9 +15,9 @@
 
 
 <script>
-import rain from '@/assets/Rain4.jpg';
-import cloud from '@/assets/Cloud.jpg';
-import sunny from '@/assets/sunny9.jpg';
+import rain from '@/assets/rain.jpeg';
+import cloud from '@/assets/clouds.jpeg';
+import sunny from '@/assets/sun.jpeg';
 import axios from 'axios'
 
 export default {

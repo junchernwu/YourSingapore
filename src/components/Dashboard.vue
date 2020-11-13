@@ -168,14 +168,12 @@ export default {
             
         },
         GetDates: function(daysToAdd) {
-            
             var current=new Date().getTime()
             for (var i = 0; i < daysToAdd; i++) {
-                this.dates.push(this.formatDate(new Date(current+ (i*86400000)).toString()))
+                this.dates.push(this.formatDate(new Date(current - (i*86400000)).toString()))
             }
             this.datacollection.labels = this.dates
             this.datacollection2.labels = this.dates
-            
         },
 
         formatDate: function(date) {

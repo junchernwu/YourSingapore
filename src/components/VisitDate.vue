@@ -35,7 +35,7 @@ export default {
       if(document.getElementById("date").value==""){
         alert("Date input required");
       }else{
-        if(document.getElementById("date").value==this.maxDate){
+        if(document.getElementById("date").value>=this.maxDate){
           alert("The weather forecast for the date you have selected may not be accurate.")
         }
         sessionStorage.date= this.date;
