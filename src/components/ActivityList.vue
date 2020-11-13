@@ -106,11 +106,11 @@
           <br />
         </div>
 
-        <div class="clear_filters">
+       
           <button class="clear_filters" v-on:click="Clear_filters()">
             Clear Filters
           </button>
-        </div>
+        
       </nav>
 
       <div id="content">
@@ -443,6 +443,6 @@ input {
   margin-top: 20px;
   border: none;
   position: relative;
-  left: 15%;
+  left: 45%;
 }
 </style>

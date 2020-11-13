@@ -81,8 +81,8 @@
               <br />
               <h5>{{ item.formatted_address.trim() }}</h5>
 
-              <button v-on:click="getEatery(item.name)">Get Directions</button>
-              <div id="btn">
+              <button id="direction" v-on:click="getEatery(item.formatted_address.trim())">Get Directions</button>
+             <div>
                 <button id="button" v-on:click="persist(item)">
                   Add to planner
                 </button>
@@ -121,42 +121,42 @@ export default {
     },
   },
   methods: {
-    fetchData: function() {
+    fetchData: function () {
       this.final_results = [];
-      if(!this.origin.includes("Sinagpore")){
-        this.origin=this.origin+" Singapore"
+      if (!this.origin.includes("Sinagpore")) {
+        this.origin = this.origin + " Singapore"
       }
       const URL =
-        "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" 
-        +this.origin + "&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
+          "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+"
+          + this.origin + "&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
       axios
-        .get(URL)
-        .then((response) => {
-          this.results = response.data.results;
-          for (let key in this.results) {
-            if (this.results[key].business_status == "OPERATIONAL") {
-              console.log("photos" in this.results[key]);
-              if ("photos" in this.results[key]) {
-                this.final_results.push(response.data.results[key]);
-              }
-            } else {
-              var v = [{ photo_reference: this.results[key].icon }];
-              this.results[key]["photos"] = v;
+          .get(URL)
+          .then((response) => {
+            this.results = response.data.results;
+            for (let key in this.results) {
+              if (this.results[key].business_status == "OPERATIONAL") {
+                console.log("photos" in this.results[key]);
+                if ("photos" in this.results[key]) {
+                  this.final_results.push(response.data.results[key]);
+                }
+              } else {
+                var v = [{photo_reference: this.results[key].icon}];
+                this.results[key]["photos"] = v;
 
-              this.final_results.push(this.results[key]);
+                this.final_results.push(this.results[key]);
+              }
             }
-          }
-        })
-        .catch((error) => console.log(error));
+          })
+          .catch((error) => console.log(error));
     },
-    get_pic: function(x) {
+    get_pic: function (x) {
       var link =
-        "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" +
-        x +
-        "&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
+          "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" +
+          x +
+          "&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
       return link;
     },
-    open: function(y) {
+    open: function (y) {
       if ("" + y == true) {
         var msg = "Currently Open";
         return msg;
@@ -165,11 +165,11 @@ export default {
         return msgs;
       }
     },
-    getEatery: function(x) {
+    getEatery: function (x) {
       this.search = x;
       this.item = x;
     },
-    checkTimingClash:function () {
+    checkTimingClash: function () {
       var clash = false;
       if (sessionStorage.plannedActivities) {
         var activities = JSON.parse(sessionStorage.plannedActivities);
@@ -196,7 +196,7 @@ export default {
       }
     },
 
-    checkTimingFilled: function() {
+    checkTimingFilled: function () {
       if (this.hour == 0) {
         if (this.min == 0) {
           return false
@@ -204,8 +204,8 @@ export default {
       }
       return true
     },
-    persist: function(item) {
-      if(this.hour!=0){
+    persist: function (item) {
+      if (this.hour != 0) {
         sessionStorage.hour = this.hour;
         sessionStorage.min = this.min;
         sessionStorage.am = this.am;
@@ -216,10 +216,11 @@ export default {
         console.log(item.formatted_address.trim());
         if (this.checkTimingFilled()) {
           this.checkTimingClash();
-        } else {
+        } 
+      }else {
           alert("The time of visit is not selected")
         }
-    }
+    },
   },
     beforeCreate: function() {
     document.body.className = "eateries";
@@ -242,7 +243,6 @@ export default {
         this.am = sessionStorage.am;
       }
     },
-  }
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -254,11 +254,26 @@ h3 {
   margin-bottom: 1px;
   text-align: center;
 }
-button {
-  padding-top: 5px;
+#direction{
+  padding: 60%;
+  color: rgb(97, 89, 89);
+  padding: 7px 20px;
+  border-radius: 10px;
+  margin-top: 20px;
   padding-bottom: 5px;
   margin-right: 100px;
-  background-color: tomato;
+  background-color: rgb(10, 106, 161);
+  color: azure;
+}
+#button {
+  padding: 60%;
+  color: rgb(97, 89, 89);
+  padding: 7px 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding-bottom: 5px;
+  margin-right: 100px;
+  background-color: rgb(190, 33, 5);
   color: azure;
 }
 .innerbox {
@@ -317,6 +332,7 @@ nav {
   float: right;
   padding: 0px;
   text-align: right;
+  width: 68%;
 }
 section {
   height: 6200px;
@@ -341,11 +357,10 @@ li {
   padding: 50px;
   margin: 20px;
   display: block;
-  position: relative;
-  right: 1%;
-  width: 900px;
+  position: static;
+  float: right;
+  width: 100%;
   height:300px
-  
 }
 input {
   padding-left: 5px;
