@@ -1,6 +1,7 @@
 <template>
   <div id="page" class="main">
     <div class="col-md-12">
+      
       <iframe
         frameborder="0"
         style="width: 100%; height: 250px; border:0"
@@ -116,15 +117,18 @@ export default {
       return this.final_results.filter((obj) => {
         return obj.name.toLowerCase().includes(this.restaurant.toLowerCase());
       });
+      
     },
   },
   methods: {
     fetchData: function() {
       this.final_results = [];
-      console.log(this.origin);
+      if(!this.origin.includes("Sinagpore")){
+        this.origin=this.origin+" Singapore"
+      }
       const URL =
         "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+" 
-        +"Singapore"+this.origin + "&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
+        +this.origin + "&key=AIzaSyAO8NFaYvyURO_o-4KvCmhyMqPfx3LNemI";
       axios
         .get(URL)
         .then((response) => {
@@ -164,7 +168,6 @@ export default {
     getEatery: function(x) {
       this.search = x;
       this.item = x;
-      console.log(this.search);
     },
     checkTimingClash:function () {
       var clash = false;
@@ -192,6 +195,7 @@ export default {
         this.$router.push('/planner');
       }
     },
+
     checkTimingFilled: function() {
       if (this.hour == 0) {
         if (this.min == 0) {
@@ -318,30 +322,30 @@ section {
   height: 6200px;
 }
 img {
-  width: 250px;
+  width: 300px;
   height: 200px;
-  margin-right: 10px;
+ 
 }
 ul {
   display: flex;
-  flex-wrap: wrap;
+  flex: 100%;
+  flex-basis: auto;
   text-align: right;
-  padding-left: 400px;
-  padding-right: 20px;
+  
   display: block;
   padding-top: 1px;
 }
 li {
   background: rgb(66, 66, 73);
-  flex: 50%;
-  flex-basis: 100px;
   text-align: right;
-  padding: 50px 50px;
-  margin: 10px;
+  padding: 50px;
+  margin: 20px;
   display: block;
-  position: relative;
-  right: 60%;
-  width: 160%;
+  position: static;
+  right: -8%;
+  width: 900px;
+  height:300px
+  
 }
 input {
   padding-left: 5px;

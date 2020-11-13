@@ -40,19 +40,19 @@
             <option value="all">All</option>
             <optgroup label="Percentage">
               <option value="< 10%"> Less than 10%</option>
-              <option value="10-20%">10-20%</option>
-              <option value=">20%"> 20%</option>
+              <option value="10 - 20%">10%-20%</option>
+              <option value="> 20%">>20%</option>
             </optgroup>
             <optgroup label="Absolute">
-              <option value="<$10">Less than $10</option>
-              <option value="$10-$30">$10 - $30</option>
-              <option value=">20%"> > 20%</option>
+              <option value="< $20">Less than $20</option>
+              <option value="$20 - $50">$20 - $50</option>
+              <option value="> $50">>$50</option>
             </optgroup>
             <optgroup label="Bundle Promotion">
               <option value="1 for 1">1 for 1</option>
               <option value="2 for 1">Buy 2 get 1 Free</option>
             </optgroup>
-            <option value="others">others</option>
+            <option value="0thers">Others</option>
           </select>
           <br />
           <br /><select
@@ -102,8 +102,15 @@
             <option value="Wheelchair-Friendly">Wheelchair-Friendly</option>
           </select>
           <br />
+          
         </div>
+        
+        <div class="clear_filters" >
+        <button class="clear_filters" v-on:click="Clear_filters()">Clear Filters</button>
+        </div>
+        
       </nav>
+      
 
       <div id="content">
         <ul>
@@ -208,6 +215,14 @@ export default {
       else if(date.getDay()==6){
         this.date="sat"
       }
+    },
+    Clear_filters(){
+      this.location= ""
+      this.discount= ""
+      this.attractionType= ""
+      this.pricerange= ""
+      this.demographic= ""
+
     },
 
     sortItems: function(obj) {
@@ -437,5 +452,16 @@ input{
 #planner a {
   font-weight: bolder;
   font-size: 14px;
+}
+.clear_filters{
+  padding: 60%;
+  color:rgb(97, 89, 89);
+  padding: 7px 20px;
+  border-radius:10px;
+  margin-top: 20px;
+  border:none;
+  position: relative;
+  left: 25%;
+  
 }
 </style>
