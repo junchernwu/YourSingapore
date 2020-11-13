@@ -109,10 +109,10 @@
         </div>
       </nav>
       <div id="content">
+        <h2 id="noAttractions" v-show="Object.keys(this.filteredList).length == 0">No Attractions Listed</h2>
         <ul>
           <li v-for="item in filteredList" v-bind:key="item.name">
             <img v-bind:src="item.picture" />
-
             <h3>
               <router-link :to="'/attraction/' + item.id">{{
                 item.name
@@ -348,8 +348,9 @@ p {
 }
 nav {
   float: left;
-  width: 18%;
+  width: 20%;
   padding-left: 2%;
+  padding-right: 2%;
   height: 100%;
   position: fixed;
   padding-top: 30px;
@@ -372,8 +373,10 @@ nav {
 }
 #content {
   float: right;
-  width: 80%;
+  width: 78%;
   max-width: 1500px;
+  margin-right: calc((100% - 1500px)/3);
+  padding-top: 1%;
 }
 section {
   padding-top: 230px;
@@ -388,7 +391,6 @@ ul {
   flex-wrap: wrap;
   list-style-type: none;
   margin: 0;
-  padding-left: 8%;
 }
 li {
   flex-grow: 1;
@@ -411,7 +413,7 @@ input {
   color: white;
   padding: 7px 20px;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin: 20px 0px;
   border: none;
   position: relative;
   left: 6%;
@@ -433,5 +435,10 @@ input {
   position: relative;
   float: right;
   left: 6%;
+}
+
+#noAttractions {
+  text-align: center;
+  padding-top: 2%;
 }
 </style>
