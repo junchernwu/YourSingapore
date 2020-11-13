@@ -168,7 +168,6 @@ export default {
     getEatery: function(x) {
       this.search = x;
       this.item = x;
-      console.log(this.search);
     },
     checkTimingClash:function () {
       var clash = false;
@@ -311,28 +310,29 @@ section {
   height: 6200px;
 }
 img {
-  width: 250px;
+  width: 300px;
   height: 200px;
-  margin-right: 10px;
+ 
 }
 ul {
   display: flex;
-  
+  flex: 100%;
+  flex-basis: auto;
   text-align: right;
-  padding-left: 400px;
-  padding-right: 20px;
+  
   display: block;
   padding-top: 1px;
 }
 li {
   background: rgb(66, 66, 73);
   text-align: right;
-  padding: 50px 50px;
+  padding: 50px;
   margin: 20px;
   display: block;
-  position: relative;
-  right: -5%;
-  width: 90%;
+  position: static;
+  right: -8%;
+  width: 900px;
+  height:300px
   
 }
 input {

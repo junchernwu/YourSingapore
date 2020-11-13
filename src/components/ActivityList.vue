@@ -106,7 +106,7 @@
         </div>
         
         <div class="clear_filters" >
-        <button v-on:click="Clear_filters()">Clear Filters</button>
+        <button class="clear_filters" v-on:click="Clear_filters()">Clear Filters</button>
         </div>
         
       </nav>
@@ -433,8 +433,16 @@ input{
   left:6%;
 }
 .clear_filters{
-  padding-top:1500%;
-  padding: 6%;
+  padding: 60%;
+  color:rgb(97, 89, 89);
+  padding: 7px 20px;
+  border-radius:10px;
+  margin-top: 20px;
+  border:none;
+  position: relative;
+  left: 25%;
+  
+
 
 }
 </style>
