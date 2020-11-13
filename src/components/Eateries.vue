@@ -317,6 +317,7 @@ nav {
   float: right;
   padding: 0px;
   text-align: right;
+  width: 68%;
 }
 section {
   height: 6200px;
@@ -343,7 +344,7 @@ li {
   display: block;
   position: static;
   float: right;
-  width: 68%;
+  width: 100%;
   height:300px
 }
 input {
