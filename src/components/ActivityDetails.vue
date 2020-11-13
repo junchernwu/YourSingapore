@@ -16,8 +16,8 @@
 
           <p id="timetitle"> {{date}}</p>
           <select class="dropdown" name="hour" id="hour" v-model="hour">
-            <option value="Hour">Hour</option>
-            <option value="1">1</option>
+              <option value="0" disabled selected>Hour</option>
+              <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
@@ -31,8 +31,8 @@
               <option value="12">12</option>
           </select>
           <select class="dropdown" name="min" id="min" v-model="min">
-            <option value="Minute">Minute</option>
-            <option value="00">00</option>
+              <option value="0" disabled selected>Minute</option>
+              <option value="00">00</option>
               <option value="15">15</option>
               <option value="30">30</option>
               <option value="45">45</option>
@@ -115,7 +115,6 @@
         <p> {{attraction.promotions}}</p>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -129,7 +128,7 @@ export default {
           date:'',
           hour:0,
           min:0,
-          am:'',
+          am:'am',
           attractions:[],
           attractionId:this.$route.params.id,
         }
@@ -204,6 +203,14 @@ export default {
         this.$router.push('/planner');
       }
     },
+    checkTimingFilled: function() {
+      if (this.hour == 0) {
+        if (this.min == 0) {
+          return false
+        }
+      }
+      return true
+    },
     persist:function(){
       this.updateAdds();
       sessionStorage.address = this.attraction.address;
@@ -212,8 +219,12 @@ export default {
       sessionStorage.am= this.am;
       sessionStorage.name = this.attraction.name;
       sessionStorage.picture = this.attraction.picture;
-
-      this.checkTimingClash();
+      sessionStorage.exploreFood = true;
+      if (this.checkTimingFilled()) {
+        this.checkTimingClash();
+      } else {
+        alert('Please Select a Timing')
+      }
     },
     
     updateViews: function(){
@@ -312,10 +323,6 @@ export default {
 
       return [year, month, day].join('-');
     }
-
-      
-
-      
     },
   }
 
@@ -330,7 +337,7 @@ export default {
 .left{
   float:left;
   padding-left:4%;
-  padding-top:4%;
+  padding-top: 4%;
   width:50%;
   overflow: hidden;
 
@@ -391,7 +398,6 @@ a,button{
   padding-left:8%;
   padding-top:1%;
   padding-bottom:1%;
-
 }
 #datetitle{
   float:left;
@@ -414,15 +420,16 @@ a,button{
 #planneradd{
   position:relative;
   top:10px;
-  left:410px;
+  margin-right: 10%;
+  float: right;
 }
 .price ul{
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
-  padding-right: 5%;
+  padding: 0% 5%;
   text-align: left;
-  margin-left:-45px;
+  margin-left: -3%;
 }
 .price li{
   flex-grow: 1;
@@ -431,7 +438,7 @@ a,button{
   border-radius: 10px;
   text-align: center;
   padding: 5%;
-  padding-top: 8%;
+  padding-top: calc(12% - 50px);
   margin: 10px;
   background-color: rgba(82, 82, 100, 0.554);
 
@@ -441,6 +448,7 @@ a,button{
   text-transform: uppercase;
   font-size:30px;
   line-height: 10px;
+  white-space: nowrap;
 }
 .time ul{
   list-style-type: none;

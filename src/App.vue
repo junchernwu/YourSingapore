@@ -18,7 +18,8 @@ export default {
   computed:{
     currentData() {
         if (this.$route.path==="/activityList") {
-          return ActivityListHeader;}
+          return ActivityListHeader;
+        }
         
         else {
           return Header;

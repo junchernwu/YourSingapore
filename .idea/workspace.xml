@@ -22,7 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="4568f15a-a55f-427b-9b9e-5331926c56c8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MerchantForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MerchantForm.vue" afterDir="false" />
+    </list>
+=======
     <list default="true" id="4568f15a-a55f-427b-9b9e-5331926c56c8" name="Default Changelist" comment="" />
+>>>>>>> master
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +94,7 @@
       <workItem from="1602916592814" duration="620000" />
       <workItem from="1604946398344" duration="2859000" />
       <workItem from="1604978722606" duration="3598000" />
-      <workItem from="1605071114310" duration="630000" />
+      <workItem from="1605071114310" duration="10105000" />
     </task>
     <servers />
   </component>
@@ -111,9 +118,10 @@
       <screen x="-2560" y="-276" width="2560" height="1440" />
     </state>
     <state x="-1927" y="324" key="#ESLint/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1602151770642" />
-    <state x="270" y="101" key="SettingsEditor" timestamp="1605103032156">
-      <screen x="0" y="0" width="1680" height="1050" />
+    <state x="-2149" y="-137" key="SettingsEditor" timestamp="1605104633928">
+      <screen x="-2560" y="-276" width="2560" height="1440" />
     </state>
+    <state x="-2149" y="-137" key="SettingsEditor/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1605104633928" />
     <state x="270" y="101" key="SettingsEditor/0.0.1680.1050/-2560.-276.2560.1440@0.0.1680.1050" timestamp="1605103032156" />
     <state x="-2149" y="-117" key="SettingsEditor/0.23.1680.947/-2560.-253.2560.1417@-2560.-253.2560.1417" timestamp="1601649235139" />
     <state x="-2460" y="-176" width="2360" height="1240" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602084979423">
@@ -128,13 +136,17 @@
       <screen x="-2560" y="-276" width="2560" height="1440" />
     </state>
     <state x="-1699" y="204" key="run.anything.popup/0.0.1680.1050/-2560.-276.2560.1440@-2560.-276.2560.1440" timestamp="1601710521635" />
+    <state x="421" y="18" width="838" height="1032" key="search.everywhere.popup" timestamp="1605114435631">
+      <screen x="0" y="23" width="1680" height="940" />
+    </state>
+    <state x="421" y="18" width="838" height="1032" key="search.everywhere.popup/0.23.1680.940@0.23.1680.940" timestamp="1605114435631" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
-          <line>727</line>
+          <line>722</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -149,13 +161,31 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
-          <line>1186</line>
+          <line>1182</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/MerchantForm.vue</url>
           <line>563</line>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/Edit_details_merchant.vue</url>
+          <line>556</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/Edit_details_merchant.vue</url>
+          <line>571</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/ActivityDetails.vue</url>
+          <line>177</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
