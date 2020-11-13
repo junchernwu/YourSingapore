@@ -2,8 +2,8 @@
   <div class="main">
     <h1 id="title"> When would you <br> like to go? </h1> 
     
-      <input type="date" id="date" name="date" v-model= "date">
-      <button v-on:click= "persist();$router.push('/location')">></button>
+      <input type="date" id="date" name="date" v-model= "date" min="">
+      <button v-on:click= "persist()">></button>
       
   </div>
 </template>
@@ -13,13 +13,16 @@
 export default {
   data(){
     return{
-        date:''
+        date:'',
+        maxDate:''
     }
   },
   beforeCreate: function() {
         document.body.className = 'date';
   },
   mounted() {
+    document.getElementById("date").min= new Date().toISOString().split("T")[0];
+    console.log(document.getElementById("date").min)
     if (sessionStorage.date) {
       this.date = sessionStorage.date;
       
@@ -27,9 +30,31 @@ export default {
   },
   methods:{
     persist:function(){
-      sessionStorage.date= this.date;
-    }
-    
+      var current=new Date().getTime()
+      this.maxDate=this.formatDate(new Date(current+ (14*86400000)).toString())
+      if(document.getElementById("date").value==""){
+        alert("Date input required");
+      }else{
+        if(document.getElementById("date").value>=this.maxDate){
+          alert("The weather forecast for the date you have selected may not be accurate.")
+        }
+        sessionStorage.date= this.date;
+        this.$router.push('/location');
+      }
+    },
+    formatDate: function(date) {
+          var d = new Date(date),
+              month = '' + (d.getMonth() + 1),
+              day = '' + d.getDate(),
+              year = d.getFullYear();
+
+          if (month.length < 2) 
+              month = '0' + month;
+          if (day.length < 2) 
+              day = '0' + day;
+
+          return [year, month, day].join('-');
+        }
   }
 
 }

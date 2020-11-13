@@ -53,7 +53,7 @@ h1{
     margin-left: 10%;
     border:none;
     border-radius: 5px;
-    background-color: lightgray;
+    background-color: rgba(255, 255, 255, 0.295);
     color:white;
     width:250px;
     height:40px;

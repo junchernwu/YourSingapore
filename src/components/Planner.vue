@@ -11,8 +11,6 @@
 
 
     <!-- Attractions -->
-
-
     <button class="ui button" v-on:click="$router.push('/activityList')">Explore More Attractions</button>
 
   </div>
@@ -87,6 +85,7 @@ export default {
       hour: '',
       min: '',
       am: '',
+      exploreFood: true,
     };
     if (sessionStorage.date) {
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -109,6 +108,8 @@ export default {
     }
     if(sessionStorage.name){
       plannedActivity.name = sessionStorage.name
+      plannedActivity.exploreFood = sessionStorage.exploreFood
+      console.log("EXPPLORE FOOD: " + plannedActivity.exploreFood)
       // add plannedActivity to plannedActivities array
       var added = false;
       for (var i = 0; i < this.plannedActivities.length; i++) {

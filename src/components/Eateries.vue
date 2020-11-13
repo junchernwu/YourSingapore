@@ -195,42 +195,54 @@ export default {
         this.$router.push('/planner');
       }
     },
+
+    checkTimingFilled: function() {
+      if (this.hour == 0) {
+        if (this.min == 0) {
+          return false
+        }
+      }
+      return true
+    },
     persist: function(item) {
       if(this.hour!=0){
-      sessionStorage.hour = this.hour;
-      sessionStorage.min = this.min;
-      sessionStorage.am = this.am;
-      sessionStorage.name = item.name;
-      sessionStorage.picture = this.get_pic(item.photos[0].photo_reference);
-      sessionStorage.address = item.formatted_address.trim();
-      console.log(item.formatted_address.trim());
-      this.checkTimingClash();}
-      else{
-        alert("The time of visit is not selected")
-      }
-    },
+        sessionStorage.hour = this.hour;
+        sessionStorage.min = this.min;
+        sessionStorage.am = this.am;
+        sessionStorage.name = item.name;
+        sessionStorage.picture = this.get_pic(item.photos[0].photo_reference);
+        sessionStorage.address = item.formatted_address.trim();
+        sessionStorage.exploreFood = false;
+        console.log(item.formatted_address.trim());
+        if (this.checkTimingFilled()) {
+          this.checkTimingClash();
+        } else {
+          alert("The time of visit is not selected")
+        }
+    }
   },
-  beforeCreate: function() {
+    beforeCreate: function() {
     document.body.className = "eateries";
   },
-  created() {
+    created() {
     this.fetchData();
     console.log(this.final_results)
   },
-  mounted() {
-    if (sessionStorage.date) {
-      this.date = sessionStorage.date;
-    }
-    if (sessionStorage.hour) {
-      this.hour = sessionStorage.hour; //Session storage: Once added to the planner, need to store the value in a separate variable bc once they add another attraction, the previous value will disappear
-    }
-    if (sessionStorage.min) {
-      this.min = sessionStorage.min;
-    }
-    if (sessionStorage.am) {
-      this.am = sessionStorage.am;
-    }
-  },
+    mounted() {
+      if (sessionStorage.date) {
+        this.date = sessionStorage.date;
+      }
+      if (sessionStorage.hour) {
+        this.hour = sessionStorage.hour; //Session storage: Once added to the planner, need to store the value in a separate variable bc once they add another attraction, the previous value will disappear
+      }
+      if (sessionStorage.min) {
+        this.min = sessionStorage.min;
+      }
+      if (sessionStorage.am) {
+        this.am = sessionStorage.am;
+      }
+    },
+  }
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
