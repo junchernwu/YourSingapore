@@ -10,7 +10,7 @@
             this.origin +
             '&destination=' +
             this.search +
-            'Singapore' +
+            
             '&avoid=tolls|highways'
         "
         allowfullscreen
@@ -319,7 +319,7 @@ ul {
   flex: 100%;
   flex-basis: auto;
   text-align: right;
-  
+  position: relative;
   display: block;
   padding-top: 1px;
 }
@@ -329,8 +329,8 @@ li {
   padding: 50px;
   margin: 20px;
   display: block;
-  position: static;
-  right: -8%;
+  position: relative;
+  right: 1%;
   width: 900px;
   height:300px
   

@@ -349,7 +349,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 h1 {
   color: paleturquoise;
 }
@@ -406,6 +405,7 @@ height:100%px;
   padding: 0 5%;
   box-sizing: border-box;
 }
+
 img{
   width:280px;
   height: 200px;
@@ -419,7 +419,7 @@ ul{
 }
 li{
     flex-grow: 1;
-    flex-basis: 300px;
+    flex-basis: 20px;
     text-align: center;
     padding: 3%;
 }
