@@ -81,7 +81,7 @@
               <br />
               <h5>{{ item.formatted_address.trim() }}</h5>
 
-              <button v-on:click="getEatery(item.name)">Get Directions</button>
+              <button v-on:click="getEatery(item.formatted_address.trim())">Get Directions</button>
               <div id="btn">
                 <button id="button" v-on:click="persist(item)">
                   Add to planner
@@ -166,6 +166,7 @@ export default {
       }
     },
     getEatery: function (x) {
+      console.log(x)
       this.search = x;
       this.item = x;
     },
