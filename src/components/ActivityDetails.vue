@@ -438,10 +438,10 @@ a,button{
   border-radius: 10px;
   text-align: center;
   padding: 5%;
-  padding-top: calc(12% - 50px);
+  padding-top: 6%;
   margin: 10px;
   background-color: rgba(82, 82, 100, 0.554);
-
+  position: relative;
 }
 #value{
   font-weight:bold;
