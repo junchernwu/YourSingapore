@@ -7,11 +7,11 @@
     <div v-for="activity in plannedActivities" v-bind:key="activity.id">
       <PlannedActivity v-bind:activity="activity"></PlannedActivity>
     </div>
-    <button class="ui button" v-on:click="share">Share</button>
+    <button class="ui button" v-on:click="share">SHARE</button>
 
 
     <!-- Attractions -->
-    <button class="ui button" v-on:click="$router.push('/activityList')">Explore More Attractions</button>
+    <button class="ui button" v-on:click="$router.push('/activityList')">EXPLORE ATTRACTIONS</button>
 
   </div>
 </template>
