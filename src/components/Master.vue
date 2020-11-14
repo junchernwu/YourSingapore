@@ -120,6 +120,10 @@ export default {
 #standard {
   height: 80px;
 }
-
-
+.main {
+  padding: 30px;
+}
+#title {
+  padding: 0px 10px;
+}
 </style>
