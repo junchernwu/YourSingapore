@@ -1,17 +1,17 @@
 <template>
   <div class="main">
-      <h1 id="title"> Start Your Local<br>Journey Here </h1> 
-      <p> Plan your vacation and support our local tourism <br>during this covid period </p>
-      <button v-on:click= "$router.push('/date')"> START </button>
+    <h1 id="title"> Start Your Local<br>Journey Here </h1>
+    <p> Plan your vacation and support our local tourism <br>during this covid period </p>
+    <button v-on:click= "$router.push('/date')"> START </button>
   </div>
 </template>
 
 <script>
 
 export default {
-     beforeCreate: function() {
-        document.body.className = 'home';
-    }
+  beforeCreate: function() {
+    document.body.className = 'home';
+  }
 }
 
 </script>
@@ -20,33 +20,33 @@ export default {
 <style scoped>
 
 h1{
-    position:relative;
-    margin-left: 10%;
-    margin-top:10%;
-    text-align: left;
-    font-size:60px;
-    color: white;
-    font-weight: lighter;
+  position:relative;
+  margin-left: 10vw;
+  margin-top:10vw;
+  text-align: left;
+  font-size:4vw;
+  color: white;
+  font-weight: lighter;
 }
 p{
-    position: relative;
-    margin-left: 10%;
-    font-size:30px;
-    text-align: left;
-    color: white;
+  position: relative;
+  margin-left: 10vw;
+  font-size:2vw;
+  text-align: left;
+  color: white;
 }
 button{
-    position: relative;
-    margin-left: 10%;
-    border-style:none;
-    border-radius:5px;
-    width:150px;
-    height: 50px;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.418);
-    color: white;
-    text-decoration: none;
-    font-size:15px;
+  position: relative;
+  margin-left: 10vw;
+  border-style:none;
+  border-radius:5px;
+  width:10vw;
+  height: 4vw;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.418);
+  color: white;
+  text-decoration: none;
+  font-size:1.5vw;
 }
 
 </style>

@@ -55,7 +55,7 @@ h1 a{
     text-align: center;
     color: white;
     font-weight:lighter;
-    margin-left:45%;
+    margin-left: calc(45% - 1em);
     font-size:20px;
     text-decoration: none;  
 }
