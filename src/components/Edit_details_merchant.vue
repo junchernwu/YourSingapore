@@ -30,7 +30,7 @@
       </div>
 
       <p id="desc">{{ attractions.description }}</p>
-      <h3>Address :</h3>
+      <h3 :style="{marginBottom: '2px'}">Address :</h3>
       <input
         id="address"
         v-if="address_edit"
@@ -45,29 +45,25 @@
           {{ attractions.address }}
         </h4>
       </div>
-      <br />
-
-      <a v-bind:href="attractions.link"> BOOK NOW </a>
-      <!-- Link in database should have https:// in front -->
-      <button>EXPLORE FOOD OPTIONS</button>
     </div>
     <div class="right">
-      <div class="two ui buttons ">
-        <button v-on:click="update_changes" class="ui green button">
-          Click to Save Your Edits
+      <div class="buttonRow">
+        <button class="ui button" v-on:click="update_changes"
+                :style="{color: 'white', backgroundColor: 'rgb(255, 46, 81)', borderRadius: '10px', padding: '8px 15px', marginRight: '10px', marginLeft: '5px', marginBottom: '5px'}"
+        >
+          SAVE
         </button>
-        <button class="ui red button" v-on:click="bump" :style="bumpStyle">
+        <button class="ui button" v-on:click="bump" :style="bumpStyle">
           BUMP
         </button>
+        <button
+            class="ui button"
+            :style="{color: 'white', backgroundColor: 'rgb(255, 46, 81)', borderRadius: '10px', padding: '8px 15px', marginRight: '10px', marginBottom: '5px'}"
+            v-on:click="$router.push({ name: 'dashboard', query: { docId: doc_id }})"
+        >
+          DASHBOARD
+        </button>
       </div>
-      <button
-        class="ui button"
-        v-on:click="
-          $router.push({ name: 'dashboard', query: { docId: doc_id } })
-        "
-      >
-        Dashboard
-      </button>
 
       <div class="box time" id="box2">
         <h1 id="righttitle">Operating hours</h1>
@@ -804,11 +800,21 @@ export default {
     bumpStyle() {
       if (this.bumped == true) {
         return {
+          'color': 'white',
+          'borderRadius': '10px',
+          'padding': '10px 20px',
+          'marginRight': '10px',
+          'marginBottom': '5px',
           "background-color": "grey",
         };
       } else {
         return {
-          "background-color": "red",
+          'color': 'white',
+          'borderRadius': '10px',
+          'padding': '8px 15px',
+          'marginRight': '10px',
+          'marginBottom': '5px',
+          "background-color": "rgb(255, 46, 81)",
         };
       }
     },
