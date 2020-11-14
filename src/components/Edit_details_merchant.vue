@@ -142,15 +142,22 @@
             </div>
           </div>
           <div class="col-time">
-            <div class="start-time">
-              <p class="dropdown">{{attractions.operations.mon.start.hour}}</p>
-              <p class="dropdown">{{attractions.operations.mon.start.min}}</p>
-              <p class="dropdown">{{attractions.operations.mon.start.am}}</p>
+            <div v-if="attractions.operations.mon.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.mon.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.mon.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.mon.start.am}}</p>
+              </div>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.mon.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.mon.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.mon.end.am}}</p>
+              </div>
             </div>
-            <div class="end-time">
-              <p class="dropdown">{{attractions.operations.mon.end.hour}}</p>
-              <p class="dropdown">{{attractions.operations.mon.end.min}}</p>
-              <p class="dropdown">{{attractions.operations.mon.end.am}}</p>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p :style="{}">Not Open</p>
+              </div>
             </div>
           </div>
         </div>
@@ -225,15 +232,22 @@
             </div>
           </div>
           <div class="col-time">
-            <div class="start-time">
-              <p class="dropdown">{{attractions.operations.tue.start.hour}}</p>
-              <p class="dropdown">{{attractions.operations.tue.start.min}}</p>
-              <p class="dropdown">{{attractions.operations.tue.start.am}}</p>
+            <div v-if="attractions.operations.tue.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.tue.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.tue.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.tue.start.am}}</p>
+              </div>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.tue.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.tue.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.tue.end.am}}</p>
+              </div>
             </div>
-            <div class="end-time">
-              <p class="dropdown">{{attractions.operations.tue.end.hour}}</p>
-              <p class="dropdown">{{attractions.operations.tue.end.min}}</p>
-              <p class="dropdown">{{attractions.operations.tue.end.am}}</p>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p>Not Open</p>
+              </div>
             </div>
           </div>
         </div>
@@ -307,16 +321,24 @@
               <label :style="{marginLeft: '10px'}">Wednesday</label>
             </div>
           </div>
+
           <div class="col-time">
-            <div class="start-time">
-              <p class="dropdown">{{attractions.operations.wed.start.hour}}</p>
-              <p class="dropdown">{{attractions.operations.wed.start.min}}</p>
-              <p class="dropdown">{{attractions.operations.wed.start.am}}</p>
+            <div v-if="attractions.operations.wed.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.wed.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.wed.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.wed.start.am}}</p>
+              </div>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.wed.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.wed.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.wed.end.am}}</p>
+              </div>
             </div>
-            <div class="end-time">
-              <p class="dropdown">{{attractions.operations.wed.end.hour}}</p>
-              <p class="dropdown">{{attractions.operations.wed.end.min}}</p>
-              <p class="dropdown">{{attractions.operations.wed.end.am}}</p>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p>Not Open</p>
+              </div>
             </div>
           </div>
         </div>
@@ -391,15 +413,22 @@
             </div>
           </div>
           <div class="col-time">
-            <div class="start-time">
-              <p class="dropdown">{{attractions.operations.thu.start.hour}}</p>
-              <p class="dropdown">{{attractions.operations.thu.start.min}}</p>
-              <p class="dropdown">{{attractions.operations.thu.start.am}}</p>
+            <div v-if="attractions.operations.thu.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.thu.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.thu.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.thu.start.am}}</p>
+              </div>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.thu.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.thu.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.thu.end.am}}</p>
+              </div>
             </div>
-            <div class="end-time">
-              <p class="dropdown">{{attractions.operations.thu.end.hour}}</p>
-              <p class="dropdown">{{attractions.operations.thu.end.min}}</p>
-              <p class="dropdown">{{attractions.operations.thu.end.am}}</p>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p>Not Open</p>
+              </div>
             </div>
           </div>
         </div>
@@ -474,15 +503,22 @@
             </div>
           </div>
           <div class="col-time">
-            <div class="start-time">
-              <p class="dropdown">{{attractions.operations.fri.start.hour}}</p>
-              <p class="dropdown">{{attractions.operations.fri.start.min}}</p>
-              <p class="dropdown">{{attractions.operations.fri.start.am}}</p>
+            <div v-if="attractions.operations.fri.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.fri.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.fri.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.fri.start.am}}</p>
+              </div>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.fri.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.fri.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.fri.end.am}}</p>
+              </div>
             </div>
-            <div class="end-time">
-              <p class="dropdown">{{attractions.operations.fri.end.hour}}</p>
-              <p class="dropdown">{{attractions.operations.fri.end.min}}</p>
-              <p class="dropdown">{{attractions.operations.fri.end.am}}</p>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p>Not Open</p>
+              </div>
             </div>
           </div>
         </div>
@@ -557,15 +593,22 @@
             </div>
           </div>
           <div class="col-time">
-            <div class="start-time">
-              <p class="dropdown">{{attractions.operations.sat.start.hour}}</p>
-              <p class="dropdown">{{attractions.operations.sat.start.min}}</p>
-              <p class="dropdown">{{attractions.operations.sat.start.am}}</p>
+            <div v-if="attractions.operations.sat.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.sat.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.sat.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.sat.start.am}}</p>
+              </div>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.sat.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.sat.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.sat.end.am}}</p>
+              </div>
             </div>
-            <div class="end-time">
-              <p class="dropdown">{{attractions.operations.sat.end.hour}}</p>
-              <p class="dropdown">{{attractions.operations.sat.end.min}}</p>
-              <p class="dropdown">{{attractions.operations.sat.end.am}}</p>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p>Not Open</p>
+              </div>
             </div>
           </div>
         </div>
@@ -640,15 +683,22 @@
             </div>
           </div>
           <div class="col-time">
-            <div class="start-time">
-              <p class="dropdown">{{attractions.operations.sun.start.hour}}</p>
-              <p class="dropdown">{{attractions.operations.sun.start.min}}</p>
-              <p class="dropdown">{{attractions.operations.sun.start.am}}</p>
+            <div v-if="attractions.operations.sun.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.sun.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.sun.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.sun.start.am}}</p>
+              </div>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.sun.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.sun.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.sun.end.am}}</p>
+              </div>
             </div>
-            <div class="end-time">
-              <p class="dropdown">{{attractions.operations.sun.end.hour}}</p>
-              <p class="dropdown">{{attractions.operations.sun.end.min}}</p>
-              <p class="dropdown">{{attractions.operations.sun.end.am}}</p>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p>Not Open</p>
+              </div>
             </div>
           </div>
         </div>
