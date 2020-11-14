@@ -146,17 +146,20 @@ h3{
   font-display:Abel;
   font-size: 150%;
   line-height: 0;
+  white-space: nowrap;
 }
 #title1{
   position: relative;
   font-size: 145%;
   margin-top: 1%;
   color : rgb(253, 253, 253);
+  white-space:nowrap;
 }
 #weather {
   float: left;
   position: relative;
   top: -10px;
+  white-space:nowrap;
 }
 img{
   float: left;

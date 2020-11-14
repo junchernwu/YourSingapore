@@ -49,10 +49,10 @@
         <div class="leftt">
           <!-- MONDAY -->
           <div class="operatingHour">
-            <h5 class="opDay">Monday</h5>
+            <h5 class="opDay" :style="{fontSize: '0.9vw'}">Monday</h5>
             <div class="opTime">
               <div v-if="attraction.operations.mon.open">
-                <p>{{attraction.operations.mon.start.hour}}{{attraction.operations.mon.start.min}}{{attraction.operations.mon.start.am}} - {{attraction.operations.mon.end.hour}}{{attraction.operations.mon.end.min}}{{attraction.operations.mon.end.am}}</p>
+                <p :style="{fontSize: '0.9vw'}">{{attraction.operations.mon.start.hour}}{{attraction.operations.mon.start.min}}{{attraction.operations.mon.start.am}} - {{attraction.operations.mon.end.hour}}{{attraction.operations.mon.end.min}}{{attraction.operations.mon.end.am}}</p>
               </div>
               <div v-else>
                 <p>Not Open</p>
@@ -61,10 +61,10 @@
           </div>
           <!-- TUESDAY -->
           <div class="operatingHour">
-            <h5 class="opDay">Tuesday</h5>
+            <h5 class="opDay" :style="{fontSize: '0.9vw'}">Tuesday</h5>
             <div class="opTime">
               <div v-if="attraction.operations.tue.open">
-                <p>{{attraction.operations.tue.start.hour}}{{attraction.operations.tue.start.min}}{{attraction.operations.tue.start.am}} - {{attraction.operations.tue.end.hour}}{{attraction.operations.tue.end.min}}{{attraction.operations.tue.end.am}}</p>
+                <p :style="{fontSize: '0.9vw'}">{{attraction.operations.tue.start.hour}}{{attraction.operations.tue.start.min}}{{attraction.operations.tue.start.am}} - {{attraction.operations.tue.end.hour}}{{attraction.operations.tue.end.min}}{{attraction.operations.tue.end.am}}</p>
               </div>
               <div v-else>
                 <p>Not Open</p>
@@ -73,10 +73,10 @@
           </div>
           <!-- WEDNESDAY -->
           <div class="operatingHour">
-            <h5 class="opDay">Wednesday</h5>
+            <h5 class="opDay" :style="{fontSize: '0.9vw'}">Wednesday</h5>
             <div class="opTime">
               <div v-if="attraction.operations.wed.open">
-                <p>{{attraction.operations.wed.start.hour}}{{attraction.operations.wed.start.min}}{{attraction.operations.wed.start.am}} - {{attraction.operations.wed.end.hour}}{{attraction.operations.wed.end.min}}{{attraction.operations.wed.end.am}}</p>
+                <p :style="{fontSize: '0.9vw'}">{{attraction.operations.wed.start.hour}}{{attraction.operations.wed.start.min}}{{attraction.operations.wed.start.am}} - {{attraction.operations.wed.end.hour}}{{attraction.operations.wed.end.min}}{{attraction.operations.wed.end.am}}</p>
               </div>
               <div v-else>
                 <p>Not Open</p>
@@ -85,10 +85,10 @@
           </div>
           <!-- THURSDAY -->
           <div class="operatingHour">
-            <h5 class="opDay">Thursday</h5>
+            <h5 class="opDay" :style="{fontSize: '0.9vw'}">Thursday</h5>
             <div class="opTime">
               <div v-if="attraction.operations.thu.open">
-                <p>{{attraction.operations.thu.start.hour}}{{attraction.operations.thu.start.min}}{{attraction.operations.thu.start.am}} - {{attraction.operations.thu.end.hour}}{{attraction.operations.thu.end.min}}{{attraction.operations.thu.end.am}}</p>
+                <p :style="{fontSize: '0.9vw'}">{{attraction.operations.thu.start.hour}}{{attraction.operations.thu.start.min}}{{attraction.operations.thu.start.am}} - {{attraction.operations.thu.end.hour}}{{attraction.operations.thu.end.min}}{{attraction.operations.thu.end.am}}</p>
               </div>
               <div v-else>
                 <p>Not Open</p>
@@ -99,10 +99,10 @@
         <div class="rightt">
           <!-- FRIDAY -->
           <div class="operatingHour">
-            <h5 class="opDay">Friday</h5>
+            <h5 class="opDay" :style="{fontSize: '0.9vw'}">Friday</h5>
             <div class="opTime">
               <div v-if="attraction.operations.fri.open">
-                <p>{{attraction.operations.fri.start.hour}}{{attraction.operations.fri.start.min}}{{attraction.operations.fri.start.am}} - {{attraction.operations.fri.end.hour}}{{attraction.operations.fri.end.min}}{{attraction.operations.fri.end.am}}</p>
+                <p :style="{fontSize: '0.9vw'}">{{attraction.operations.fri.start.hour}}{{attraction.operations.fri.start.min}}{{attraction.operations.fri.start.am}} - {{attraction.operations.fri.end.hour}}{{attraction.operations.fri.end.min}}{{attraction.operations.fri.end.am}}</p>
               </div>
               <div v-else>
                 <p>Not Open</p>
@@ -111,10 +111,10 @@
           </div>
           <!-- SATURDAY -->
           <div class="operatingHour">
-            <h5 class="opDay">Saturday</h5>
+            <h5 class="opDay" :style="{fontSize: '0.9vw'}">Saturday</h5>
             <div class="opTime">
               <div v-if="attraction.operations.sat.open">
-                <p>{{attraction.operations.sat.start.hour}}{{attraction.operations.sat.start.min}}{{attraction.operations.sat.start.am}} - {{attraction.operations.sat.end.hour}}{{attraction.operations.sat.end.min}}{{attraction.operations.sat.end.am}}</p>
+                <p :style="{fontSize: '0.9vw'}">{{attraction.operations.sat.start.hour}}{{attraction.operations.sat.start.min}}{{attraction.operations.sat.start.am}} - {{attraction.operations.sat.end.hour}}{{attraction.operations.sat.end.min}}{{attraction.operations.sat.end.am}}</p>
               </div>
               <div v-else>
                 <p>Not Open</p>
@@ -123,10 +123,10 @@
           </div>
           <!-- SUNDAY -->
           <div class="operatingHour">
-            <h5 class="opDay">Sunday</h5>
+            <h5 class="opDay" :style="{fontSize: '0.9vw'}">Sunday</h5>
             <div class="opTime">
               <div v-if="attraction.operations.sun.open">
-                <p>{{attraction.operations.sun.start.hour}}{{attraction.operations.sun.start.min}}{{attraction.operations.sun.start.am}} - {{attraction.operations.sun.end.hour}}{{attraction.operations.sun.end.min}}{{attraction.operations.sun.end.am}}</p>
+                <p :style="{fontSize: '0.9vw'}">{{attraction.operations.sun.start.hour}}{{attraction.operations.sun.start.min}}{{attraction.operations.sun.start.am}} - {{attraction.operations.sun.end.hour}}{{attraction.operations.sun.end.min}}{{attraction.operations.sun.end.am}}</p>
               </div>
               <div v-else>
                 <p>Not Open</p>
@@ -412,6 +412,7 @@ a,button{
   margin-right:10px;
   font-size: 10px;
   border:none;
+  
 }
 .box{
   background-color: rgba(0, 0, 0, 0.342);
@@ -525,7 +526,8 @@ a,button{
 }
 
 .opTime {
-  width: 70%;
+  width: 80%;
+  
 }
 
 .operatingHour {

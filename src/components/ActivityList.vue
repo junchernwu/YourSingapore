@@ -3,8 +3,8 @@
     <section>
       <nav>
         <div class="bar">
-          <button id="planner">
-            <router-link :to="'/planner'">VIEW PLANNER</router-link>
+          <button id="planner" v-on:click="toPlanner">
+            VIEW PLANNER
           </button>
           <div class="ui icon input" :style="{marginBottom: '20px', width: '100%'}">
             <input
@@ -164,6 +164,9 @@ export default {
   },
 
   methods: {
+    toPlanner: function() {
+      this.$router.push('/planner')
+    },
     fetchItems: function() {
       database
         .collection("attraction2")

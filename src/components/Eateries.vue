@@ -74,6 +74,14 @@
             </div>
           </div>
         </div>
+        <div id = "buttons">
+          <button id="plannerButton" v-on:click="toPlanner">
+            PLANNER
+          </button>
+          <button id="attractionButton" v-on:click="toAttraction">
+            ATTRACTIONS
+          </button>
+        </div>
       </nav>
       <div id="content">
         <ul>
@@ -127,6 +135,12 @@ export default {
     },
   },
   methods: {
+    toPlanner: function() {
+      this.$router.push('/planner')
+    },
+    toAttraction: function() {
+      this.$router.push('/activityList')
+    },
     fetchData: function () {
       this.final_results = [];
       if (!this.origin.includes("Sinagpore")) {
@@ -282,6 +296,27 @@ a, button {
   margin-left: 10px;
   height: 100px;
   min-width: 300px;
+}
+#buttons {
+  width: calc(100% - 5px);
+  min-width: 300px;
+}
+#plannerButton {
+  margin-left: 10px;
+  float: left;
+  width: 48%;
+  margin-top: 15px;
+  margin-right: 0;
+  border-radius: 10px;
+}
+#attractionButton {
+  border-radius: 10px;
+  float: right;
+  width: 48%;
+  position: relative;
+  right: -10px;
+  margin-right: 0;
+  margin-top: 15px;
 }
 .row {
   width: 100%;
