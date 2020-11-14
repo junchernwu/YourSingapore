@@ -408,7 +408,7 @@ input {
 #planner {
   background-color: rgb(255, 46, 81);
   color: white;
-  padding: 7px 20px;
+  padding: 7px 65px;
   border-radius: 10px;
   margin: 20px 0px;
   border: none;
@@ -437,5 +437,8 @@ input {
 #noAttractions {
   text-align: center;
   padding-top: 2%;
+}
+#plandiv{
+  padding-bottom: 10%;
 }
 </style>

@@ -83,12 +83,14 @@
               <h3>{{ item.name.trim() }}</h3>
               <br />
               <h5>{{ item.formatted_address.trim() }}</h5>
+
              <div>
                 <button v-on:click="getEatery(item.formatted_address.trim())">
                   GET DIRECTIONS
                 </button>
                 <button v-on:click="persist(item)">
                   ADD TO PLANNER
+
                 </button>
               </div>
             </aside>
@@ -170,6 +172,7 @@ export default {
       }
     },
     getEatery: function (x) {
+      console.log(x)
       this.search = x;
       this.item = x;
     },
