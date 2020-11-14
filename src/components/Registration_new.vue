@@ -35,7 +35,7 @@
               <label id="image-label">Upload Verification Details</label>
               <br />
               <input
-                style="text-align: center"
+                :style = "{textAlign: 'center', overflow: 'hidden'}"
                 type="file"
                 accept="image/png, image/jpeg"
                 name="file-upload"
