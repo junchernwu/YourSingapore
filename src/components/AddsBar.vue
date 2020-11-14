@@ -20,7 +20,6 @@
     },
     
     mounted () {
-      
       this.renderChart(this.datacollection2, this.options2)
       console.log("Should be after")
     }

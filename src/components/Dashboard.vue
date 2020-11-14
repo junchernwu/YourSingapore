@@ -1,8 +1,14 @@
 <template>
-  <div>
+  <div id="total">
     <div class="graph">
-      <ViewersBar id="viewersBar" v-bind:docId="docId" :datacollection="datacollection" :options="options"  v-if="loaded" ></ViewersBar>
-      <AddsBar id="addsBar" v-bind:docId="docId" :datacollection2="datacollection2" :options2="options2"  v-if="loaded" ></AddsBar>
+      <div id="graph1">
+        <h2>Viewers</h2>
+        <ViewersBar id="viewersBar" v-bind:docId="docId" :datacollection="datacollection" :options="options"  v-if="loaded"></ViewersBar>
+      </div>
+      <div id="graph2">
+        <h2>Visitors</h2>
+        <AddsBar id="addsBar" v-bind:docId="docId" :datacollection2="datacollection2" :options2="options2"  v-if="loaded"></AddsBar>
+      </div>
     </div>
     <div class="stats">
       <Dailystats v-bind:docId="docId"></Dailystats>
@@ -17,7 +23,6 @@ import Dailystats from "@/components/Dailystats";
 import ViewersBar from "@/components/ViewersBar";
 import AddsBar from "@/components/AddsBar";
 import { database } from "@/firebase/";
-
 export default {
   name: "Dashboard",
   components: {BumpStats,Dailystats,ViewersBar,AddsBar},
@@ -133,7 +138,7 @@ export default {
                 }]
           },
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
       }
     }
   },
@@ -197,18 +202,16 @@ export default {
 .graph{
   float:left;
   width:70%;
-  
+  padding: 20px;
+  height: 100%;
 }
 .stats{
   float:left;
   width:25%;
+  padding: 20px 0px;
+  height: 900px;
 }
-#viewersBar{
-  height:350px;
+#graph1 {
+  margin-bottom: 20px;
 }
-#addsBar{
-  height:350px;
-}
-
-
 </style>
