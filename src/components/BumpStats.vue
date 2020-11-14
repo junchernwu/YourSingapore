@@ -85,16 +85,18 @@ export default {
   #background {
     background-color: rgba(255, 248, 248, 0.2);
     border-radius: 20px;
-    padding: 20px;
+    padding: 15% 20px;
     margin: 20px;
     width: 110%;
+    height: 30%;
   }
   h2 {
     text-align: center;
-    margin: 0;
+    margin-top: 10px;
     font-weight: bold;
     font-family: 'Montserrat';
     color:rgb(177, 177, 177);
+    position: relative;
   }
   h4 {
     margin: 0;

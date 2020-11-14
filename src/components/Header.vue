@@ -43,6 +43,9 @@ div{
     border-bottom-color: white;
     border-bottom-width: 1px;
     height:80px;
+    width: 100%;
+    top: 0;
+    zIndex: 1;
 }
 
 h1 a{
@@ -52,7 +55,7 @@ h1 a{
     text-align: center;
     color: white;
     font-weight:lighter;
-    margin-left:45%;
+    margin-left: calc(45% - 1em);
     font-size:20px;
     text-decoration: none;  
 }

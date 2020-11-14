@@ -47,56 +47,92 @@
       <div class="box time" id="box2">
         <h1 id="righttitle"> Operating hours </h1>
         <div class="leftt">
-        <ul reversed>
-          Monday
-          <li v-for="time in attraction.operations.mon" v-bind:key="time.id">
-            <p>{{time.hour}}{{time.min}}{{time.am}}</p>
-          </li>
-        </ul>
-        <ul reversed>
-          Tuesday
-          <li v-for="time in attraction.operations.tue" v-bind:key="time.id">
-            <p>{{time.hour}}{{time.min}}{{time.am}}</p>
-          </li>
-          
-        </ul>
-        <ul reversed>
-          Wednesday
-          <li v-for="time in attraction.operations.wed" v-bind:key="time.id">
-            <p>{{time.hour}}{{time.min}}{{time.am}}</p>
-          </li>
-         
-        </ul>
-        <ul reversed>
-          Thursday
-          <li v-for="time in attraction.operations.thu" v-bind:key="time.id">
-            <p>{{time.hour}}{{time.min}}{{time.am}}</p>
-          </li>
-         
-        </ul>
+          <!-- MONDAY -->
+          <div class="operatingHour">
+            <h5 class="opDay">Monday</h5>
+            <div class="opTime">
+              <div v-if="attraction.operations.mon.open">
+                <p>{{attraction.operations.mon.start.hour}}{{attraction.operations.mon.start.min}}{{attraction.operations.mon.start.am}} - {{attraction.operations.mon.end.hour}}{{attraction.operations.mon.end.min}}{{attraction.operations.mon.end.am}}</p>
+              </div>
+              <div v-else>
+                <p>Not Open</p>
+              </div>
+            </div>
+          </div>
+          <!-- TUESDAY -->
+          <div class="operatingHour">
+            <h5 class="opDay">Tuesday</h5>
+            <div class="opTime">
+              <div v-if="attraction.operations.tue.open">
+                <p>{{attraction.operations.tue.start.hour}}{{attraction.operations.tue.start.min}}{{attraction.operations.tue.start.am}} - {{attraction.operations.tue.end.hour}}{{attraction.operations.tue.end.min}}{{attraction.operations.tue.end.am}}</p>
+              </div>
+              <div v-else>
+                <p>Not Open</p>
+              </div>
+            </div>
+          </div>
+          <!-- WEDNESDAY -->
+          <div class="operatingHour">
+            <h5 class="opDay">Wednesday</h5>
+            <div class="opTime">
+              <div v-if="attraction.operations.wed.open">
+                <p>{{attraction.operations.wed.start.hour}}{{attraction.operations.wed.start.min}}{{attraction.operations.wed.start.am}} - {{attraction.operations.wed.end.hour}}{{attraction.operations.wed.end.min}}{{attraction.operations.wed.end.am}}</p>
+              </div>
+              <div v-else>
+                <p>Not Open</p>
+              </div>
+            </div>
+          </div>
+          <!-- THURSDAY -->
+          <div class="operatingHour">
+            <h5 class="opDay">Thursday</h5>
+            <div class="opTime">
+              <div v-if="attraction.operations.thu.open">
+                <p>{{attraction.operations.thu.start.hour}}{{attraction.operations.thu.start.min}}{{attraction.operations.thu.start.am}} - {{attraction.operations.thu.end.hour}}{{attraction.operations.thu.end.min}}{{attraction.operations.thu.end.am}}</p>
+              </div>
+              <div v-else>
+                <p>Not Open</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="rightt">
-        <ul reversed>
-          Friday
-          <li v-for="time in attraction.operations.fri" v-bind:key="time.id">
-            <p>{{time.hour}}{{time.min}}{{time.am}}</p>
-          </li>
-          
-        </ul>
-        <ul reversed>
-          Saturday
-          <li v-for="time in attraction.operations.sat" v-bind:key="time.id">
-            <p>{{time.hour}}{{time.min}}{{time.am}}</p>
-          </li>
-          
-        </ul>
-        <ul reversed>
-          Sunday
-          <li v-for="time in attraction.operations.sun" v-bind:key="time.id">
-            <p>{{time.hour}}{{time.min}}{{time.am}}</p>
-          </li>
-          
-        </ul>
+          <!-- FRIDAY -->
+          <div class="operatingHour">
+            <h5 class="opDay">Friday</h5>
+            <div class="opTime">
+              <div v-if="attraction.operations.fri.open">
+                <p>{{attraction.operations.fri.start.hour}}{{attraction.operations.fri.start.min}}{{attraction.operations.fri.start.am}} - {{attraction.operations.fri.end.hour}}{{attraction.operations.fri.end.min}}{{attraction.operations.fri.end.am}}</p>
+              </div>
+              <div v-else>
+                <p>Not Open</p>
+              </div>
+            </div>
+          </div>
+          <!-- SATURDAY -->
+          <div class="operatingHour">
+            <h5 class="opDay">Saturday</h5>
+            <div class="opTime">
+              <div v-if="attraction.operations.sat.open">
+                <p>{{attraction.operations.sat.start.hour}}{{attraction.operations.sat.start.min}}{{attraction.operations.sat.start.am}} - {{attraction.operations.sat.end.hour}}{{attraction.operations.sat.end.min}}{{attraction.operations.sat.end.am}}</p>
+              </div>
+              <div v-else>
+                <p>Not Open</p>
+              </div>
+            </div>
+          </div>
+          <!-- SUNDAY -->
+          <div class="operatingHour">
+            <h5 class="opDay">Sunday</h5>
+            <div class="opTime">
+              <div v-if="attraction.operations.sun.open">
+                <p>{{attraction.operations.sun.start.hour}}{{attraction.operations.sun.start.min}}{{attraction.operations.sun.start.am}} - {{attraction.operations.sun.end.hour}}{{attraction.operations.sun.end.min}}{{attraction.operations.sun.end.am}}</p>
+              </div>
+              <div v-else>
+                <p>Not Open</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
        <div class="box price" id="box3">
@@ -438,7 +474,7 @@ a,button{
   border-radius: 10px;
   text-align: center;
   padding: 5%;
-  padding-top: 6%;
+  padding-top: 8%;
   margin: 10px;
   background-color: rgba(82, 82, 100, 0.554);
   position: relative;
@@ -455,22 +491,45 @@ a,button{
   display:flex;
   position:relative;
   margin-right:330px;
-
 }
 .time li{
   padding-left:5px;
-
 }
+
 .leftt{
+  margin-top: 10px;
   float:left;
   width:50%;
 }
 .rightt{
+  margin-top: 10px;
   float:left;
   width:50%;
 }
 #box2{
-  height:230px;
+  height:200px;
+}
+
+.dropdown {
+  position: relative;
+  top: -10px;
+  border-color: rgba(255, 255, 255, 0.295);
+  background: none;
+  color: white;
+}
+
+.opDay {
+  float: left;
+  width: 30%;
+  margin: 0px 5px;
+}
+
+.opTime {
+  width: 70%;
+}
+
+.operatingHour {
+  height: 2em;
 }
 
 </style>  

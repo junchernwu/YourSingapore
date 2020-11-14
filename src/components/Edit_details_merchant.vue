@@ -30,7 +30,7 @@
       </div>
 
       <p id="desc">{{ attractions.description }}</p>
-      <h3>Address :</h3>
+      <h3 :style="{marginBottom: '2px'}">Address :</h3>
       <input
         id="address"
         v-if="address_edit"
@@ -45,506 +45,658 @@
           {{ attractions.address }}
         </h4>
       </div>
-      <br />
-
-      <a v-bind:href="attractions.link"> BOOK NOW </a>
-      <!-- Link in database should have https:// in front -->
-      <button>EXPLORE FOOD OPTIONS</button>
     </div>
     <div class="right">
-      <div class="two ui buttons ">
-        <button v-on:click="update_changes" class="ui green button">
-          Click to Save Your Edits
+      <div class="buttonRow">
+        <button class="ui button" v-on:click="update_changes"
+                :style="{color: 'white', backgroundColor: 'rgb(255, 46, 81)', borderRadius: '10px', padding: '8px 15px', marginRight: '10px', marginLeft: '5px', marginBottom: '5px'}"
+        >
+          SAVE
         </button>
-        <button class="ui red button" v-on:click="bump" :style="bumpStyle">
+        <button class="ui button" v-on:click="bump" :style="bumpStyle">
           BUMP
         </button>
+        <button
+            class="ui button"
+            :style="{color: 'white', backgroundColor: 'rgb(255, 46, 81)', borderRadius: '10px', padding: '8px 15px', marginRight: '10px', marginBottom: '5px'}"
+            v-on:click="$router.push({ name: 'dashboard', query: { docId: doc_id }})"
+        >
+          DASHBOARD
+        </button>
       </div>
-      <button
-        class="ui button"
-        v-on:click="
-          $router.push({ name: 'dashboard', query: { docId: doc_id } })
-        "
-      >
-        Dashboard
-      </button>
 
       <div class="box time" id="box2">
         <h1 id="righttitle">Operating hours</h1>
-        <div class="leftt">
-          <ul reversed>
-            Monday
-            <li v-for="time in attractions.operations.mon" v-bind:key="time.id">
-              <!-- <input v-if = "editedTodo" v-model = "time.hour"
-                  @blur= "editedTodo = false; $emit('update')"
-                  @keyup.enter = "editedTodo=false; $emit('update')">  -->
 
-              <div v-if="editedTodo && time.hour">
-                <select
-                  id="dropdown"
-                  name="hour"
-                  v-model="time.hour"
-                  @keyup.enter="
-                    RevertMonday();
-                    $emit('update');
-                  "
-                  >>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                </select>
-                <select
-                  id="dropdown"
-                  class="dropdown"
-                  name="min"
-                  v-model="time.min"
-                  @keyup.enter="
-                    RevertMonday();
-                    $emit('update');
-                  "
-                  >
-                  <option value="00">00</option>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="40">40</option>
-                  <option value="50">50</option>
-                </select>
-                <select
-                  id="dropdown"
-                  class="dropdown"
-                  name="am"
-                  v-model="time.am"
-                  @keyup.enter="
-                    RevertMonday();
-                    $emit('update');
-                  "
-                  >>
-                  <option value="am">am</option>
-                  <option value="pm">pm</option>
-                </select>
-              </div>
-
-              <div v-else>
-                <label @click="Monday_click"
-                  >{{ time.hour }}{{ time.min }}{{ time.am }}</label
-                >
-              </div>
-            </li>
-          </ul>
-          <ul reversed>
-            Tuesday
-            <li v-for="time in attractions.operations.tue" v-bind:key="time.id">
-              <div v-if="editedTodo_tues && time.hour">
-                <select
-                  id="dropdown"
-                  name="hour"
-                  v-model="time.hour"
-                  @keyup.enter="
-                    RevertTues();
-                    $emit('update');
-                  "
-                  >>
-                  <option id="dropdown" value="1">1</option>
-                  <option id="dropdown" value="2">2</option>
-                  <option id="dropdown" value="3">3</option>
-                  <option id="dropdown" value="4">4</option>
-                  <option id="dropdown" value="5">5</option>
-                  <option id="dropdown" value="6">6</option>
-                  <option id="dropdown" value="7">7</option>
-                  <option id="dropdown" value="8">8</option>
-                  <option id="dropdown" value="9">9</option>
-                  <option id="dropdown" value="10">10</option>
-                  <option id="dropdown" value="11">11</option>
-                  <option id="dropdown" value="12">12</option>
-                </select>
-                <select
-                  class="dropdown"
-                  name="min"
-                  id="dropdown"
-                  v-model="time.min"
-                  @keyup.enter="
-                    RevertTues();
-                    $emit('update');
-                  "
-                  >>
-                  
-                  <option value="00">00</option>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="40">40</option>
-                  <option value="50">50</option>
-                </select>
-                <select
-                  class="dropdown"
-                  name="am"
-                  id="dropdown"
-                  v-model="time.am"
-                  @keyup.enter="
-                    RevertTues();
-                    $emit('update');
-                  "
-                  >>
-                  <option id="dropdown" value="am">am</option>
-                  <option id="dropdown" value="pm">pm</option>
-                </select>
-              </div>
-
-              <div v-else>
-                <label @click="Tues_click"
-                  >{{ time.hour }}{{ time.min }}{{ time.am }}</label
-                >
-              </div>
-            </li>
-          </ul>
-          <ul reversed>
-            Wednesday
-            <li v-for="time in attractions.operations.wed" v-bind:key="time.id">
-              <div v-if="editedTodo_wed && time.hour">
-                <select
-                  id="dropdown"
-                  class="dropdown"
-                  name="hour"
-                  v-model="time.hour"
-                  @keyup.enter="
-                    RevertWed();
-                    $emit('update');
-                  "
-                  >>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                  <option value="11">11</option>
-                  <option value="12">12</option>
-                </select>
-                <select
-                  class="dropdown"
-                  id="dropdown"
-                  name="min"
-                  v-model="time.min"
-                  @keyup.enter="
-                    RevertWed();
-                    $emit('update');
-                  "
-                  >>
-                  
-                  <option value="00">00</option>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="40">40</option>
-                  <option value="50">50</option>
-                </select>
-                <select
-                  id="dropdown"
-                  class="dropdown"
-                  name="am"
-                  v-model="time.am"
-                  @keyup.enter="
-                    RevertWed();
-                    $emit('update');
-                  "
-                  >>
-                  <option id="dropdown" value="am">am</option>
-                  <option id="dropdown" value="pm">pm</option>
-                </select>
-              </div>
-
-              <div v-else>
-                <label @click="Wed_click"
-                  >{{ time.hour }}{{ time.min }}{{ time.am }}</label
-                >
-              </div>
-            </li>
-          </ul>
-          <ul reversed>
-            Thursday
-            <li v-for="time in attractions.operations.thu" v-bind:key="time.id">
-              <div v-if="editedTodo_thurs && time.hour">
-                <select
-                  id="dropdown"
-                  class="dropdown"
-                  name="hour"
-                  v-model="time.hour"
-                  @keyup.enter="
-                    RevertThurs();
-                    $emit('update');
-                  "
-                  >>
-                  <option id="dropdown" value="1">1</option>
-                  <option id="dropdown" value="2">2</option>
-                  <option id="dropdown" value="3">3</option>
-                  <option id="dropdown" value="4">4</option>
-                  <option id="dropdown" value="5">5</option>
-                  <option id="dropdown" value="6">6</option>
-                  <option id="dropdown" value="7">7</option>
-                  <option id="dropdown" value="8">8</option>
-                  <option id="dropdown" value="9">9</option>
-                  <option id="dropdown" value="10">10</option>
-                  <option id="dropdown" value="11">11</option>
-                  <option id="dropdown" value="12">12</option>
-                </select>
-                <select
-                  id="dropdown"
-                  class="dropdown"
-                  name="min"
-                  v-model="time.min"
-                  @keyup.enter="
-                    RevertThurs();
-                    $emit('update');
-                  "
-                  >>
-                 
-                  <option value="00">00</option>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="40">40</option>
-                  <option value="50">50</option>
-                </select>
-                <select
-                  class="dropdown"
-                  name="am"
-                  id="dropdown"
-                  v-model="time.am"
-                  @keyup.enter="
-                    RevertThurs();
-                    $emit('update');
-                  "
-                  >>
-                  <option value="am">am</option>
-                  <option value="pm">pm</option>
-                </select>
-              </div>
-
-              <div v-else>
-                <label @click="Thurs_click"
-                  >{{ time.hour }}{{ time.min }}{{ time.am }}</label
-                >
-              </div>
-            </li>
-          </ul>
+        <!-- MONDAY -->
+        <div class="form-row" v-if="editedTodo">
+          <div class="col-day">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="mon" name="mon" value="mon" v-model="attractions.operations.mon.open">
+              <label class="form-check-label" for="mon">Monday</label>
+            </div>
+          </div>
+          <div class="col-time">
+            <div class="start-time">
+              <select class="dropdown" v-model="attractions.operations.mon.start.hour" @keyup.enter="RevertMonday(); $emit('update');">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.mon.start.min" @keyup.enter="RevertMonday(); $emit('update');">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.mon.start.am" @keyup.enter="RevertMonday(); $emit('update');">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+            <div class="end-time">
+              <select class="dropdown" v-model="attractions.operations.mon.end.hour">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.mon.end.min">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.mon.end.am">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+          </div>
         </div>
-        <div class="rightt">
-          <ul reversed>
-            Friday
-            <li v-for="time in attractions.operations.fri" v-bind:key="time.id">
-              <div v-if="editedToDo_fri && time.hour">
-                <select
-                  id="dropdown"
-                  class="dropdown"
-                  name="hour"
-                  v-model="time.hour"
-                  @keyup.enter="
-                    RevertFri();
-                    $emit('update');
-                  "
-                  >>
-                  <option id="dropdown" value="1">1</option>
-                  <option id="dropdown" value="2">2</option>
-                  <option id="dropdown" value="3">3</option>
-                  <option id="dropdown" value="4">4</option>
-                  <option id="dropdown" value="5">5</option>
-                  <option id="dropdown" value="6">6</option>
-                  <option id="dropdown" value="7">7</option>
-                  <option id="dropdown" value="8">8</option>
-                  <option id="dropdown" value="9">9</option>
-                  <option id="dropdown" value="10">10</option>
-                  <option id="dropdown" value="11">11</option>
-                  <option id="dropdown" value="12">12</option>
-                </select>
-                <select
-                  id="dropdown"
-                  class="dropdown"
-                  name="min"
-                  v-model="time.min"
-                  @keyup.enter="
-                    RevertFri();
-                    $emit('update');
-                  "
-                  >>
-                  
-                  <option value="00">00</option>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="40">40</option>
-                  <option value="50">50</option>
-                </select>
-                <select
-                  class="dropdown"
-                  name="am"
-                  id="dropdown"
-                  v-model="time.am"
-                  @keyup.enter="
-                    RevertFri();
-                    $emit('update');
-                  "
-                  >>
-                  <option id="dropdown" value="am">am</option>
-                  <option id="dropdown" value="pm">pm</option>
-                </select>
+        <div class="form-row" v-else @click="Monday_click">
+          <div class="col-day">
+            <div class="form-check">
+              <label :style="{marginLeft: '10px'}">Monday</label>
+            </div>
+          </div>
+          <div class="col-time">
+            <div v-if="attractions.operations.mon.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.mon.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.mon.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.mon.start.am}}</p>
               </div>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.mon.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.mon.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.mon.end.am}}</p>
+              </div>
+            </div>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p :style="{}">Not Open</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-              <div v-else>
-                <label @click="Fri_click"
-                  >{{ time.hour }}{{ time.min }}{{ time.am }}</label
-                >
+        <!-- TUES -->
+        <div class="form-row" v-if="editedTodo_tues">
+          <div class="col-day">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="tue" name="tue" value="tue" v-model="attractions.operations.tue.open">
+              <label class="form-check-label" for="tue">Tuesday</label>
+            </div>
+          </div>
+          <div class="col-time">
+            <div class="start-time">
+              <select class="dropdown" v-model="attractions.operations.tue.start.hour" @keyup.enter="RevertTues(); $emit('update');">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.tue.start.min" @keyup.enter="RevertTues(); $emit('update');">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.tue.start.am" @keyup.enter="RevertTues(); $emit('update');">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+            <div class="end-time">
+              <select class="dropdown" v-model="attractions.operations.tue.end.hour">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.tue.end.min">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.tue.end.am">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row" v-else @click="Tues_click">
+          <div class="col-day">
+            <div class="form-check">
+              <label :style="{marginLeft: '10px'}">Tuesday</label>
+            </div>
+          </div>
+          <div class="col-time">
+            <div v-if="attractions.operations.tue.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.tue.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.tue.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.tue.start.am}}</p>
               </div>
-            </li>
-          </ul>
-          <ul reversed>
-            Saturday
-            <li v-for="time in attractions.operations.sat" v-bind:key="time.id">
-              <div v-if="editedToDo_sat && time.hour">
-                <select
-                  class="dropdown"
-                  name="hour"
-                  id="dropdown"
-                  v-model="time.hour"
-                  @keyup.enter="
-                    RevertSat();
-                    $emit('update');
-                  "
-                  >>
-                  <option id="dropdown" value="1">1</option>
-                  <option id="dropdown" value="2">2</option>
-                  <option id="dropdown" value="3">3</option>
-                  <option id="dropdown" value="4">4</option>
-                  <option id="dropdown" value="5">5</option>
-                  <option id="dropdown" value="6">6</option>
-                  <option id="dropdown" value="7">7</option>
-                  <option id="dropdown" value="8">8</option>
-                  <option id="dropdown" value="9">9</option>
-                  <option id="dropdown" value="10">10</option>
-                  <option id="dropdown" value="11">11</option>
-                  <option id="dropdown" value="12">12</option>
-                </select>
-                <select
-                  class="dropdown"
-                  name="min"
-                  id="dropdown"
-                  v-model="time.min"
-                  @keyup.enter="
-                    RevertSat();
-                    $emit('update');
-                  "
-                  >
-                  
-                  <option value="00">00</option>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="40">40</option>
-                  <option value="50">50</option>
-                </select>
-                <select
-                  class="dropdown"
-                  name="am"
-                  id="dropdown"
-                  v-model="time.am"
-                  @keyup.enter="
-                    RevertSat();
-                    $emit('update');
-                  "
-                  >>
-                  <option value="am">am</option>
-                  <option value="pm">pm</option>
-                </select>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.tue.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.tue.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.tue.end.am}}</p>
               </div>
+            </div>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p>Not Open</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-              <div v-else>
-                <label @click="Sat_click"
-                  >{{ time.hour }}{{ time.min }}{{ time.am }}</label
-                >
-              </div>
-            </li>
-          </ul>
- 
+        <!-- WEDNESDAY -->
+        <div class="form-row" v-if="editedTodo_wed">
+          <div class="col-day">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="wed" name="wed" value="wed" v-model="attractions.operations.wed.open">
+              <label class="form-check-label" for="wed">Wednesday</label>
+            </div>
+          </div>
+          <div class="col-time">
+            <div class="start-time">
+              <select class="dropdown" v-model="attractions.operations.wed.start.hour" @keyup.enter="RevertWed(); $emit('update');">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.wed.start.min" @keyup.enter="RevertWed(); $emit('update');">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.wed.start.am" @keyup.enter="RevertWed(); $emit('update');">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+            <div class="end-time">
+              <select class="dropdown" v-model="attractions.operations.wed.end.hour" @keyup.enter="RevertWed(); $emit('update');">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.wed.end.min" @keyup.enter="RevertWed(); $emit('update');">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.wed.end.am" @keyup.enter="RevertWed(); $emit('update');">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row" v-else @click="Wed_click">
+          <div class="col-day">
+            <div class="form-check">
+              <label :style="{marginLeft: '10px'}">Wednesday</label>
+            </div>
+          </div>
 
-          <ul reversed>
-            Sunday
-            <li v-for="time in attractions.operations.sun" v-bind:key="time.id">
-              <div v-if="editedToDo_sun && time.hour">
-                <select
-                  class="dropdown"
-                  name="hour"
-                  id="dropdown"
-                  v-model="time.hour"
-                  @keyup.enter="
-                    RevertSun();
-                    $emit('update');
-                  "
-                  >>
-                  <option id="dropdown" value="1">1</option>
-                  <option id="dropdown" value="2">2</option>
-                  <option id="dropdown" value="3">3</option>
-                  <option id="dropdown" value="4">4</option>
-                  <option id="dropdown" value="5">5</option>
-                  <option id="dropdown" value="6">6</option>
-                  <option id="dropdown" value="7">7</option>
-                  <option id="dropdown" value="8">8</option>
-                  <option id="dropdown" value="9">9</option>
-                  <option id="dropdown" value="10">10</option>
-                  <option id="dropdown" value="11">11</option>
-                  <option id="dropdown" value="12">12</option>
-                </select>
-                <select
-                  class="dropdown"
-                  name="min"
-                  id="dropdown"
-                  v-model="time.min"
-                  @keyup.enter="
-                    RevertSun();
-                    $emit('update');
-                  "
-                  >
-                  <option value="00">00</option>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="40">40</option>
-                  <option value="50">50</option>
-                </select>
-                <select
-                  class="dropdown"
-                  name="am"
-                  id="dropdown"
-                  v-model="time.am"
-                  @keyup.enter="
-                    RevertSun();
-                    $emit('update');
-                  "
-                  >
-                  <option id="dropdown" value="am">am</option>
-                  <option id="dropdown" value="pm">pm</option>
-                </select>
+          <div class="col-time">
+            <div v-if="attractions.operations.wed.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.wed.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.wed.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.wed.start.am}}</p>
               </div>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.wed.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.wed.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.wed.end.am}}</p>
+              </div>
+            </div>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p>Not Open</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-              <div v-else>
-                <label @click="Sun_click"
-                  >{{ time.hour }}{{ time.min }}{{ time.am }}</label
-                >
+        <!-- THURSDAY -->
+        <div class="form-row" v-if="editedTodo_thurs">
+          <div class="col-day">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="thu" name="thu" value="thu" v-model="attractions.operations.thu.open">
+              <label class="form-check-label" for="thu">Thursday</label>
+            </div>
+          </div>
+          <div class="col-time">
+            <div class="start-time">
+              <select class="dropdown" v-model="attractions.operations.thu.start.hour" @keyup.enter="RevertThurs(); $emit('update');">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.thu.start.min" @keyup.enter="RevertThurs(); $emit('update');">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.thu.start.am" @keyup.enter="RevertThurs(); $emit('update');">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+            <div class="end-time">
+              <select class="dropdown" v-model="attractions.operations.thu.end.hour" @keyup.enter="RevertThurs(); $emit('update');">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.thu.end.min" @keyup.enter="RevertThurs(); $emit('update');">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.thu.end.am" @keyup.enter="RevertThurs(); $emit('update');">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row" v-else @click="Thurs_click">
+          <div class="col-day">
+            <div class="form-check">
+              <label :style="{marginLeft: '10px'}">Thursday</label>
+            </div>
+          </div>
+          <div class="col-time">
+            <div v-if="attractions.operations.thu.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.thu.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.thu.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.thu.start.am}}</p>
               </div>
-            </li>
-          </ul>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.thu.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.thu.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.thu.end.am}}</p>
+              </div>
+            </div>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p>Not Open</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FRIDAY -->
+        <div class="form-row" v-if="editedToDo_fri">
+          <div class="col-day">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="fri" name="fri" value="fri" v-model="attractions.operations.fri.open">
+              <label class="form-check-label" for="fri">Friday</label>
+            </div>
+          </div>
+          <div class="col-time">
+            <div class="start-time">
+              <select class="dropdown" v-model="attractions.operations.fri.start.hour" @keyup.enter="RevertFri(); $emit('update');">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.fri.start.min" @keyup.enter="RevertFri(); $emit('update');">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.fri.start.am" @keyup.enter="RevertFri(); $emit('update');">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+            <div class="end-time">
+              <select class="dropdown" v-model="attractions.operations.fri.end.hour" @keyup.enter="RevertFri(); $emit('update');">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.fri.end.min" @keyup.enter="RevertFri(); $emit('update');">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.fri.end.am" @keyup.enter="RevertFri(); $emit('update');">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row" v-else @click="Fri_click">
+          <div class="col-day">
+            <div class="form-check">
+              <label :style="{marginLeft: '10px'}">Friday</label>
+            </div>
+          </div>
+          <div class="col-time">
+            <div v-if="attractions.operations.fri.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.fri.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.fri.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.fri.start.am}}</p>
+              </div>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.fri.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.fri.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.fri.end.am}}</p>
+              </div>
+            </div>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p>Not Open</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SATURDAY -->
+        <div class="form-row" v-if="editedToDo_sat">
+          <div class="col-day">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="sat" name="sat" value="sat" v-model="attractions.operations.sat.open">
+              <label class="form-check-label" for="sat">Saturday</label>
+            </div>
+          </div>
+          <div class="col-time">
+            <div class="start-time">
+              <select class="dropdown" v-model="attractions.operations.sat.start.hour" @keyup.enter="RevertSat(); $emit('update');">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.sat.start.min" @keyup.enter="RevertSat(); $emit('update');">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.sat.start.am" @keyup.enter="RevertSat(); $emit('update');">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+            <div class="end-time">
+              <select class="dropdown" v-model="attractions.operations.sat.end.hour" @keyup.enter="RevertSat(); $emit('update');">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.sat.end.min" @keyup.enter="RevertSat(); $emit('update');">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.sat.end.am" @keyup.enter="RevertSat(); $emit('update');">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row" v-else @click="Sat_click">
+          <div class="col-day">
+            <div class="form-check">
+              <label :style="{marginLeft: '10px'}">Saturday</label>
+            </div>
+          </div>
+          <div class="col-time">
+            <div v-if="attractions.operations.sat.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.sat.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.sat.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.sat.start.am}}</p>
+              </div>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.sat.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.sat.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.sat.end.am}}</p>
+              </div>
+            </div>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p>Not Open</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUNDAY -->
+        <div class="form-row" v-if="editedToDo_sun">
+          <div class="col-day">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="sun" name="sun" value="sun" v-model="attractions.operations.sun.open">
+              <label class="form-check-label" for="sun">Sunday</label>
+            </div>
+          </div>
+          <div class="col-time">
+            <div class="start-time">
+              <select class="dropdown" v-model="attractions.operations.sun.start.hour" @keyup.enter="RevertSun(); $emit('update');">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.sun.start.min" @keyup.enter="RevertSun(); $emit('update');">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.sun.start.am" @keyup.enter="RevertSun(); $emit('update');">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+            <div class="end-time">
+              <select class="dropdown" v-model="attractions.operations.sun.end.hour" @keyup.enter="RevertSun(); $emit('update');">
+                <option value="" disabled>Hour</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.sun.end.min" @keyup.enter="RevertSun(); $emit('update');">
+                <option value="0" disabled>min</option>
+                <option value="00">00</option>
+                <option value="30">30</option>
+              </select>
+              <select class="dropdown" v-model="attractions.operations.sun.end.am" @keyup.enter="RevertSun(); $emit('update');">
+                <option value="am">am</option>
+                <option value="pm">pm</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-row" v-else @click="Sun_click">
+          <div class="col-day">
+            <div class="form-check">
+              <label :style="{marginLeft: '10px'}">Sunday</label>
+            </div>
+          </div>
+          <div class="col-time">
+            <div v-if="attractions.operations.sun.open">
+              <div class="start-time">
+                <p class="dropdown">{{attractions.operations.sun.start.hour}}</p>
+                <p class="dropdown">{{attractions.operations.sun.start.min}}</p>
+                <p class="dropdown">{{attractions.operations.sun.start.am}}</p>
+              </div>
+              <div class="end-time">
+                <p class="dropdown">{{attractions.operations.sun.end.hour}}</p>
+                <p class="dropdown">{{attractions.operations.sun.end.min}}</p>
+                <p class="dropdown">{{attractions.operations.sun.end.am}}</p>
+              </div>
+            </div>
+            <div v-else>
+              <div :style="{textAlign: 'left', position: 'relative', left: 'calc(50% - 150px)'}">
+                <p>Not Open</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -603,8 +755,8 @@
               $emit('update');
             "
         />
-        <div v-else>
-          <h4>{{ attractions.promotions }}</h4>
+        <div v-else id="promoDetails">
+          <p>{{ attractions.promotions }}</p>
         </div>
       </div>
     </div>
@@ -648,11 +800,21 @@ export default {
     bumpStyle() {
       if (this.bumped == true) {
         return {
+          'color': 'white',
+          'borderRadius': '10px',
+          'padding': '10px 20px',
+          'marginRight': '10px',
+          'marginBottom': '5px',
           "background-color": "grey",
         };
       } else {
         return {
-          "background-color": "red",
+          'color': 'white',
+          'borderRadius': '10px',
+          'padding': '8px 15px',
+          'marginRight': '10px',
+          'marginBottom': '5px',
+          "background-color": "rgb(255, 46, 81)",
         };
       }
     },
@@ -1091,7 +1253,7 @@ button {
   width: 50%;
 }
 #box2 {
-  height: 230px;
+  height: 240px;
 }
 
 input {
@@ -1156,9 +1318,70 @@ button h3 {
   float: left;
 }
 select{
-  color:white;
+  background-color: transparent;
+  color: white;
 }
 select option{
   color:white;
+}
+#promoDetails {
+  padding: 5px 30px 5px 5px;
+}
+
+/* operating hours styling */
+.col-day {
+  float: left;
+  width: 25%;
+  margin-top: 5px;
+}
+.form-row {
+  width: 100%;
+  height: 20px;
+}
+.form-check {
+  left: 0;
+  width: 100%;
+  margin-right: 10px;
+  position: relative;
+  top: 0px;
+}
+.form-check-input {
+  float: right;
+  position: relative;
+  right: 0;
+  top: 0.3rem;
+  margin-top: 0;
+  margin-right: 10px;
+  width: 10px;
+}
+.form-check-label {
+  float: left;
+  width: 50%;
+  margin: 0px 10px;
+  text-align: left;
+}
+.col-time {
+  float: right;
+  width: calc(75% - 30px);
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-right: 20px;
+}
+.start-time {
+  float: left;
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+.end-time {
+  float: right;
+  position: relative;
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+.dropdown {
+  width: 50px;
+  margin: 0px;
 }
 </style>

@@ -12,7 +12,7 @@
 
       <p id="address">{{activity.address}}</p>
       <button id="exploreEateries" v-show="activity.exploreFood == 'true'">
-        <router-link :to="'/eateries/'+ activity.name">Explore Food Options</router-link>
+        <router-link :to="'/eateries/'+ activity.name">EXPLORE FOOD OPTIONS</router-link>
       </button>
     </div>
     <div id="button">
@@ -172,12 +172,13 @@ location-icon {
 
   button{
     background-color:rgb(255, 46, 81);
-    padding:7px 5px;
+    padding:5px 7px;
     border-radius:20px;
     font-weight: bolder;
-    font-size: 10px;
+    font-size: 12px;
     border:none;
     position: relative;
+    margin-left: 5px;
   }
 
 </style>

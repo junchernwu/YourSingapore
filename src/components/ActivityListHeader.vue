@@ -71,10 +71,10 @@ export default {
      
           if(this.weather_results[key].datetime==this.date ){
             this.Selected_weather=this.weather_results[key].weather.description
-           
-     
+            if (this.Selected_weather.includes("Thunderstorm")) {
+              this.Selected_weather = "Thunderstorm";
+            }
             this.icon="https://www.weatherbit.io/static/img/icons/"+this.weather_results[key].weather.icon+".png"
-            
           }
             
         }
@@ -85,7 +85,7 @@ export default {
     picture_display:function(){
       var x=this.Selected_weather;
       
-      if(x.includes('rain')){
+      if(x.includes('rain') || x.includes('Thunderstorm')){
         this.picture= rain;
       } else if(x.includes("Broken")){
         this.picture=sunny;
