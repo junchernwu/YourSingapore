@@ -423,4 +423,7 @@ input {
   position: relative;
   left: 4%;
 }
+.dropdown {
+  background-color: #343E53;
+}
 </style>

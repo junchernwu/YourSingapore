@@ -45,23 +45,24 @@ h1{
     margin-left: 10%;
     margin-top:10%;
     text-align: left;
-    font-size:60px;
+    font-size:4vw;
     color: white;
     font-weight: lighter;
 }
-  select{
+  select {
     position: relative;
     margin-left: 10%;
     border:none;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.295);
-    color:white;
-    width:250px;
+    background-color: rgba(80, 80, 80, 0.5);
+    color: white;
+    width: 15vw;
     height:40px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     padding-left:10px;
     font-size:15px;
+    -webkit-appearance:none;
   }
 
   button{

@@ -514,8 +514,8 @@ a,button{
 .dropdown {
   position: relative;
   top: -10px;
+  background-color: rgb(50, 56, 74);
   border-color: rgba(255, 255, 255, 0.295);
-  background: none;
   color: white;
 }
 

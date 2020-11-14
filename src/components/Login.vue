@@ -1,6 +1,6 @@
 <template>
   <div id="main">
-    <div class="ui  middle aligned center aligned grid">
+    <div class="centre">
       <div class="column">
         <h2 class="ui image header">
           <div class="content" style="color: white;">
@@ -13,10 +13,10 @@
               <div class="ui left icon input">
                 <i class="user icon"></i>
                 <input
-                  type="text"
-                  name="email"
-                  placeholder="E-mail address"
-                  v-model="email"
+                    type="text"
+                    name="email"
+                    placeholder="E-mail address"
+                    v-model="email"
                 />
               </div>
             </div>
@@ -24,10 +24,10 @@
               <div class="ui left icon input">
                 <i class="lock icon"></i>
                 <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  v-model="password"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    v-model="password"
                 />
               </div>
             </div>
@@ -40,10 +40,10 @@
         <div class="ui message">
           New to us?
           <router-link
-            to="/merchant/Registration_new"
-            exact
-            style="color: blue; text-decoration: none"
-            >Register</router-link
+              to="/merchant/Registration_new"
+              exact
+              style="color: blue; text-decoration: none"
+          >Register</router-link
           >
         </div>
       </div>
@@ -66,65 +66,51 @@ export default {
     login: function() {
       var router = this.$router;
       var uid = null;
-
       firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(
-          function() {
-            // console.log("LOGGED IN SUCCESSFULLY")
-            var loggedin = firebase.auth().currentUser;
-            uid = loggedin.uid;
-           
-            if (uid == "BRNb1ldfYYMEQMU4lZaP2ucoSNC3") {
-              console.log("MASTER ACCOUNT");
+          .auth()
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then(
+              function() {
+                // console.log("LOGGED IN SUCCESSFULLY")
+                var loggedin = firebase.auth().currentUser;
+                uid = loggedin.uid;
+
+                if (uid == "BRNb1ldfYYMEQMU4lZaP2ucoSNC3") {
+                  console.log("MASTER ACCOUNT");
                   router.push("/master");
-        
-            } else {
 
-   
-              database
-                .collection("attraction2")
-                .get()
-                .then((querySnapShot) => {
-                  let item = {};
-                  querySnapShot.forEach((doc) => {
-                    item = doc.data();
-                    if (item.auth_id == uid && item.approved == "pending") {
-                      alert("Your application is still awaiting approval");
-                      router.push("/");
-                    } else if (
-                      item.auth_id == uid &&
-                      item.approved == "approved"
-                    ) {
-                      console.log("succesfully approved");
-                      router.push("/merchant/" + uid);
-                    }
-                  });
-                });
-            }
-          },
-          function(err) {
-            alert("oops" + err.message);
-          }
-        );
+                } else {
+
+                  database
+                      .collection("attraction2")
+                      .get()
+                      .then((querySnapShot) => {
+                        let item = {};
+                        querySnapShot.forEach((doc) => {
+                          item = doc.data();
+                          if (item.auth_id == uid && item.approved == "pending") {
+                            alert("Your application is still awaiting approval");
+                            router.push("/");
+                          } else if (
+                              item.auth_id == uid &&
+                              item.approved == "approved"
+                          ) {
+                            console.log("succesfully approved");
+                            router.push("/merchant/" + uid);
+                          }
+                        });
+                      });
+                }
+              },
+              function(err) {
+                alert("oops" + err.message);
+              }
+          );
     },
-
     persist: function() {
       sessionStorage.date = this.date;
     },
   },
-  mounted() {
-    if (localStorage.getItem('reloaded')) {
-      // The page was just reloaded. Clear the value from local storage
-      // so that it will reload the next time this page is visited.
-      localStorage.removeItem('reloaded');
-    } else {
-      // Set a flag so that we know not to reload the page twice.
-      localStorage.setItem('reloaded', '1');
-      location.reload();
-    }
-  }
 };
 </script>
 
@@ -136,9 +122,14 @@ body > .grid {
   margin-top: -100px;
 }
 .column {
-  max-width: 600px;
+  width: 50vw;
 }
 .content {
   padding-top: 50px;
+}
+.centre {
+  position: relative;
+  left: 27vw;
+  text-align: center;
 }
 </style>

@@ -5,7 +5,7 @@
         <label id="image-label">To Replace Attraction photo</label>
         <br />
         <input
-          style="text-align: center"
+          :style="{textAlign: 'center', border: 'none', position: 'relative', left: '-15px'}"
           type="file"
           accept="image/png, image/jpeg"
           name="file-upload"
@@ -1017,7 +1017,7 @@ export default {
           });
         // NOTE: TESTED FOR 11 MINUTES
         // 7 Days: 86400000 TO CHANGE!!!
-        setTimeout(this.removeBump, 1000);
+        setTimeout(this.removeBump, 60000);
       } else {
         alert("Attraction can only be bumped once every 7 days");
       }

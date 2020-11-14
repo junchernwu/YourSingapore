@@ -22,7 +22,7 @@
             v-model="location"
           >
             <i class="dropdown icon"></i>
-            <option value="">Select Location</option>
+            <option value="" selected disabled>Select Location</option>
             <option value="all">All</option>
             <option value="North">North</option>
             <option value="South">South</option>
@@ -38,7 +38,7 @@
             v-model="discount"
           >
             <i class="dropdown icon"></i>
-            <option value="">Discount type</option>
+            <option value="" selected disabled>Discount type</option>
             <option value="all">All</option>
             <optgroup label="Percentage">
               <option value="< 10%"> Less than 10%</option>
@@ -64,7 +64,7 @@
             v-model="attractionType"
           >
             <i class="dropdown icon"></i>
-            <option value="">Activity type</option>
+            <option value="" selected disabled>Activity type</option>
             <option value="all">All</option>
             <option value="Exhibitions">Exhibitions</option>
             <option value="Museum">Museum</option>
@@ -81,7 +81,7 @@
             v-model="pricerange"
           >
             <i class="dropdown icon"></i>
-            <option value="">Price range</option>
+            <option value="" selected disabled>Price range</option>
             <option value="all">All</option>
             <option value="$0 - $20">$0 - $20</option>
             <option value="$20 - $50">$20 - $50</option>
@@ -96,7 +96,7 @@
             v-model="demographic"
           >
             <i class="dropdown icon"></i>
-            <option value="">Demographic</option>
+            <option value="" selected disabled>Demographic</option>
             <option value="all">All</option>
             <option value="Elderly">Elderly</option>
             <option value="Kids">Kids</option>
