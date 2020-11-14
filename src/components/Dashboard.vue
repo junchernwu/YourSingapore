@@ -2,11 +2,11 @@
   <div id="total">
     <div class="graph">
       <div id="graph1">
-        <h2>Viewers</h2>
+        <h2>Number of Viewers</h2>
         <ViewersBar id="viewersBar" v-bind:docId="docId" :datacollection="datacollection" :options="options"  v-if="loaded"></ViewersBar>
       </div>
       <div id="graph2">
-        <h2>Visitors</h2>
+        <h2>Estimated Number of Visitors</h2>
         <AddsBar id="addsBar" v-bind:docId="docId" :datacollection2="datacollection2" :options2="options2"  v-if="loaded"></AddsBar>
       </div>
     </div>
