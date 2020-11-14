@@ -122,14 +122,14 @@ body > .grid {
   margin-top: -100px;
 }
 .column {
-  width: 50vw;
+  width: 40vw;
 }
 .content {
   padding-top: 50px;
 }
 .centre {
   position: relative;
-  left: 27vw;
+  left: 30.5vw;
   text-align: center;
 }
 </style>

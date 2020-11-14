@@ -1,6 +1,6 @@
 <template>
   <div id="main">
-    <div class="ui  middle aligned center aligned grid">
+    <div class="centre">
       <div class="column">
         <h2 class="ui image header">
           <div class="content" style="color: white;">
@@ -151,9 +151,14 @@ body > .grid {
   margin-top: -100px;
 }
 .column {
-  max-width: 600px;
+  max-width: 40vw;
 }
 .content {
   padding-top: 50px;
+}
+.centre {
+  position: relative;
+  left: 30.5vw;
+  text-align: center;
 }
 </style>
