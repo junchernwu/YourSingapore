@@ -474,7 +474,7 @@ a,button{
   border-radius: 10px;
   text-align: center;
   padding: 5%;
-  padding-top: 6%;
+  padding-top: 8%;
   margin: 10px;
   background-color: rgba(82, 82, 100, 0.554);
   position: relative;
@@ -497,15 +497,17 @@ a,button{
 }
 
 .leftt{
+  margin-top: 10px;
   float:left;
   width:50%;
 }
 .rightt{
+  margin-top: 10px;
   float:left;
   width:50%;
 }
 #box2{
-  height:230px;
+  height:200px;
 }
 
 .dropdown {

@@ -348,17 +348,16 @@ p {
 }
 nav {
   float: left;
-  width: 20%;
   padding-left: 2%;
   padding-right: 2%;
   height: 100%;
   position: fixed;
   padding-top: 30px;
+  width: 300px;
 }
 .bar {
   float: left;
-  width: 90%;
-  max-width: 250px;
+  width: 250px;
 }
 #filters {
   color: whitesmoke;
@@ -373,9 +372,7 @@ nav {
 }
 #content {
   float: right;
-  width: 78%;
-  max-width: 1500px;
-  margin-right: calc((100% - 1500px)/3);
+  width: calc(100% - 300px);
   padding-top: 1%;
 }
 section {
