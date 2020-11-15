@@ -185,7 +185,7 @@ export default {
 
             // check and update bump status
             if (doc.data().bump.status == true) {
-              if (new Date() > doc.data().bump.date.toDate().getTime() + 60000) {
+              if (new Date() > doc.data().bump.date.toDate().getTime() + 300000) {
                 console.log("REMOVE BUMP USER SIDE")
                 database
                     .collection("attraction2")

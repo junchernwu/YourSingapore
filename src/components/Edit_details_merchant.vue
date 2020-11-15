@@ -908,7 +908,7 @@ export default {
     },
     checkRemovedBump: function() {
       if (this.bumped == true) {
-        if (new Date() > this.attractions.bump.date.toDate().getTime() + 60000) {
+        if (new Date() > this.attractions.bump.date.toDate().getTime() + 300000) {
           this.removeBump();
         }
       }
@@ -1024,7 +1024,7 @@ export default {
           });
         // NOTE: TESTED FOR 11 MINUTES
         // 7 Days: 86400000
-        setTimeout(this.removeBump, 60000);
+        setTimeout(this.removeBump, 300000);
       } else {
         alert("Attraction can only be bumped once every 7 days");
       }
