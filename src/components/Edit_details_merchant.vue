@@ -785,7 +785,7 @@ export default {
       address_edit: null,
       doc_id: null,
       promo_edit: null,
-      bumped: false,
+      bumped: null,
     };
   },
 
@@ -796,6 +796,7 @@ export default {
   created() {
     this.fetchItems();
   },
+
   computed: {
     bumpStyle() {
       if (this.bumped == true) {
@@ -855,9 +856,6 @@ export default {
 
 
     },
-    workingclick: function() {
-      console.log("CLICKING WORKS");
-    },
     deleteOption: function(index) {
       console.log("DELETING");
       console.log(this.attractions.pricing);
@@ -897,12 +895,22 @@ export default {
                 this.attractions = item;
                 console.log("WORKS");
                 console.log(this.attractions);
+                this.bumped = this.attractions.bump.status;
+                console.log("CHECK BUMP: " + this.bumped);
+                this.checkRemovedBump();
               }
             });
           });
       } else {
         alert("Unauthorised Access. Please Login");
         this.$router.push("/login");
+      }
+    },
+    checkRemovedBump: function() {
+      if (this.bumped == true) {
+        if (new Date() > this.attractions.bump.date.toDate().getTime() + 60000) {
+          this.removeBump();
+        }
       }
     },
     Monday_click: function() {
@@ -981,7 +989,6 @@ export default {
       var updated = this.attractions;
 
       database
-
         .collection("attraction2")
         .doc(id)
         .set(updated)
@@ -1016,13 +1023,14 @@ export default {
             bumpTimes: firebase.firestore.FieldValue.increment(1),
           });
         // NOTE: TESTED FOR 11 MINUTES
-        // 7 Days: 86400000 TO CHANGE!!!
+        // 7 Days: 86400000
         setTimeout(this.removeBump, 60000);
       } else {
         alert("Attraction can only be bumped once every 7 days");
       }
     },
     removeBump: function() {
+      // check date vs bumped date (BASED ON 1 MIN)
       this.bumped = false;
       var id = this.doc_id;
       database
