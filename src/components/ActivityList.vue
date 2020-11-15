@@ -182,6 +182,22 @@ export default {
               console.log(item.promotiontype);
               this.attractions.push(item);
             }
+
+            // check and update bump status
+            if (doc.data().bump.status == true) {
+              if (new Date() > doc.data().bump.date.toDate().getTime() + 60000) {
+                console.log("REMOVE BUMP USER SIDE")
+                database
+                    .collection("attraction2")
+                    .doc(doc.id)
+                    .update({
+                      bump: {
+                        status: false,
+                        date: "",
+                      },
+                    });
+              }
+            }
           });
           console.log(this.attractions);
         });
