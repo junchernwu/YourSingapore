@@ -1009,22 +1009,30 @@ export default {
     },
     bump: function() {
       if (this.bumped == false) {
-        console.log("BUMP");
-        this.bumped = true;
-        var id = this.doc_id;
-        database
-          .collection("attraction2")
-          .doc(id)
-          .update({
-            bump: {
-              status: true,
-              date: new Date(),
-            },
-            bumpTimes: firebase.firestore.FieldValue.increment(1),
-          });
-        // NOTE: TESTED FOR 11 MINUTES
-        // 7 Days: 86400000
-        setTimeout(this.removeBump, 300000);
+        // CHECK
+        var listedDays = Math.floor((new Date() - this.attractions.dateAdded.toDate().getTime()) / 86400000);
+        var maxBump = Math.floor(listedDays / 7.0);
+        console.log("LISTED DAYS: " + listedDays)
+        if (this.attractions.bumpTimes >= maxBump) {
+          alert('For the purpose of testing, the bump validity has been set to last for only 5 minutes. Your attraction has only been listed for ' + listedDays + ' days. Do not bump more than ' + maxBump + ' times');
+        } else {
+          console.log("BUMP");
+          this.bumped = true;
+          var id = this.doc_id;
+          database
+              .collection("attraction2")
+              .doc(id)
+              .update({
+                bump: {
+                  status: true,
+                  date: new Date(),
+                },
+                bumpTimes: firebase.firestore.FieldValue.increment(1),
+              });
+          // NOTE: TESTED FOR 11 MINUTES
+          // 7 Days: 86400000
+          setTimeout(this.removeBump, 300000);
+        }
       } else {
         alert("Attraction can only be bumped once every 7 days");
       }
