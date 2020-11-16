@@ -274,7 +274,7 @@ h3 {
   float: left;
   font-size: 25px;
   margin-bottom: 1px;
-  text-align: center;
+  text-align: justify;
 }
 a, button {
   background-color:rgb(255, 46, 81);
