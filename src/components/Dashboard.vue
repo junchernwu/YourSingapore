@@ -174,9 +174,10 @@ export default {
         },
         GetDates: function(daysToAdd) {
             var current=new Date().getTime()
-            for (var i = 0; i < daysToAdd; i++) {
+            for (var i = daysToAdd-1; i>=0; i--) {
                 this.dates.push(this.formatDate(new Date(current - (i*86400000)).toString()))
             }
+            console.log(this.dates)
             this.datacollection.labels = this.dates
             this.datacollection2.labels = this.dates
         },
