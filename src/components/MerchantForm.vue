@@ -494,7 +494,7 @@
 
       <!-- booking link -->
       <div class="input-focus">
-        <input type="url" name = "link" placeholder="Booking Link" v-model="attraction.link">
+        <input type="url" name = "link" placeholder="Booking Link: Eg.https://www.google.com" v-model="attraction.link">
       </div>
       <!-- promotion details -->
       <div class="input-focus">
